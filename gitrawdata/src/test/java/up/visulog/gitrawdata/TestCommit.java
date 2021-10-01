@@ -7,6 +7,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import java.nio.charset.StandardCharsets;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -18,7 +19,10 @@ public class TestCommit {
         try (var reader = Files.newBufferedReader(Paths.get(uri))) {
             var commit = Commit.parseCommit(reader);
             assertTrue(commit.isPresent());
-            assertEquals(expected, commit.get().toString());
+
+            String utf8EncodedString = new String(expected.getBytes(), StandardCharsets.UTF_8);// convertir la chaine de char 
+
+            assertEquals(utf8EncodedString, commit.get().toString());
         }
     }
 
@@ -28,8 +32,10 @@ public class TestCommit {
         var uri = getClass().getClassLoader().getResource("git.log").toURI();
         try (var reader = Files.newBufferedReader(Paths.get(uri))) {
             var log = Commit.parseLog(reader);
-//            System.out.println(log);
-            assertEquals(expected, log.toString());
+
+            String utf8EncodedString = new String(expected.getBytes(), StandardCharsets.UTF_8);// convertir la chaine de char 
+
+            assertEquals(utf8EncodedString, log.toString());
         }
     }
 
