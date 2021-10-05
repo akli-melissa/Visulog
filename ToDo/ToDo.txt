@@ -1,0 +1,78 @@
+
+Les tâches à partager et à réorganiser: 
+
+ANALYZER:
+
+      main:
+
+         -Analyzer: 
+                    * try running all plugins in parallel
+                    * store the results together in an AnalyzerResult instance and return it
+                    * find a way so that the list of plugins is not hardcoded in this factory
+
+         -AnalyzerPlugin:
+                    * run this analyzer plugin
+                    * return the result of this analysis. Runs the analysis first if not already done.
+
+
+      test:
+
+         -TestCountCommits:
+                    * Let's check whether the number of authors is preserved and that the sum of the commits of each author is equal to the total number of commits (test)
+
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------//
+
+GITRAWDATA:
+
+      main:
+         - Commit:
+         		   * FIXME: (some of) these fields could have more specialized types than String
+         		   * factor this out (similar code will have to be used for all git commands)
+         		   * Parses a log item and outputs a commit object. Exceptions will be thrown in case the input does not have the proper format.
+         		   * Returns an empty optional if there is nothing to parse anymore.
+         		   * warn the user that some field was ignored
+         		   * find out if this is the only optional field
+	
+
+
+
+      test:
+         -
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------//
+
+CLI:
+
+      main:
+         -CLILauncher:
+                    * parse argument and make an instance of PluginConfig
+					* Let's just trivially do this, before the TODO is fixed:
+					* load options from a file
+					* save command line options to a file instead of running the analysis
+					* print the list of options and their syntax
+
+
+
+      test:
+         -TestCLILauncher:
+            	    * run the whole program with some valid options and look whether the output has a valid format
+    				* run the whole program with bad command and see whether something that looks like help is printed
+
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------//
+
+CONFIG:
+
+      main:
+         - PluginConfig: 
+         			* define what this type should be (probably a Map: settingKey -> settingValue)
+
+
+      test:
+         -TestConfiguration:
+         			*D o not forget writing tests as soon as class Configuration contains more than just getters (or if they or the constructor start doing something smart!).
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------//
