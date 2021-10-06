@@ -20,7 +20,7 @@ public class Analyzer {
     public AnalyzerResult computeResults() {
         List<AnalyzerPlugin> plugins = new ArrayList<>();
         for (var pluginConfigEntry: config.getPluginConfigs().entrySet()) {
-            var pluginName = pluginConfigEntry.getKey();
+            var pluginName = pluginConfigEntry.getKey(); 
             var pluginConfig = pluginConfigEntry.getValue();
             var plugin = makePlugin(pluginName, pluginConfig);
             plugin.ifPresent(plugins::add);
@@ -30,7 +30,7 @@ public class Analyzer {
         for (var plugin: plugins) plugin.run();
 
         // store the results together in an AnalyzerResult instance and return it
-        return new AnalyzerResult(plugins.stream().map(AnalyzerPlugin::getResult).collect(Collectors.toList()));
+        return new AnalyzerResult(plugins.stream().map(AnalyzerPlugin::getResult).collect(Collectors.toList()));//lisye de Result
     }
 
     // TODO: find a way so that the list of plugins is not hardcoded in this factory
@@ -40,5 +40,4 @@ public class Analyzer {
             default : return Optional.empty();
         }
     }
-
 }
