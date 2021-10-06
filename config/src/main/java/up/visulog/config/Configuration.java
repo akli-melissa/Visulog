@@ -1,8 +1,6 @@
 package up.visulog.config;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class Configuration {
@@ -12,7 +10,7 @@ public class Configuration {
 
     public Configuration(Path gitPath, Map<String, PluginConfig> plugins) {
         this.gitPath = gitPath;
-        this.plugins = Map.copyOf(plugins);
+        this.plugins = Map.copyOf(plugins);//new HashMap<>(plugins);
     }
 
     public Path getGitPath() {
