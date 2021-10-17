@@ -1,8 +1,11 @@
 Dans la classe CLI:
 	****Pour le main:
 	1-Nous recuperons une commande d'un utilisateur.
+	
 	2-Nous l'analysons en la decortiquant en plusieurs parties,qu'on etudira par la suite.
+	
 	3-Si toutes nos données sont bonnes ,nous recuperons les resultats.
+	
 	4-Aprés avoir collecté les bonnes données,nous nous occuperrons de l'affichage en html des differentes informations recuperées.
 	
 	Concernant l'analyse:
@@ -20,7 +23,7 @@ Dans la classe CLI:
 		
 		3.2-Des qu'on croise le '--' on commence notre analyse:
 		
-			3.2.1-On decoupe notre mot en 2 parties (Séparées initialement par un '=') , si on avait pas le '=' c'est que la 				commande n'etait pas bonne
+			3.2.1-On decoupe notre mot en 2 parties (Séparées initialement par un '=') , si on avait pas le '=' c'est que la commande n'etait pas bonne
 			
 			3.2.2-Ensuite on recupere les 2 parties separement:
 				1ere partie etant l'option(nom: avant le '=')
