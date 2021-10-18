@@ -3,11 +3,14 @@ package up.visulog.analyzer;
 import java.lang.module.Configuration;
 
 public interface AnalyzerPlugin {
-    interface Result {
+
+    //
+    interface Result {// ~ Classe interne
+
         String getResultAsString();
         String getResultAsHtmlDiv();
-    }
 
+    }
     /**
      * run this analyzer plugin
      */
