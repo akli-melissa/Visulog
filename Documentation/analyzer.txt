@@ -1,0 +1,27 @@
+@Yanis
+I) Analyzer
+  MAIN:
+
+
+Class Analyzer:
+    * Analyzer objet contenant: 
+        
+        * Une Configuration (final) est une "Map" contenant un chemin: gitPath et une "Map"
+        qui est une paire de Key-Value indiquant les plugins.
+        * Result de type AnalyzerResult (Voir ci-dessous la description de la classe)
+
+         
+         * Méthode ComputeResults: Calcule le nombre de commits effectués par tous les auteurs
+                  Renvoie une liste de plugins créée à partir des noms et valeurs qu'elle a récuperer
+                  
+         * Méthode MakePlugin: Cree un Plugin selon ce que veut l'utilisateur (Pour l'instant on a countCommits)
+                               Retourne la liste de commits créée par un auteur
+         
+
+   TEST:
+
+
+   
+II) AnalyzerPlugin
+III) AnalyzerResult
+IV) CountCommitPerAuthorPlugin
