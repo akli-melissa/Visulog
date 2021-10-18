@@ -1,0 +1,32 @@
+Class Commit:
+	Commit est un objet contenant:
+	-Des attributs:
+	* Un string 'id' l'id du commit.
+	* Un string 'date' soit la date du commit.
+	* Un string 'author' soit l'auteur du commit.
+	* Un string 'description'.
+	* Un string 'mergedfrom'.
+	
+	-Un constructeur qui prend en argument tous les attributs.
+	
+	Les méthodes:
+	- Une méthode parseError() qui gére les erreurs des exceptions en runtime ( moment de parsing)
+	
+	- Une méthode parseCommit(Buffer reader input ) qui retourne Optional<Commit> :
+		*Cette méthode lit la ligne donné en argument, si la ligne est vide on ne retourne rien
+		si le premier mot est "commit" (C en minuscule) alors erreur
+		On lit la ligne depuis le deuxieme mot en separant les colonnes
+		On utilise substring() et trim() pour mettre les mots dans un champs
+		puis on utilise le case pour : Author, Merge, Date, et puis on les set (les mots qui viennent apres)
+		Pour la description, on prend toutes les lignes jusqu'à la premiere ligne vide, on supprime l'indentation, on concaténe le 		tout et on set la description.
+		Avec tous les attributs set on peut construire l'objet Commit.
+		
+	- Une méthode parseLog(BufferedReader reader) qui retourne une liste de Commits : 
+		Elle utilise la fonction précedente pour construire les commits puis les ajoute à la liste
+		Elle retourne cette liste
+		
+	- Une méthode parseLogFromCommand(Path gitPath) qui retourne une liste de Commits:
+		- Elle trouve les exceptions dans la commande 
+		- Elle utilise la fonction ci-dessus apres avoir bien reglé le input 
+		
+	

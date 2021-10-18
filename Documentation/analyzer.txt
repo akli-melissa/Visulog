@@ -1,0 +1,27 @@
+
+Class Analyzer:
+    * Analyzer objet contenant: 
+        
+        * Une Configuration (final) est une "Map" contenant un chemin: gitPath et une "Map"
+        qui est une paire de Key-Value indiquant les plugins.
+        * Result de type AnalyzerResult (Voir ci-dessous la description de la classe)
+
+         
+         * Méthode ComputeResults: Calcule le nombre de commits effectués par tous les auteurs
+                  Renvoie une liste de plugins créée à partir des noms et valeurs qu'elle a récuperer
+                  
+         * Méthode MakePlugin: Cree un Plugin selon ce que veut l'utilisateur (Pour l'instant on a countCommits)
+                               Retourne la liste de commits créée par un auteur
+     <--------------------------------------------------------------------------------------------------------------------------------------->
+     
+     
+********************le fonctionnement de la classe "AnalyzerResult" ***********************************************************
+-Elle est chargée de l'affichage des résultats (nombre de commit par auteur pour l'instant) sous forme d'un fichier html 
+-Composée de : 
+    1).un constructeur qui prend en parametre  l'attribut de type List<AnalyzerPlugin.Result> 
+    où "AnalyzerPlugin.Result est une sous interface implementée dans la classe "Count CommitsPerAuthorPlugin" qui a 3 fonctions getters chargées une liste d'elements qui associe  à chaque auteur son nombre de commits effectués sous forme de chaines de caracteres (en utilisant toString et toHtml ). 
+    2).un getter "getSubResults" qui utilise la sous interface "Result" pour retourner les resultats sous forme d'une liste d'elements .
+    3).fonctions toString et toHtml qui utilisent les fonctions getters de la sous interface Result qui sont "getResultAsString " et "getResultAsHtmlDiv" en utilisant stram().map(function mapper).reduce() "reduce()" applique un opérateur binaire à chaque élément du flux où le premier argument de l'opérateur est la valeur de retour de l'application précédente et le deuxième argument est l'élément du flux actuel ,comme ici dans cette classe elle prend "acc" qui signifie "accumulator" qui est la valeur de retour et "cur" qui signifie "CurrentLine" qui veut dire la ligne actuelle du message du commit et elle fait la concaténation . 
+    
+    <----------------------------------------------------------------------------------------------------------------------------------------->
+
