@@ -1,0 +1,43 @@
+Dans la classe CLI:
+	****Pour le main:
+	1-Nous recuperons une commande d'un utilisateur.
+	
+	2-Nous l'analysons en la decortiquant en plusieurs parties,qu'on etudira par la suite.
+	
+	3-Si toutes nos données sont bonnes ,nous recuperons les resultats.
+	
+	4-Aprés avoir collecté les bonnes données,nous nous occuperrons de l'affichage en html des differentes informations recuperées.
+	
+	Concernant l'analyse:
+	****La fonction :"makeConfigFromCommandLineArgs"
+	
+	C'est une fonction qui prend en argument un tableau de chaines de caracteres(la ligne de commande)
+	
+	1-Recupere le path du dossier courant
+	
+	2-Crée une nouvelle Map
+	
+	3-Parcour le tableau, puis verifie pour chaque valeur:
+	
+		3.1-Si elle commence par '--' pour savoir de quelle option il s'agit, bien sur si nous l'avons atteinte,si ce n'est pas le 		cas c'est qu'on est entrain de lire et de parcourir le chemin absolu du fichier, et dans ce cas nous devons a chaque fois 			stocker ce nom lu dans notre path afin d'avoir le chemin absolue du fichier sur lequel est faite l'operation.
+		
+		3.2-Des qu'on croise le '--' on commence notre analyse:
+		
+			3.2.1-On decoupe notre mot en 2 parties (Séparées initialement par un '=') , si on avait pas le '=' c'est que la commande n'etait pas bonne
+			
+			3.2.2-Ensuite on recupere les 2 parties separement:
+				1ere partie etant l'option(nom: avant le '=')
+				2eme partie etant la valeur 
+			
+			3.2.3-On analyse la  partie 1 et puis nous operons sur pulgin selon la valeur lue.
+		
+	4-Et puis a la fin nous retournant une Map contenant la configuration obtenue.
+	
+	****Pour la fonction :displayHelpAndExit:
+	C'est une fonction qu'on appellera si la commande saisie par l'utilisateur n'est pas correcte , par exemple si l'option choisie n'existe pas (Dans le cas ou la Map renoutnée par "makeConfigFromCommandLineArgs"  est vide)
+	Donc :
+	1-Elle affichera un message d'erreur .
+	2-Affichera les options possibles et correctes.
+	3-Sort du programme.
+	
+	
