@@ -23,7 +23,7 @@ public class CLILauncher {
         var gitPath = FileSystems.getDefault().getPath(".");
         var plugins = new HashMap<String, PluginConfig>();
         for (var arg : args) {
-            if (arg.startsWith("--")) {
+            if (arg.startsWith("--")) {//startWith methode de la classe String :evaluer prefix
                 String[] parts = arg.split("=");
                 if (parts.length != 2) return Optional.empty();
                 else {
@@ -62,3 +62,7 @@ public class CLILauncher {
         System.exit(0);
     }
 }
+
+
+//Younes Salhi accepte le merge
+

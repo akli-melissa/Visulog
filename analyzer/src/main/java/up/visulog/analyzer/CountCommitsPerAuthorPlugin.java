@@ -34,6 +34,8 @@ public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
         return result;
     }
 
+
+    //Implementation de la sous interface Result de AnalyzerPlugin 
     static class Result implements AnalyzerPlugin.Result {
         private final Map<String, Integer> commitsPerAuthor = new HashMap<>();//pour chaque user un nombre de commits
 
@@ -48,6 +50,8 @@ public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
 
         @Override
         public String getResultAsHtmlDiv() {
+
+            //HtmlFlow -> A ajouter
             StringBuilder html = new StringBuilder("<div>Commits per author: <ul>");
             for (var item : commitsPerAuthor.entrySet()) {
                 html.append("<li>").append(item.getKey()).append(": ").append(item.getValue()).append("</li>");

@@ -14,10 +14,13 @@ public class Analyzer {
     private AnalyzerResult result;
 
     public Analyzer(Configuration config) {
+        //Configuration -> (Path , Map<String, PluginConfig> )
+                                            // PluginConfig -> Interface à completer
         this.config = config;
     }
 
     public AnalyzerResult computeResults() {
+        //AnalyzerResult
         List<AnalyzerPlugin> plugins = new ArrayList<>();
         for (var pluginConfigEntry: config.getPluginConfigs().entrySet()) {
             var pluginName = pluginConfigEntry.getKey(); 
