@@ -2,7 +2,8 @@
    Final String id ---> id du commit qui est définitif une fois le commit créer 
    String author ---> l'auteur du commit
    String date ---> la date du commit
-   String description ---> la description du commit 
+   String description ---> la description du commit
+   String mergedFrom
 
 -Un constructeur qui prend en paramètre l'id du commit uniquement.
 
