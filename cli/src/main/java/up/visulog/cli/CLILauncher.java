@@ -35,6 +35,8 @@ public class CLILauncher {
 
                             // Let's just trivially do this, before the TODO is fixed:
 
+                            if (pValue.equals("countMergeCommits")) plugins.put("MergeCommits", new PluginConfig(){});
+
                             if (pValue.equals("countCommits")) plugins.put("countCommits", new PluginConfig() {
                             });
 
@@ -65,3 +67,4 @@ public class CLILauncher {
 
 
 //Younes Salhi accepte le merge
+

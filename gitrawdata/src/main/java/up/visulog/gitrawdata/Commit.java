@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class Commit {
             throw new RuntimeException("Error running \"git log\".", e);
         }
         InputStream is = process.getInputStream();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is , StandardCharsets.UTF_8));//UTF-8
         return parseLog(reader);
     }
 
@@ -67,7 +68,7 @@ public class Commit {
             while (!line.isEmpty()) {
                 var colonPos = line.indexOf(":");
                 var fieldName = line.substring(0, colonPos);
-                var fieldContent = line.substring(colonPos + 1).trim();
+                var fieldContent = line.substring(colonPos + 1).trim();//pour l'indentation
                 switch (fieldName) {
                     case "Author":
                         builder.setAuthor(fieldContent);
@@ -91,6 +92,9 @@ public class Commit {
                     .map(String::trim) // remove indentation
                     .reduce("", (accumulator, currentLine) -> accumulator + currentLine); // concatenate everything
             builder.setDescription(description);
+
+            System.out.println(description+"\n");
+
             return Optional.of(builder.createCommit());
         } catch (IOException e) {
             parseError();
