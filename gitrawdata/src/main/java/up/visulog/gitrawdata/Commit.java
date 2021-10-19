@@ -12,12 +12,12 @@ import java.util.Optional;
 public class Commit {
     // FIXME: (some of) these fields could have more specialized types than String
     public final String id;
-    public final String date;
+    public final Date date;
     public final String author;
     public final String description;
     public final String mergedFrom;
 
-    public Commit(String id, String author, String date, String description, String mergedFrom) {
+    public Commit(String id, String author, Date date, String description, String mergedFrom) {
         this.id = id;
         this.author = author;
         this.date = date;
