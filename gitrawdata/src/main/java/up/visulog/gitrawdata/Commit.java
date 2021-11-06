@@ -93,7 +93,6 @@ public class Commit {
                     .reduce("", (accumulator, currentLine) -> accumulator + currentLine); // concatenate everything
             builder.setDescription(description);
 
-            System.out.println(description+"\n");
 
             return Optional.of(builder.createCommit());
         } catch (IOException e) {
