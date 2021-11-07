@@ -37,6 +37,18 @@ public class CLILauncher {
                             // Let's just trivially do this, before the TODO is fixed:
                             
 
+                            if (pValue.equals("countLines")) plugins.put("countLines", new PluginConfig(){
+                                @Override
+                                public Map<String,String> config(){
+                                    Map<String,String> configurationPlugin = new HashMap<String,String>();
+                                    configurationPlugin.put("command","diff");
+                                    configurationPlugin.put("start","HEAD~");
+                                    configurationPlugin.put("end","HEAD");
+                                    configurationPlugin.put("options","--numstat");//the options
+                                    return configurationPlugin;
+                                }
+                            });
+                            
                             if (pValue.equals("countMergeCommits")) plugins.put("countMerge", new PluginConfig(){
                                 @Override
                                 public Map<String,String> config(){

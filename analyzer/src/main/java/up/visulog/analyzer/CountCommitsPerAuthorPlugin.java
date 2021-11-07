@@ -10,7 +10,7 @@ import java.util.Map;
 public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
     private final Configuration configuration;
     private Result result;// classe interne
-    private PluginConfig pluginConfig;
+    private final PluginConfig pluginConfig;
 
     public CountCommitsPerAuthorPlugin(Configuration generalConfiguration, PluginConfig pluginConfig) {
         this.configuration = generalConfiguration;
