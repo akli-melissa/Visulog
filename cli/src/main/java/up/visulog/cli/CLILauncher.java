@@ -104,7 +104,7 @@ public class CLILauncher {
             sc = new Scanner(new File("ConfigFile.txt"));
             sc.useDelimiter("\n");
             while(sc.hasNext()) {
-                runAnalysis(sc.next());
+                runAnalysis(sc.next());//Et puis on fait l'analyse
             }
         }
         catch(Exception e) {//Si le fichier n'existe pas on revoie une erreur
