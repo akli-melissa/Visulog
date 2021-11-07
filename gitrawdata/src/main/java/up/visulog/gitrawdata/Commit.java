@@ -25,7 +25,6 @@ public class Commit{
         this.mergedFrom = mergedFrom;
     }
 
-    // TODO: factor this out (similar code will have to be used for all git commands)
     public static List<Commit> parseLogFromCommand(Path gitPath,PluginConfig pluginConfig) {
         return parseLog(ExecuteCommande.run(gitPath, pluginConfig));
     }

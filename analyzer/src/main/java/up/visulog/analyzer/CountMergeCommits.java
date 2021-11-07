@@ -11,7 +11,7 @@ public class CountMergeCommits implements AnalyzerPlugin{
 
     private Configuration config;//the configuration
     private Result resultats;//the result
-    PluginConfig pluginConfig;//the plugin config
+    private PluginConfig pluginConfig;//the plugin config
 
     public CountMergeCommits(Configuration configs,PluginConfig pluginConfig){
         this.config = configs;

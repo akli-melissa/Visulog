@@ -11,10 +11,11 @@ import up.visulog.config.PluginConfig;
 public interface ExecuteCommande {
     public static BufferedReader run(Path path,PluginConfig pluginConfig){
         ProcessBuilder builder =
-                new ProcessBuilder("git", 
-                pluginConfig.config().get("command"),
-                pluginConfig.config().getOrDefault("options", ""))
-                .directory(path.toFile());
+                new ProcessBuilder(
+                "git",
+                pluginConfig.config().get("command"),//the command 
+                pluginConfig.config().getOrDefault("options", "-a")//the options -a (option par defaut)
+                ).directory(path.toFile());
         Process process;
         try {
             process = builder.start();

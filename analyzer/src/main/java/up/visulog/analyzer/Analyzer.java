@@ -31,15 +31,19 @@ public class Analyzer {
         
         // run all the plugins
         for (var plugin: plugins){
-            //add the thread
-            Thread t = new Thread(){
-                @Override
-                public void run(){
-                    plugin.run();
-                }
-            };
-
-            t.start();//start the thread
+            try {
+                //add the thread
+                Thread t = new Thread(){
+                    @Override
+                    public void run(){
+                        plugin.run();
+                    }
+                };
+                t.start();//start the thread
+                t.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         // store the results together in an AnalyzerResult instance and return it
