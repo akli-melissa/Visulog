@@ -39,6 +39,7 @@ public class CLILauncher {
 
                         case "--loadConfigFile":
                             // TODO (load options from a file)
+                            LoadConfigFile();
                             break;
 
                         case "--justSaveConfigFile":
@@ -58,7 +59,7 @@ public class CLILauncher {
                                 e.printStackTrace();
                                }
                             break;
-                            
+
                         default:
                             return Optional.empty();
                     }
@@ -97,7 +98,23 @@ public class CLILauncher {
              plugins.put("countCommits", new PluginConfig(){});
              break;
     }
+    private static void LoadConfigFile(){
+        Scanner sc;
+        try {//on recupere ligne par ligne les options sauvegardées
+            sc = new Scanner(new File("ConfigFile.txt"));
+            sc.useDelimiter("\n");
+            while(sc.hasNext()) {
+                runAnalysis(sc.next());
+            }
+        }
+        catch(Exception e) {//Si le fichier n'existe pas on revoie une erreur
+            System.out.println("Erreur lors de l'ouverture du fichier:");
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
 }
+
 
 
 //Younes Salhi accepte le merge
