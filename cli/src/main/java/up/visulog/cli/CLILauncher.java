@@ -7,9 +7,11 @@ import up.visulog.config.PluginConfig;
 import java.nio.file.FileSystems;
 import java.util.HashMap;
 import java.util.Optional;
+import java.io.*;
+import java.util.*;
+
 
 public class CLILauncher {
-
     public static void main(String[] args) {
         var config = makeConfigFromCommandLineArgs(args);
         if (config.isPresent()) {
@@ -63,8 +65,21 @@ public class CLILauncher {
     }
 
     private static void displayHelpAndExit() {
+        Scanner sc;
         System.out.println("Wrong command...");
         //TODO: print the list of options and their syntax
+        try {
+			sc = new Scanner(new File("Help.txt"));
+			sc.useDelimiter("\n");
+			while(sc.hasNext()) {
+				System.out.println(sc.next());
+			}
+		}
+		catch(Exception e) {
+			System.out.println("Erreur lors de l'ouverture du fichier:");
+			e.printStackTrace();
+			System.exit(1);
+		}
         System.exit(0);
     }
 }
