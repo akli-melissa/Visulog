@@ -34,22 +34,13 @@ public class CLILauncher {
                     switch (pName) {
                         case "--addPlugin":
                             // TODO: parse argument and make an instance of PluginConfig
-
-                            // Let's just trivially do this, before the TODO is fixed:
-
-<<<<<<< HEAD
-                            if (pValue.equals("countMergeCommits")) plugins.put("countMerge", new PluginConfig(){});
-=======
-                            if (pValue.equals("countMergeCommits")) plugins.put("MergeCommits", new PluginConfig(){});
->>>>>>> 2eff5286ce4633e01d5d4c0f5b6b3caad7e35554
-
-                            if (pValue.equals("countCommits")) plugins.put("countCommits", new PluginConfig() {
-                            });
-
+                            runAnalysis(String pValue);
                             break;
+
                         case "--loadConfigFile":
                             // TODO (load options from a file)
                             break;
+
                         case "--justSaveConfigFile":
                             // TODO (save command line options to a file instead of running the analysis)
                             try {
@@ -67,6 +58,7 @@ public class CLILauncher {
                                 e.printStackTrace();
                                }
                             break;
+                            
                         default:
                             return Optional.empty();
                     }
@@ -95,6 +87,15 @@ public class CLILauncher {
 			System.exit(1);
 		}
         System.exit(0);
+    }
+    private static void runAnalysis(String pValue) {
+        switch (pValue) {
+         case "countMerge":
+             plugins.put("countMerge", new PluginConfig(){});
+             break;
+         case "countCommits":
+             plugins.put("countCommits", new PluginConfig(){});
+             break;
     }
 }
 
