@@ -52,6 +52,20 @@ public class CLILauncher {
                             break;
                         case "--justSaveConfigFile":
                             // TODO (save command line options to a file instead of running the analysis)
+                            try {
+                                File file = new File("ConfigFile.txt");
+                 
+                                // création du fichier s'il n'existe pas
+                                if (!file.exists()) {
+                                 file.createNewFile();
+                                }
+                                FileWriter fw = new FileWriter(file.getAbsoluteFile(),true);
+                                BufferedWriter buffer = new BufferedWriter(fw);
+                                buffer.write(pValue);//pValue
+                                buffer.close();
+                               } catch (IOException e) {
+                                e.printStackTrace();
+                               }
                             break;
                         default:
                             return Optional.empty();
