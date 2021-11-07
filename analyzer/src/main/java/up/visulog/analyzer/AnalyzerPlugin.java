@@ -1,16 +1,16 @@
 package up.visulog.analyzer;
 
-import java.lang.module.Configuration;
-
 public interface AnalyzerPlugin {
 
     //
     interface Result {// ~ Classe interne
 
         String getResultAsString();
+
         String getResultAsHtmlDiv();
 
     }
+
     /**
      * run this analyzer plugin
      */
@@ -18,7 +18,8 @@ public interface AnalyzerPlugin {
 
     /**
      *
-     * @return the result of this analysis. Runs the analysis first if not already done.
+     * @return the result of this analysis. Runs the analysis first if not already
+     *         done.
      */
     Result getResult();
 }

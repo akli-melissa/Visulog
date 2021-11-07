@@ -6,6 +6,7 @@ import up.visulog.config.PluginConfig;
 
 import java.nio.file.FileSystems;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 public class CLILauncher {
@@ -34,10 +35,25 @@ public class CLILauncher {
                             // TODO: parse argument and make an instance of PluginConfig
 
                             // Let's just trivially do this, before the TODO is fixed:
+                            
 
-                            if (pValue.equals("countMergeCommits")) plugins.put("countMerge", new PluginConfig(){});
+                            if (pValue.equals("countMergeCommits")) plugins.put("countMerge", new PluginConfig(){
+                                @Override
+                                public Map<String,String> config(){
+                                    Map<String,String> configurationPlugin = new HashMap<String,String>();
+                                    configurationPlugin.put("command","log");
+                                    //we can add some...
+                                    return configurationPlugin;
+                                }
+                            });
 
                             if (pValue.equals("countCommits")) plugins.put("countCommits", new PluginConfig() {
+                                @Override
+                                public Map<String,String> config(){
+                                    Map<String,String> configurationPlugin = new HashMap<String,String>();
+                                    configurationPlugin.put("command","log");
+                                    return configurationPlugin;
+                                }
                             });
 
                             break;
@@ -45,7 +61,7 @@ public class CLILauncher {
                             // TODO (load options from a file)
                             break;
                         case "--justSaveConfigFile":
-                            // TODO (save command line options to a file instead of running the analysis)
+                            // TODO (save line options to a file instead of running the analysis)
                             break;
                         default:
                             return Optional.empty();

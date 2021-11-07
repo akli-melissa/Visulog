@@ -2,16 +2,14 @@ package up.visulog.gitrawdata;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-public class Commit {
+import up.visulog.config.PluginConfig;
+
+public class Commit{
     // FIXME: (some of) these fields could have more specialized types than String
     public final String id;
     public final String date;
@@ -28,18 +26,8 @@ public class Commit {
     }
 
     // TODO: factor this out (similar code will have to be used for all git commands)
-    public static List<Commit> parseLogFromCommand(Path gitPath) {
-        ProcessBuilder builder =
-                new ProcessBuilder("git", "log").directory(gitPath.toFile());
-        Process process;
-        try {
-            process = builder.start();
-        } catch (IOException e) {
-            throw new RuntimeException("Error running \"git log\".", e);
-        }
-        InputStream is = process.getInputStream();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is , StandardCharsets.UTF_8));//UTF-8
-        return parseLog(reader);
+    public static List<Commit> parseLogFromCommand(Path gitPath,PluginConfig pluginConfig) {
+        return parseLog(ExecuteCommande.run(gitPath, pluginConfig));
     }
 
     public static List<Commit> parseLog(BufferedReader reader) {
@@ -93,8 +81,6 @@ public class Commit {
                     .map(String::trim) // remove indentation
                     .reduce("", (accumulator, currentLine) -> accumulator + currentLine); // concatenate everything
             builder.setDescription(description);
-
-            System.out.println(description+"\n");
 
             return Optional.of(builder.createCommit());
         } catch (IOException e) {

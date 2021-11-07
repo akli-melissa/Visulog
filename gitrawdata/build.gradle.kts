@@ -4,6 +4,7 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":config"))
     testImplementation("junit:junit:4.+")
 }
 
