@@ -34,30 +34,17 @@ public class CLILauncher {
                     switch (pName) {
                         case "--addPlugin":
                             // TODO: parse argument and make an instance of PluginConfig
-                            runAnalysis(String pValue);
+                            runAnalysis(plugins,pValue);
                             break;
 
                         case "--loadConfigFile":
                             // TODO (load options from a file)
-                            LoadConfigFile();
+                            LoadConfigFile(plugins);
                             break;
 
                         case "--justSaveConfigFile":
                             // TODO (save command line options to a file instead of running the analysis)
-                            try {
-                                File file = new File("ConfigFile.txt");
-                 
-                                // création du fichier s'il n'existe pas
-                                if (!file.exists()) {
-                                 file.createNewFile();
-                                }
-                                FileWriter fw = new FileWriter(file.getAbsoluteFile(),true);
-                                BufferedWriter buffer = new BufferedWriter(fw);
-                                buffer.write(pValue);//pValue
-                                buffer.close();
-                               } catch (IOException e) {
-                                e.printStackTrace();
-                               }
+                            saveConfigFile(pValue);
                             break;
 
                         default:
@@ -89,7 +76,7 @@ public class CLILauncher {
 		}
         System.exit(0);
     }
-    private static void runAnalysis(String pValue) {
+    private static void runAnalysis(HashMap<String, PluginConfig> plugins,String pValue) {
         switch (pValue) {
          case "countMerge":
              plugins.put("countMerge", new PluginConfig(){});
@@ -97,14 +84,15 @@ public class CLILauncher {
          case "countCommits":
              plugins.put("countCommits", new PluginConfig(){});
              break;
+         }
     }
-    private static void LoadConfigFile(){
+    private static void LoadConfigFile(HashMap<String, PluginConfig> plugins){
         Scanner sc;
         try {//on recupere ligne par ligne les options sauvegardées
             sc = new Scanner(new File("ConfigFile.txt"));
             sc.useDelimiter("\n");
             while(sc.hasNext()) {
-                runAnalysis(sc.next());//Et puis on fait l'analyse
+                runAnalysis(plugins,sc.next());//Et puis on fait l'analyse
             }
         }
         catch(Exception e) {//Si le fichier n'existe pas on revoie une erreur
@@ -112,6 +100,24 @@ public class CLILauncher {
             e.printStackTrace();
             System.exit(1);
         }
+    }
+    private static void saveConfigFile(String pValue){
+        try {
+            File file = new File("ConfigFile.txt");
+
+            // création du fichier s'il n'existe pas
+            if (!file.exists()) {
+             file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter buffer = new BufferedWriter(fw);
+            for(String s :pValue.split(",")){//on recupere les options separées par des ','
+                buffer.write(s+"\n");//pValue
+            }
+            buffer.close();
+           } catch (IOException e) {
+            e.printStackTrace();
+           }
     }
 }
 
