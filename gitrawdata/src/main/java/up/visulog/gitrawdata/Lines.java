@@ -8,6 +8,10 @@ import java.util.List;
 import java.util.Optional;
 import up.visulog.config.PluginConfig;
 
+/*
+Par @Younes Salhi
+*/
+
 public class Lines {
     public final int numberAdded;
     public final int numberDeleted;
