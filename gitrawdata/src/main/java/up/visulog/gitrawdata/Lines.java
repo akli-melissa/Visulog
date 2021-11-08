@@ -37,7 +37,7 @@ public class Lines {
         try{
             String line = input.readLine();
             if (line == null) return Optional.empty();
-            String[] data = line.split("\\t");
+            String[] data = line.split("\\t");//pour la tabulation
             if (data.length != 3) return Optional.empty();
             return Optional.of(new Lines(Integer.parseInt(data[0]),Integer.parseInt(data[1]),data[2]));
         }catch(IOException e){

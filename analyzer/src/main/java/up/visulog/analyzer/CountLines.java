@@ -73,6 +73,8 @@ public class CountLines implements AnalyzerPlugin{
                     .append("<ul>")
                         .append("<li>")
                             .append(" Number Lines Added : ").append(item.getValue().a)
+                        .append("</li>")
+                        .append("<li>")
                             .append(" Number Lines Deleted : ").append(item.getValue().b)
                         .append("</li>")
                     .append("</ul>")
