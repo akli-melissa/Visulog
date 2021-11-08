@@ -1,4 +1,5 @@
 Voici les options que vous pouvez faire
---addPlugin=countCommits/countMerge
---justSaveConfigFile=countCommits/countMerge
+--addPlugin=arg
+--justSaveConfigFile=(arg1,arg2..)
 --loadConfigFile
+(arg peut etre countcommits, countmerge ...)
