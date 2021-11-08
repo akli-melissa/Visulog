@@ -39,6 +39,7 @@ public class Analyzer {
     // TODO: find a way so that the list of plugins is not hardcoded in this factory
     private Optional<AnalyzerPlugin> makePlugin(String pluginName, PluginConfig pluginConfig) {
         switch (pluginName) {
+            case "countMerge": return Optional.of(new CountMergeCommits(config));
             case "countCommits" : return Optional.of(new CountCommitsPerAuthorPlugin(config));
             default : return Optional.empty();
         }

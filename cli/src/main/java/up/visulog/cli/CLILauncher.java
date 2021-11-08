@@ -7,6 +7,19 @@ import up.visulog.config.PluginConfig;
 import java.nio.file.FileSystems;
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.Set;
+import java.util.Scanner;
+
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.File;
+import java.io.FileWriter;
+
+import java.awt.Desktop;
+
 
 public class CLILauncher {
 
@@ -15,8 +28,19 @@ public class CLILauncher {
         if (config.isPresent()) {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
-            System.out.println(results.toHTML());
-        } else displayHelpAndExit();
+            //System.out.println(results.toHTML());
+            String content = results.toHTML();
+            try{
+                File f = new File("resultats.html");
+                BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+                bw.write(results.toHTML());
+                bw.close();
+                Desktop.getDesktop().browse(f.toURI());
+            } catch(Exception e){System.out.println("Erreur");}
+            
+        } 
+        else 
+            displayHelpAndExit();
     }
 
     static Optional<Configuration> makeConfigFromCommandLineArgs(String[] args) {
@@ -35,7 +59,11 @@ public class CLILauncher {
 
                             // Let's just trivially do this, before the TODO is fixed:
 
+<<<<<<< HEAD
+                            if (pValue.equals("countMergeCommits")) plugins.put("countMerge", new PluginConfig(){});
+=======
                             if (pValue.equals("countMergeCommits")) plugins.put("MergeCommits", new PluginConfig(){});
+>>>>>>> 2eff5286ce4633e01d5d4c0f5b6b3caad7e35554
 
                             if (pValue.equals("countCommits")) plugins.put("countCommits", new PluginConfig() {
                             });
