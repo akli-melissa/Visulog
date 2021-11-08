@@ -38,11 +38,12 @@ public class CLILauncher {
                             
 
                             if (pValue.equals("countLines")) plugins.put("countLines", new PluginConfig(){
+                                //Ajout des conifigurations
                                 @Override
                                 public Map<String,String> config(){
                                     Map<String,String> configurationPlugin = new HashMap<String,String>();
-                                    configurationPlugin.put("command","diff");
-                                    configurationPlugin.put("start","HEAD~");
+                                    configurationPlugin.put("command","diff");//la commande git
+                                    configurationPlugin.put("start","HEAD~");//le dernier Commit
                                     configurationPlugin.put("end","HEAD");
                                     configurationPlugin.put("options","--numstat");//the options
                                     return configurationPlugin;
@@ -53,7 +54,7 @@ public class CLILauncher {
                                 @Override
                                 public Map<String,String> config(){
                                     Map<String,String> configurationPlugin = new HashMap<String,String>();
-                                    configurationPlugin.put("command","log");
+                                    configurationPlugin.put("command","log");//la commande git
                                     //we can add some...
                                     return configurationPlugin;
                                 }
@@ -63,7 +64,7 @@ public class CLILauncher {
                                 @Override
                                 public Map<String,String> config(){
                                     Map<String,String> configurationPlugin = new HashMap<String,String>();
-                                    configurationPlugin.put("command","log");
+                                    configurationPlugin.put("command","log");//la commande git
                                     return configurationPlugin;
                                 }
                             });
