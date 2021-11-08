@@ -8,17 +8,21 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import up.visulog.config.PluginConfig;
 
+//Cette classe execute les commandes git
+//Par @Younes Salhi
+
 public interface ExecuteCommande {
+    //Retourne un BufferedReader
     public static BufferedReader run(Path path,PluginConfig pluginConfig){
         
         ProcessBuilder builder;
         
         builder = new ProcessBuilder(
             "git",
-            pluginConfig.config().get("command"),
-            pluginConfig.config().getOrDefault("start","-a"),
-            pluginConfig.config().getOrDefault("end","-a"),
-            pluginConfig.config().getOrDefault("options","-a")
+            pluginConfig.config().get("command"),//la commande
+            pluginConfig.config().getOrDefault("start","-a"),//Commit de debut
+            pluginConfig.config().getOrDefault("end","-a"),//Commit de fin
+            pluginConfig.config().getOrDefault("options","-a")//Options supplémentaire
         );
 
         builder.directory(path.toFile());
