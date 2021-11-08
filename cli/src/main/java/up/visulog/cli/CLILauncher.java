@@ -12,7 +12,7 @@ public class CLILauncher {
 
     public static void main(String[] args) {
         var config = makeConfigFromCommandLineArgs(args);
-        ssif (config.isPresent()) {
+        if (config.isPresent()) {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
             System.out.println(results.toHTML());
