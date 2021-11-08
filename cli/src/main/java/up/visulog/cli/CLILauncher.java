@@ -28,6 +28,32 @@ public class CLILauncher {
         if (config.isPresent()) {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
+             cli/src/main/java/up/visulog/cli/CLILauncher.java
+            System.out.println(results.toHTML());
+
+            File htmlFile = new File("../Pages/infoPage.html");
+            htmlFile.getParentFile().mkdirs();
+
+            htmlFile.createNewFile();
+            System.out.println("File successfully created" + htmlFile.getAbsolutePath());
+            FileWriter fileWriter = new FileWriter(htmlFile);
+            fileWriter.write(results.toHTML());
+            fileWriter.flush();
+            fileWriter.close();
+
+            if (Desktop.isDesktopSupported())
+            {
+                Desktop desktop = Desktop.getDesktop();
+                desktop.open(htmlFile);
+            }
+        }
+        else
+            displayHelpAndExit();
+    catch (Exception e) {
+           System.out.println("Erreur");
+           }
+        
+
             //System.out.println(results.toHTML());
             String content = results.toHTML();
             try{
@@ -41,6 +67,9 @@ public class CLILauncher {
         } 
         else 
             displayHelpAndExit();
+          catch (Exception e) {
+           System.out.println("Erreur");
+           }    
     }
 
     static Optional<Configuration> makeConfigFromCommandLineArgs(String[] args) {
@@ -59,11 +88,11 @@ public class CLILauncher {
 
                             // Let's just trivially do this, before the TODO is fixed:
 
-<<<<<<< HEAD
+
                             if (pValue.equals("countMergeCommits")) plugins.put("countMerge", new PluginConfig(){});
-=======
+
                             if (pValue.equals("countMergeCommits")) plugins.put("MergeCommits", new PluginConfig(){});
->>>>>>> 2eff5286ce4633e01d5d4c0f5b6b3caad7e35554
+
 
                             if (pValue.equals("countCommits")) plugins.put("countCommits", new PluginConfig() {
                             });
@@ -94,5 +123,5 @@ public class CLILauncher {
 }
 
 
-//Younes Salhi accepte le merge
+
 
