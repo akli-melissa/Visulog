@@ -1,0 +1,8 @@
+ Configuration 
+     Deux attributs privee final 
+                         - gitPath de type Path (emplacement du fichier)
+                         - plugins Map de Strings et PluginConfig pour stocker es fonctions de notre applications autant que plugin
+     Deux methodes getteurs pour nos deux attributs                           
+t 
+Configuration 
+	Vide pour le moment

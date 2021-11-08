@@ -1,0 +1,13 @@
+cette classe est utilisé pour le calcul du nombres de commits par personnes elle implemente AnalyzerPlugin
+
+elle contient une classe interne pour retourner le resultat, elle implemente l'interface AnalyzerPlugin.Result
+et elle redefinit deux methodes getResultAsString() et getResultAsHtmlDiv()
+
+elle contient une variable de type configuration pour savoir le repertoire et les plugins qui vont etre executes
+
+elle contient une methode static processLog qui formate les donnees (liste de commit) pour avoir a la fin Dans
+un hashmap le nombres de commits pour chaque utilisateur 
+
+elle a aussi deux methode run() et getResult(), run() est appelé au moment de l'exection du plugin dans la classe
+Analyzer et getResult() retourne le resultat de run (une liste de resultats qui contient deux methodes run()
+et getResult() )

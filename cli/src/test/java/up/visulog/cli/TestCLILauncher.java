@@ -15,9 +15,7 @@ public class TestCLILauncher {
     public void testArgumentParser() {
         var config1 = CLILauncher.makeConfigFromCommandLineArgs(new String[]{".", "--addPlugin=countCommits"});
         assertTrue(config1.isPresent());
-        var config2 = CLILauncher.makeConfigFromCommandLineArgs(new String[] {
-            "--nonExistingOption"
-        });
+        var config2 = CLILauncher.makeConfigFromCommandLineArgs(new String[] {"--nonExistingOption"});
         assertFalse(config2.isPresent());
     }
 }

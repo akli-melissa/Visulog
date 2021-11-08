@@ -2,14 +2,13 @@ package up.visulog.analyzer;
 
 import up.visulog.config.Configuration;
 import up.visulog.gitrawdata.Commit;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
     private final Configuration configuration;
-    private Result result;
+    private Result result;//classe interne
 
     public CountCommitsPerAuthorPlugin(Configuration generalConfiguration) {
         this.configuration = generalConfiguration;
@@ -38,7 +37,7 @@ public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
 
     //Implementation de la sous interface Result de AnalyzerPlugin 
     static class Result implements AnalyzerPlugin.Result {
-        private final Map<String, Integer> commitsPerAuthor = new HashMap<>();
+        private final Map<String, Integer> commitsPerAuthor = new HashMap<>();//pour chaque user un nombre de commits
 
         Map<String, Integer> getCommitsPerAuthor() {
             return commitsPerAuthor;
