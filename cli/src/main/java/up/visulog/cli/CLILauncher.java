@@ -17,8 +17,48 @@ public class CLILauncher {
         if (config.isPresent()) {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
+             cli/src/main/java/up/visulog/cli/CLILauncher.java
             System.out.println(results.toHTML());
-        } else displayHelpAndExit();
+
+            File htmlFile = new File("../Pages/infoPage.html");
+            htmlFile.getParentFile().mkdirs();
+
+            htmlFile.createNewFile();
+            System.out.println("File successfully created" + htmlFile.getAbsolutePath());
+            FileWriter fileWriter = new FileWriter(htmlFile);
+            fileWriter.write(results.toHTML());
+            fileWriter.flush();
+            fileWriter.close();
+
+            if (Desktop.isDesktopSupported())
+            {
+                Desktop desktop = Desktop.getDesktop();
+                desktop.open(htmlFile);
+            }
+        }
+        else
+            displayHelpAndExit();
+    catch (Exception e) {
+           System.out.println("Erreur");
+           }
+        
+
+            //System.out.println(results.toHTML());
+            String content = results.toHTML();
+            try{
+                File f = new File("resultats.html");
+                BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+                bw.write(results.toHTML());
+                bw.close();
+                Desktop.getDesktop().browse(f.toURI());
+            } catch(Exception e){System.out.println("Erreur");}
+            
+        } 
+        else 
+            displayHelpAndExit();
+          catch (Exception e) {
+           System.out.println("Erreur");
+           }    
     }
 
     static Optional<Configuration> makeConfigFromCommandLineArgs(String[] args) {
