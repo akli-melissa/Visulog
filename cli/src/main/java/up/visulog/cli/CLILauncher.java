@@ -41,9 +41,11 @@ public class CLILauncher {
     catch (Exception e) {
            System.out.println("Erreur");
            }
-        
+
 
             //System.out.println(results.toHTML());
+            // ouverture d'une fenêtre pour affichage du graphique (à changer à l'avenir pour que ça fonctionne avec tous les plugins)
+            results.toChart();
             String content = results.toHTML();
             try{
                 File f = new File("resultats.html");
@@ -52,13 +54,14 @@ public class CLILauncher {
                 bw.close();
                 Desktop.getDesktop().browse(f.toURI());
             } catch(Exception e){System.out.println("Erreur");}
-            
-        } 
-        else 
+
+
+        }
+        else
             displayHelpAndExit();
           catch (Exception e) {
            System.out.println("Erreur");
-           }    
+           }
     }
 
     static Optional<Configuration> makeConfigFromCommandLineArgs(String[] args) {
@@ -74,7 +77,17 @@ public class CLILauncher {
                     switch (pName) {
                         case "--addPlugin":
                             // TODO: parse argument and make an instance of PluginConfig
-                            runAnalysis(plugins,pValue);
+
+                            // Let's just trivially do this, before the TODO is fixed:
+
+
+                            if (pValue.equals("countMergeCommits")) plugins.put("countMerge", new PluginConfig(){});
+
+
+                            if (pValue.equals("countCommits")) plugins.put("countCommits", new PluginConfig() {
+                            });
+
+
                             break;
 
                         case "--loadConfigFile":
@@ -164,4 +177,3 @@ public class CLILauncher {
 
 
 //Younes Salhi accepte le merge
-
