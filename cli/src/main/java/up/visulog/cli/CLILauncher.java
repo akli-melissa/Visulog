@@ -7,15 +7,32 @@ import up.visulog.config.PluginConfig;
 import java.nio.file.FileSystems;
 import java.util.HashMap;
 import java.util.Optional;
+<<<<<<< HEAD
 import java.util.Set ;
 import java.util.Scanner;
 import java.io.*;
 import java.awt.Desktop;
+=======
+import java.util.Set;
+import java.util.Scanner;
+
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.File;
+import java.io.FileWriter;
+
+import java.awt.Desktop;
+
+>>>>>>> 046f41c1064b8d2c0eb9abb61f09e08e394fc948
 
 public class CLILauncher {
 
     public static void main(String[] args) {
         var config = makeConfigFromCommandLineArgs(args);
+<<<<<<< HEAD
 
         try {
             if (config.isPresent()) {
@@ -51,9 +68,12 @@ public class CLILauncher {
          /*var config = makeConfigFromCommandLineArgs(args);
         try {
        
+=======
+>>>>>>> 046f41c1064b8d2c0eb9abb61f09e08e394fc948
         if (config.isPresent()) {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
+             cli/src/main/java/up/visulog/cli/CLILauncher.java
             System.out.println(results.toHTML());
 
             File htmlFile = new File("../Pages/infoPage.html");
@@ -78,7 +98,28 @@ public class CLILauncher {
            System.out.println("Erreur");
            }*/
         
+<<<<<<< HEAD
     
+=======
+
+            //System.out.println(results.toHTML());
+            String content = results.toHTML();
+            try{
+                File f = new File("resultats.html");
+                BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+                bw.write(results.toHTML());
+                bw.close();
+                Desktop.getDesktop().browse(f.toURI());
+            } catch(Exception e){System.out.println("Erreur");}
+            
+        } 
+        else 
+            displayHelpAndExit();
+          catch (Exception e) {
+           System.out.println("Erreur");
+           }    
+    }
+>>>>>>> 046f41c1064b8d2c0eb9abb61f09e08e394fc948
 
     static Optional<Configuration> makeConfigFromCommandLineArgs(String[] args) {
         var gitPath = FileSystems.getDefault().getPath(".");
@@ -95,6 +136,12 @@ public class CLILauncher {
                             // TODO: parse argument and make an instance of PluginConfig
 
                             // Let's just trivially do this, before the TODO is fixed:
+
+
+                            if (pValue.equals("countMergeCommits")) plugins.put("countMerge", new PluginConfig(){});
+
+                            if (pValue.equals("countMergeCommits")) plugins.put("MergeCommits", new PluginConfig(){});
+
 
                             if (pValue.equals("countCommits")) plugins.put("countCommits", new PluginConfig() {
                             });
@@ -125,4 +172,5 @@ public class CLILauncher {
 }
 
 
-//Younes Salhi accepte le merge
+
+

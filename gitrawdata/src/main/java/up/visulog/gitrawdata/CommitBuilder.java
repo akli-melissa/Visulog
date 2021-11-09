@@ -1,10 +1,14 @@
 package up.visulog.gitrawdata;
+<<<<<<< HEAD
 import java.util.*;
 
+=======
+import java.util.Date;
+>>>>>>> 046f41c1064b8d2c0eb9abb61f09e08e394fc948
 public class CommitBuilder {
     private final String id;
     private String author;
-    private String date;
+    private Date date;
     private String description;
     private String mergedFrom;
 
@@ -17,7 +21,7 @@ public class CommitBuilder {
         return this;
     }
 
-    public CommitBuilder setDate(String date) {
+    public CommitBuilder setDate(Date date) {
         this.date = date;
         return this;
     }

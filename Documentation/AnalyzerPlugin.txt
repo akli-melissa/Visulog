@@ -1,0 +1,23 @@
+L'interface AnalyzePlugin : 
+
+Dans cette interfac il y a 2 méthodes :
+	=> void run();
+	=> Result getResult();
+et une autre interface (Result):
+	l'interface Result a 2 méthodes aussi:
+	=> String getResultAsString();
+	=> String getResultAsHTML();
+/********************************************************/
+La classe CountCommitsPerAuthorPlugin du package Analyzer implémente l'interface AnalyzePlugin :
+	Elle redéfinit les 2 méthodes de cette interface : 
+	void run(); //cette fonction parcourt tous les commits déja fait et pour chaque chaque auteur, elle lui associe le nombre de commit qu'il a fait
+	Result getResult(); //Cette fonction return le resultat trouvé dans la fonction run s'il n'est pas null, sinon elle lance d'abord la fonction run()
+
+La classe interne Result de la classe CountCommitsPerAuthorPlugin implémente l'interface AnalyzePlugin.Result :
+	Elle redéfinit les 2 méthodes de cette interface : 
+	String getResultAsString() // elle return la map qui contient le nombre de commits par auteur sous forme d'une chaine de caractère 
+	sous cette forme (nom_du_l'auteur , nombre_de_commits).
+	String getResultAsHTML() //cette fonction retourne le code HTML (sous forme d'une chaine de caractère) d'une page WEB qui affiche 
+	le nombre de commits effectué par chaque auteur.
+
+	
