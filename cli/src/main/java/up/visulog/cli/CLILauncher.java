@@ -33,6 +33,32 @@ public class CLILauncher {
         if (config.isPresent()) {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
+             cli/src/main/java/up/visulog/cli/CLILauncher.java
+            System.out.println(results.toHTML());
+
+            File htmlFile = new File("../Pages/infoPage.html");
+            htmlFile.getParentFile().mkdirs();
+
+            htmlFile.createNewFile();
+            System.out.println("File successfully created" + htmlFile.getAbsolutePath());
+            FileWriter fileWriter = new FileWriter(htmlFile);
+            fileWriter.write(results.toHTML());
+            fileWriter.flush();
+            fileWriter.close();
+
+            if (Desktop.isDesktopSupported())
+            {
+                Desktop desktop = Desktop.getDesktop();
+                desktop.open(htmlFile);
+            }
+        }
+        else
+            displayHelpAndExit();
+    catch (Exception e) {
+           System.out.println("Erreur");
+           }
+        
+
             //System.out.println(results.toHTML());
             String content = results.toHTML();
             try{
@@ -46,6 +72,9 @@ public class CLILauncher {
         } 
         else 
             displayHelpAndExit();
+          catch (Exception e) {
+           System.out.println("Erreur");
+           }    
     }
 
     static Optional<Configuration> makeConfigFromCommandLineArgs(String[] args) {
@@ -61,6 +90,7 @@ public class CLILauncher {
                     switch (pName) {
                         case "--addPlugin":
                             // TODO: parse argument and make an instance of PluginConfig
+                        
                             runAnalysis(plugins,pValue);
                             break;
 
@@ -149,6 +179,4 @@ public class CLILauncher {
 }
 
 
-
-//Younes Salhi accepte le merge
 
