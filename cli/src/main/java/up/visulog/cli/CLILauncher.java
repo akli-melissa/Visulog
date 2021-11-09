@@ -7,12 +7,51 @@ import up.visulog.config.PluginConfig;
 import java.nio.file.FileSystems;
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.Set ;
+import java.util.Scanner;
+import java.io.*;
+import java.awt.Desktop;
 
 public class CLILauncher {
 
     public static void main(String[] args) {
         var config = makeConfigFromCommandLineArgs(args);
-        ssif (config.isPresent()) {
+
+        try {
+            if (config.isPresent()) {
+            var analyzer = new Analyzer(config.get());
+            var results = analyzer.computeResults();
+
+            File htmlFile = new File("../Pages/infoPage.html");
+            htmlFile.getParentFile().mkdirs();
+
+            htmlFile.createNewFile();
+            System.out.println("File successfully created" + htmlFile.getAbsolutePath());
+            FileWriter fileWriter = new FileWriter(htmlFile);
+            fileWriter.write(results.toHTML());
+            fileWriter.flush();
+            fileWriter.close();
+
+            if (Desktop.isDesktopSupported())
+            {
+                Desktop desktop = Desktop.getDesktop();
+                desktop.open(htmlFile);
+            }
+        }
+        else
+            displayHelpAndExit();
+    }catch(Exception e){
+        System.out.println("Error!");
+    }
+}
+
+
+
+
+         /*var config = makeConfigFromCommandLineArgs(args);
+        try {
+       
+        if (config.isPresent()) {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
             System.out.println(results.toHTML());
@@ -35,11 +74,11 @@ public class CLILauncher {
         }
         else
             displayHelpAndExit();
-    catch (Exception e) {
+    }catch (Exception e) {
            System.out.println("Erreur");
-           }
+           }*/
         
-    }
+    
 
     static Optional<Configuration> makeConfigFromCommandLineArgs(String[] args) {
         var gitPath = FileSystems.getDefault().getPath(".");

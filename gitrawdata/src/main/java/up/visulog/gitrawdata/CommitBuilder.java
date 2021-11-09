@@ -1,4 +1,5 @@
 package up.visulog.gitrawdata;
+import java.util.*;
 
 public class CommitBuilder {
     private final String id;
