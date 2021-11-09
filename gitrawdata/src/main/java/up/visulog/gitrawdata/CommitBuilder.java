@@ -1,5 +1,5 @@
 package up.visulog.gitrawdata;
-
+import java.util.Date;
 public class CommitBuilder {
     private final String id;
     private String author;

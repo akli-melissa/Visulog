@@ -6,20 +6,8 @@ ANALYZER:
       main:
 
          -Analyzer: 
-                    * try running all plugins in parallel
-                    * store the results together in an AnalyzerResult instance and return it
-                    * find a way so that the list of plugins is not hardcoded in this factory
-
-         -AnalyzerPlugin:
-                    * run this analyzer plugin
-                    * return the result of this analysis. Runs the analysis first if not already done.
-
-
-      test:
-
-         -TestCountCommits:
-                    * Let's check whether the number of authors is preserved and that the sum of the commits of each author is equal to the total number of commits (test)
-
+                    * try running all plugins in parallel //multthreading faire a la fin
+                    * find a way so that the list of plugins is not hardcoded in this factory // a la fin
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -28,14 +16,9 @@ GITRAWDATA:
 
       main:
          - Commit:
-         		   * FIXME: (some of) these fields could have more specialized types than String
          		   * factor this out (similar code will have to be used for all git commands)
-         		   * Parses a log item and outputs a commit object. Exceptions will be thrown in case the input does not have the proper format.
-         		   * Returns an empty optional if there is nothing to parse anymore.
          		   * warn the user that some field was ignored
          		   * find out if this is the only optional field
-	
-
 
 
       test:
@@ -47,8 +30,7 @@ CLI:
 
       main:
          -CLILauncher:
-                    * parse argument and make an instance of PluginConfig
-					* Let's just trivially do this, before the TODO is fixed:
+               * parse argument and make an instance of PluginConfig
 					* load options from a file
 					* save command line options to a file instead of running the analysis
 					* print the list of options and their syntax
@@ -56,10 +38,6 @@ CLI:
 
 
       test:
-         -TestCLILauncher:
-            	    * run the whole program with some valid options and look whether the output has a valid format
-    				* run the whole program with bad command and see whether something that looks like help is printed
-
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------//

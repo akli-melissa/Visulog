@@ -1,0 +1,12 @@
+-La classe commit builder comporte 5 attributs:
+   Final String id ---> id du commit qui est définitif une fois le commit créer 
+   String author ---> l'auteur du commit
+   String date ---> la date du commit
+   String description ---> la description du commit
+   String mergedFrom
+
+-Un constructeur qui prend en paramètre l'id du commit uniquement.
+
+-Des setteurs pour set chacun des attributs (sauf l'id qui est définitif)
+
+-Une fonction "Commit createCommit()" qui permet la création d'un commit. 
