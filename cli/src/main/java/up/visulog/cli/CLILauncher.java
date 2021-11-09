@@ -8,6 +8,7 @@ import java.nio.file.FileSystems;
 import java.util.HashMap;
 import java.util.Optional;
 
+
 import java.io.*;
 import java.util.*;
 
@@ -23,7 +24,6 @@ import java.io.File;
 import java.io.FileWriter;
 
 import java.awt.Desktop;
-
 
 
 
@@ -90,7 +90,6 @@ public class CLILauncher {
                     switch (pName) {
                         case "--addPlugin":
                             // TODO: parse argument and make an instance of PluginConfig
-                        
                             runAnalysis(plugins,pValue);
                             break;
 
@@ -177,6 +176,4 @@ public class CLILauncher {
            }
     }
 }
-
-
 
