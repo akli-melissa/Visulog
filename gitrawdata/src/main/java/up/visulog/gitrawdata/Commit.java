@@ -19,7 +19,7 @@ public class Commit {
     public final String description;
     public final String mergedFrom;
 
-    public Commit(String id, String author, String  date, String description, String mergedFrom) {
+    public Commit(String id, String author, String date, String description, String mergedFrom) {
         this.id = id;
         this.author = author;
         this.date = date;
