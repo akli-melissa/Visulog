@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Optional;
 import java.io.*;
 import java.util.*;
+import java.awt.Desktop;
 
 
 public class CLILauncher {
@@ -17,7 +18,15 @@ public class CLILauncher {
         if (config.isPresent()) {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
-            System.out.println(results.toHTML());
+            String content = results.toHTML();
+            try{
+                File f = new File("resultats.html");
+                BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+                bw.write(results.toHTML());
+                bw.close();
+                Desktop.getDesktop().browse(f.toURI());
+            } catch(Exception e){System.out.println("Erreur");}
+
         }
         else displayHelpAndExit();
     }
