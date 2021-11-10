@@ -29,9 +29,10 @@ public class Analyzer {
             plugin.ifPresent(plugins::add);
         }
         // run all the plugins
-        // TODO: try running them in parallel
-        for (var plugin: plugins) plugin.run();
-
+        for (var plugin: plugins) {
+            Multithreading plugin_thread = new Multithreading(plugin); 
+            plugin_thread.start();
+        }
         // store the results together in an AnalyzerResult instance and return it
         return new AnalyzerResult(plugins.stream().map(AnalyzerPlugin::getResult).collect(Collectors.toList()));//lisye de Result
     }

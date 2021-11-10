@@ -3,7 +3,7 @@ import java.util.Date;
 public class CommitBuilder {
     private final String id;
     private String author;
-    private Date date;
+    private String date;
     private String description;
     private String mergedFrom;
 
@@ -16,7 +16,7 @@ public class CommitBuilder {
         return this;
     }
 
-    public CommitBuilder setDate(Date date) {
+    public CommitBuilder setDate(String date) {
         this.date = date;
         return this;
     }
