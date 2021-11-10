@@ -44,8 +44,6 @@ public class CLILauncher {
 
 
             //System.out.println(results.toHTML());
-            // ouverture d'une fenêtre pour affichage du graphique (à changer à l'avenir pour que ça fonctionne avec tous les plugins)
-            results.toChart();
             String content = results.toHTML();
             try{
                 File f = new File("resultats.html");
@@ -54,10 +52,9 @@ public class CLILauncher {
                 bw.close();
                 Desktop.getDesktop().browse(f.toURI());
             } catch(Exception e){System.out.println("Erreur");}
-
-
-        }
-        else
+            
+        } 
+        else 
             displayHelpAndExit();
           catch (Exception e) {
            System.out.println("Erreur");
@@ -80,9 +77,11 @@ public class CLILauncher {
 
                             // Let's just trivially do this, before the TODO is fixed:
 
-
+<<<<<<< HEAD
                             if (pValue.equals("countMergeCommits")) plugins.put("countMerge", new PluginConfig(){});
-
+=======
+                            if (pValue.equals("countMergeCommits")) plugins.put("MergeCommits", new PluginConfig(){});
+>>>>>>> 2eff5286ce4633e01d5d4c0f5b6b3caad7e35554
 
                             if (pValue.equals("countCommits")) plugins.put("countCommits", new PluginConfig() {
                             });
@@ -177,3 +176,4 @@ public class CLILauncher {
 
 
 //Younes Salhi accepte le merge
+

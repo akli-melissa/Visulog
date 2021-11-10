@@ -21,7 +21,4 @@ public class AnalyzerResult {
     public String toHTML() {
                  return "<html><body>"+subResults.stream().map(AnalyzerPlugin.Result::getResultAsHtmlDiv).reduce("", (acc, cur) -> acc + cur) + "</body></html>";
     }
-    public void toChart() {
-        CreateChart chart = new CreateChart("Test", "Commits per author", this);
-    }
 }
