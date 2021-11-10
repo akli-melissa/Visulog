@@ -71,6 +71,7 @@ public class Commit {
                 var fieldContent = line.substring(colonPos + 1).trim();//pour l'indentation
                 switch (fieldName) {
                     case "Author":
+                        System.out.println(fieldContent);
                         builder.setAuthor(fieldContent);
                         break;
                     case "Merge":

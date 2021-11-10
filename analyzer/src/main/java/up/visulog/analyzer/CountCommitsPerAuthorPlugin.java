@@ -53,11 +53,19 @@ public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
 
             //HtmlFlow -> A ajouter
             StringBuilder html = new StringBuilder("<div>Commits per author: <ul>");
-            for (var item : commitsPerAuthor.entrySet()) {
-                html.append("<li>").append(item.getKey()).append(": ").append(item.getValue()).append("</li>");
+            StringBuilder style = new StringBuilder("<head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>Pie Chart</title><style>.piechart {display: block;width: 400px;height: 400px;border-radius: 50%;background-image: conic-gradient(");
+            int red =  50;
+            for (var item : commitsPerAuthor.entrySet()){
+                style.append("rgb(168,"+String.valueOf(red)+",50) 15deg,");
             }
-            html.append("</ul></div>");
-            return html.toString();
+            style.append(");}.section {display: block;float: left;margin: 50px 50px 20px 50px;margin-left: 2%;}.box {float: left;height: 10px;width: 10px;margin: 3px 10px 0px 0px;border: 1px solid black;clear: both;background-color: red;}</style></head>");
+            // for (var item : commitsPerAuthor.entrySet()) {
+            //     html.append("<li>").append(item.getKey()).append(": ").append(item.getValue()).append("</li>");
+            // }
+            // html.append("</ul></div>");
+            style.append("<div class=̣\"piechart\"></div>");
+            // return html.toString();
+            return style.toString();
         }
     }
 }
