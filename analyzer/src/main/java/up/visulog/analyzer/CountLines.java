@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import up.visulog.config.Configuration;
-import up.visulog.config.PluginConfig;
 import up.visulog.gitrawdata.Lines;
 
 //Cette classe est utillisée pour le calcul des lignes ajoutées et supprimées
@@ -14,11 +13,9 @@ public class CountLines implements AnalyzerPlugin {
 
     private final Configuration config;
     private Result result;
-    private final PluginConfig pluginConfig;
 
-    public CountLines(Configuration config, PluginConfig pluginConfig) {
+    public CountLines(Configuration config) {
         this.config = config;
-        this.pluginConfig = pluginConfig;
     }
 
     
@@ -33,7 +30,9 @@ public class CountLines implements AnalyzerPlugin {
 
     @Override
     public void run() {
-        this.result = procesdiff(Lines.parseDiffFromCommand(config.getGitPath(), this.pluginConfig));
+        if (config.getPluginConfig("countLines").isPresent()){
+            this.result = procesdiff(Lines.parseDiffFromCommand(config.getGitPath(), config.getPluginConfig("countLines").get()));
+        }
     }
 
     @Override

@@ -29,19 +29,8 @@ public class Analyzer {
         
         // run all the plugins
         for (var plugin: plugins){
-            try {
-                //add the thread
-                Thread t = new Thread(){
-                    @Override
-                    public void run(){
-                        plugin.run();
-                    }
-                };
-                t.start();//start the thread
-                t.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            Multithreading thread = new Multithreading(plugin);
+            thread.run();
         }
 
         // store the results together in an AnalyzerResult instance and return it
@@ -51,9 +40,9 @@ public class Analyzer {
     // TODO: find a way so that the list of plugins is not hardcoded in this factory
     private Optional<AnalyzerPlugin> makePlugin(String pluginName, PluginConfig pluginConfig) {
         switch (pluginName) {
-            case "countLines": return Optional.of( new CountLines(config,pluginConfig) );
-            case "countMerge": return Optional.of( new CountMergeCommits(config,pluginConfig));
-            case "countCommits" : return Optional.of( new CountCommitsPerAuthorPlugin(config,pluginConfig));
+            case "countLines": return Optional.of( new CountLines(config) );
+            case "countMerge": return Optional.of( new CountMergeCommits(config));
+            case "countCommits" : return Optional.of( new CountCommitsPerAuthorPlugin(config));
             default : return Optional.empty();
         }
     }

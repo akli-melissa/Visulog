@@ -1,7 +1,6 @@
 package up.visulog.analyzer;
 
 import up.visulog.config.Configuration;
-import up.visulog.config.PluginConfig;
 import up.visulog.gitrawdata.Commit;
 import java.util.HashMap;
 import java.util.List;
@@ -10,11 +9,9 @@ import java.util.Map;
 public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
     private final Configuration configuration;
     private Result result;// classe interne
-    private final PluginConfig pluginConfig;
 
-    public CountCommitsPerAuthorPlugin(Configuration generalConfiguration, PluginConfig pluginConfig) {
+    public CountCommitsPerAuthorPlugin(Configuration generalConfiguration) {
         this.configuration = generalConfiguration;
-        this.pluginConfig = pluginConfig;
     }
 
     static Result processLog(List<Commit> gitLog) {
@@ -28,7 +25,9 @@ public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
 
     @Override
     public void run() {
-        result = processLog(Commit.parseLogFromCommand(configuration.getGitPath(), this.pluginConfig));
+        if (this.configuration.getPluginConfig("countCommits").isPresent()){
+            result = processLog(Commit.parseLogFromCommand(configuration.getGitPath(), this.configuration.getPluginConfig("countCommits").get()));
+        }
     }
 
     @Override
