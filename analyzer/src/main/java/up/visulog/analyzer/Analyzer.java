@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
 public class Analyzer {
     private final Configuration config;
 
-    private AnalyzerResult result;
-
     public Analyzer(Configuration config) {
         //Configuration -> (Path , Map<String, PluginConfig> )
                                             // PluginConfig -> Interface à completer
@@ -28,11 +26,24 @@ public class Analyzer {
             var plugin = makePlugin(pluginName, pluginConfig);
             plugin.ifPresent(plugins::add);
         }
+        
         // run all the plugins
-        for (var plugin: plugins) {
-            Multithreading plugin_thread = new Multithreading(plugin); 
-            plugin_thread.start();
+        for (var plugin: plugins){
+            try {
+                //add the thread
+                Thread t = new Thread(){
+                    @Override
+                    public void run(){
+                        plugin.run();
+                    }
+                };
+                t.start();//start the thread
+                t.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+
         // store the results together in an AnalyzerResult instance and return it
         return new AnalyzerResult(plugins.stream().map(AnalyzerPlugin::getResult).collect(Collectors.toList()));//lisye de Result
     }
@@ -40,8 +51,9 @@ public class Analyzer {
     // TODO: find a way so that the list of plugins is not hardcoded in this factory
     private Optional<AnalyzerPlugin> makePlugin(String pluginName, PluginConfig pluginConfig) {
         switch (pluginName) {
-            case "countMerge": return Optional.of(new CountMergeCommits(config));
-            case "countCommits" : return Optional.of(new CountCommitsPerAuthorPlugin(config));
+            case "countLines": return Optional.of( new CountLines(config,pluginConfig) );
+            case "countMerge": return Optional.of( new CountMergeCommits(config,pluginConfig));
+            case "countCommits" : return Optional.of( new CountCommitsPerAuthorPlugin(config,pluginConfig));
             default : return Optional.empty();
         }
     }

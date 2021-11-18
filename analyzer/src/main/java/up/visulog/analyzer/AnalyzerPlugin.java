@@ -1,7 +1,5 @@
 package up.visulog.analyzer;
 
-import java.lang.module.Configuration;
-
 public interface AnalyzerPlugin {
 
     //
