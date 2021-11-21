@@ -107,8 +107,8 @@ public class CLILauncher {
             });
             break;
 
-            case "countMergeCommits":
-                plugins.put("countMerge", new PluginConfig(){
+            case "countMerge":
+                plugins.put("countMergeCommits", new PluginConfig(){
                 @Override
                     public Map<String,String> config(){
                         Map<String,String> configurationPlugin = new HashMap<String,String>();

@@ -26,7 +26,6 @@ public class CountMergeCommits implements AnalyzerPlugin{
         }
         return resultat;
     }
-
     @Override
     public void run(){
         if (this.config.getPluginConfig("countMergeCommits").isPresent()){
