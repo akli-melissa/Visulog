@@ -43,6 +43,8 @@ public class Analyzer {
             case "countLines": return Optional.of( new CountLines(config) );
             case "countMerge": return Optional.of( new CountMergeCommits(config));
             case "countCommits" : return Optional.of( new CountCommitsPerAuthorPlugin(config));
+            case "CountCommitsPerDay" : return Optional.of( new CountCommitsPerDay(config));
+
             default : return Optional.empty();
         }
     }
