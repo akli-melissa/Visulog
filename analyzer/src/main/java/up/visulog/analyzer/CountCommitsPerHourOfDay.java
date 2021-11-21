@@ -26,8 +26,8 @@ public class CountCommitsPerHourOfDay implements AnalyzerPlugin {
 
     @Override
     public void run() {
-        if (this.configuration.getPluginConfig("CountCommitsPerHourOfDay").isPresent()){
-            result = processLog(Commit.parseLogFromCommand(configuration.getGitPath(), this.configuration.getPluginConfig("CountCommitsPerHourOfDay").get()));
+        if (this.configuration.getPluginConfig("countCommitsPerHourOfDay").isPresent()){
+            result = processLog(Commit.parseLogFromCommand(configuration.getGitPath(), this.configuration.getPluginConfig("countCommitsPerHourOfDay").get()));
         }
     }
 
