@@ -41,7 +41,7 @@ public class Analyzer {
     private Optional<AnalyzerPlugin> makePlugin(String pluginName, PluginConfig pluginConfig) {
         switch (pluginName) {
             case "countLines": return Optional.of( new CountLines(config) );
-            case "countMergeCommits": return Optional.of( new CountMergeCommits(config));
+            case "countMerge": return Optional.of( new CountMergeCommits(config));
             case "countCommits" : return Optional.of( new CountCommitsPerAuthorPlugin(config));
             case "countCommitsPerDayOfWeek" : return Optional.of( new CountCommitsPerDayOfWeek(config));
             case "countCommitsPerDayOfMonth" : return Optional.of( new CountCommitsPerDayOfMonth(config));
