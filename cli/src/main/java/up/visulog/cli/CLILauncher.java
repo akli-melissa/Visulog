@@ -131,8 +131,8 @@ public class CLILauncher {
 
             break;
 
-            case "countCommitsPerDay": 
-                plugins.put("CountCommitsPerDay", new PluginConfig() {
+            case "countCommitsPerDayOfWeek": 
+                plugins.put("countCommitsPerDayOfWeek", new PluginConfig() {
                 @Override
                 public Map<String,String> config(){
                     Map<String,String> configurationPlugin = new HashMap<String,String>();

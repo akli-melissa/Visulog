@@ -6,11 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CountCommitsPerDay implements AnalyzerPlugin {
+public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
     private final Configuration configuration;
     private Result result;// classe interne
 
-    public CountCommitsPerDay(Configuration generalConfiguration) {
+    public CountCommitsPerDayOfWeek(Configuration generalConfiguration) {
         this.configuration = generalConfiguration;
     }
 
@@ -26,8 +26,8 @@ public class CountCommitsPerDay implements AnalyzerPlugin {
 
     @Override
     public void run() {
-        if (this.configuration.getPluginConfig("CountCommitsPerDay").isPresent()){
-            result = processLog(Commit.parseLogFromCommand(configuration.getGitPath(), this.configuration.getPluginConfig("CountCommitsPerDay").get()));
+        if (this.configuration.getPluginConfig("countCommitsPerDayOfWeek").isPresent()){
+            result = processLog(Commit.parseLogFromCommand(configuration.getGitPath(), this.configuration.getPluginConfig("countCommitsPerDayOfWeek").get()));
         }
     }
 
