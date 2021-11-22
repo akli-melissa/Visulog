@@ -118,6 +118,7 @@ public class CLILauncher {
                 });
             break;
 
+
             case "countCommits": 
                 plugins.put("countCommits", new PluginConfig() {
                 @Override
@@ -127,8 +128,30 @@ public class CLILauncher {
                     return configurationPlugin;
                 }
             });
-
             break;
+
+            case "countCommitsPerDayOfWeek": 
+                plugins.put("countCommitsPerDayOfWeek", new PluginConfig() {
+                @Override
+                public Map<String,String> config(){
+                    Map<String,String> configurationPlugin = new HashMap<String,String>();
+                    configurationPlugin.put("command","log");//la commande git
+                    return configurationPlugin;
+                }
+            });
+            break;
+
+            case "countCommitsPerDayOfMonth": 
+                plugins.put("countCommitsPerDayOfMonth", new PluginConfig() {
+                @Override
+                public Map<String,String> config(){
+                    Map<String,String> configurationPlugin = new HashMap<String,String>();
+                    configurationPlugin.put("command","log");//la commande git
+                    return configurationPlugin;
+                }
+            });
+            break;
+            
 
             default: return;
         }
