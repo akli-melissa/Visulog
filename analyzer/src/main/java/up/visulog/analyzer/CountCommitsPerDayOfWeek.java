@@ -2,9 +2,7 @@ package up.visulog.analyzer;
 
 import up.visulog.config.Configuration;
 import up.visulog.gitrawdata.Commit;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
     private final Configuration configuration;
@@ -50,11 +48,10 @@ public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
         public String getResultAsString() {
             return commitsPerDayOfWeek.toString();
         }
-
+        
         @Override
         public String getResultAsHtmlDiv() {
-
-            // HtmlFlow -> A ajouter
+             // HtmlFlow -> A ajouter
             StringBuilder html = new StringBuilder("<div>Commits per day of week: <ul>");
             for (var item : commitsPerDayOfWeek.entrySet()) {
                 html.append("<li>").append(item.getKey()).append(": ").append(item.getValue()).append("</li>");
