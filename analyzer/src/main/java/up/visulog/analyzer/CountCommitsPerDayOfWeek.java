@@ -50,7 +50,7 @@ public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
         public String getResultAsString() {
             return commitsPerDayOfWeek.toString();
         }
-
+        
         @Override
         public String getResultAsHtmlDiv() {
 
