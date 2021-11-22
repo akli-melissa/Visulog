@@ -17,13 +17,14 @@ public class CLILauncher {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
             try {
-                File f = new File("resultats.html");
-                BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+                String path = (new File(System.getProperty("user.dir"))).getParentFile() + "/webgen/ressources/main.html";
+                File f2 = new File(path);
+                BufferedWriter bw = new BufferedWriter(new FileWriter(f2));
                 bw.write(results.toHTML());
                 bw.close();
-                Desktop.getDesktop().browse(f.toURI());
+                Desktop.getDesktop().browse(f2.toURI());
             } catch (Exception e) {
-                System.out.println("Erreur");
+                System.out.println(e.getMessage());
             }
 
         } else
