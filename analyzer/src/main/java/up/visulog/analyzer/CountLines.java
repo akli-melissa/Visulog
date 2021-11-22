@@ -84,9 +84,28 @@ public class CountLines implements AnalyzerPlugin {
             return "[" + result.substring(result.indexOf(",") + 1, result.length()) + "]";
         }
 
-        // generation du code javaScript
-        private void parseJs(String id1) {
+        //generate the JsCode to draw the graph
+        private String genJsCode(String params1[],String params2[],String id,String nameFonction,String title){
+            StringBuilder data = new StringBuilder("function "+nameFonction+"(){");
+            data.append("const graph = document.getElementById('"+id+"').getContext('2d');");
+            data.append("let myChart = new Chart(graph, {");
+            data.append("type:\"bar\",");
+            data.append("data: {");
+            data.append("labels:" + formatArrayString(params1) + ",");
+            data.append("datasets: [{");
+            data.append("label:\""+title+"\",");
+            data.append("data:" + formatArrayString(params2) + ",");
+            data.append("backgroundColor:['#003f5c','#7a5195','#ef5675', '#ffa600'],");
+            data.append(" hoverBorderWidth: 3,");
+            data.append("}],");
+            data.append("}");
+            data.append("});}\n");
+            return data.toString();
+        }
 
+        // generation du code javaScript
+        private void parseJs(String id1,String id2) {
+            //get all the data from the map
             String filesName[] = new String[this.linesAddedDeleted.size()];
             String linesAdded[] = new String[this.linesAddedDeleted.size()];
             String linesDeleted[] = new String[this.linesAddedDeleted.size()];
@@ -99,26 +118,16 @@ public class CountLines implements AnalyzerPlugin {
                 i++;
             }
 
-            StringBuilder data = new StringBuilder("function afficheLines(){");
-            data.append("const graph = document.getElementById('"+id1+"').getContext('2d');");
-            data.append("let myChart = new Chart(graph, {");
-            data.append("type:\"bar\",");
-            data.append("data: {");
-            data.append("labels:" + formatArrayString(filesName) + ",");
-            data.append("datasets: [{");
-            data.append("label:\"Lignes ajoutées\",");
-            data.append("data:" + formatArrayString(linesAdded) + ",");
-            data.append("backgroundColor:['#003f5c','#7a5195','#ef5675', '#ffa600'],");
-            data.append(" hoverBorderWidth: 3,");
-            data.append("}],");
-            data.append("}");
-            data.append("});}");
+            String LinesAdded = this.genJsCode(filesName, linesAdded, id1 , "linesAdded" , "Ligne Ajoutées");
+            String LinesDeleted = this.genJsCode(filesName, linesDeleted, id2 , "linesDeleted" , "Lignes Supprimées");
 
+            //ecrire dans le fichier js
             try{
                 File f = new File("..");
                 String path = f.getAbsoluteFile()+"/webgen/ressources/fichierJS/countLines.js";
                 BufferedWriter bw = new BufferedWriter(new FileWriter(path));
-                bw.write(data.toString());
+                String data = LinesAdded + "\n" + LinesDeleted;
+                bw.write(data);
                 bw.close();
             }catch(Exception e){
                 e.printStackTrace();
@@ -129,10 +138,11 @@ public class CountLines implements AnalyzerPlugin {
         @Override
         public String getResultAsHtmlDiv() {
             StringBuilder builder = new StringBuilder("");
-            builder.append("<canvas id=\"graph\"></canvas>");
+            builder.append("<canvas id=\"graphA\"></canvas>");
+            builder.append("<canvas id=\"graphB\"></canvas>");
             builder.append("<script src=\"fichierJS/countLines.js\"></script>");
-            builder.append("<script>afficheLines();</script>");
-            this.parseJs("graph");
+            builder.append("<script>linesAdded();linesDeleted();</script>");
+            this.parseJs("graphA","graphB");//generer les graphs
             return builder.toString();
         }
 
