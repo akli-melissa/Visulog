@@ -62,8 +62,6 @@ public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
             html.append("\n</div>");
             html.append("\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js\" integrity=\"sha512-vBmx0N/uQOXznm/Nbkp7h0P1RfLSj0HQrFSzV8m7rOGyj30fYAOKHYvCNez+yM8IrfnW0TCodDEjRqf6fodf/Q==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>");
             html.append("\n<script>");
-           // html.append("\nChart.defaults.global.title.display = true;");
-           // html.append("\nChart.defaults.global.title.text = \"PAS DE TITRE\";");
             html.append("\n</script>");
             html.append("\n<script>");
             html.append("\nvar ctx = new Chart(document.getElementById('myChart').getContext('2d'));");
@@ -75,7 +73,6 @@ public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
             html.append("\ndata: data,");
             html.append("\noptions:{");
             html.append("\ntitle : {");
-            //html.append("\ntext : \"Le titre de la charte graphique\"");
             html.append("\n} } });");
             html.append("\n </script>\n");
             
