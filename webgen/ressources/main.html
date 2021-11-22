@@ -8,8 +8,8 @@
 <script>
 var ctx = new Chart(document.getElementById('myChart').getContext('2d'));
  var data = {
-labels:["Thu", "Tue", "Wed", "Sat", "Fri", "Mon", "Sun"],
-datasets: [{label: 'Commits per weekday',data:[10, 38, 17, 4, 5, 40, 19],fill: false,borderColor: 'rgb(75, 192, 192)',tension: 0.1}]};
+labels:["00", "22", "11", "23", "12", "01", "02", "13", "14", "15", "16", "17", "18", "07", "19", "09", "20", "10", "21"],
+datasets: [{label: 'Commits per day hour',data:[8, 6, 13, 10, 10, 3, 5, 10, 13, 11, 5, 1, 2, 7, 4, 2, 11, 8, 5],fill: false,borderColor: 'rgb(75, 192, 192)',tension: 0.1}]};
 var chart = new Chart(ctx,{
 type: 'bar',
 data: data,
