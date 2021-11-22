@@ -69,7 +69,7 @@ public class CountCommitsPerHourOfDay implements AnalyzerPlugin {
             html.append("\nvar ctx = new Chart(document.getElementById('myChart').getContext('2d'));");
             html.append("\n var data = {");
             html.append("\nlabels:").append(labels).append(",");
-            html.append("\ndatasets: [{label: 'Commits per hour of day',data:").append(data).append(",fill: false,borderColor: 'rgb(75, 192, 192)',tension: 0.1}]};");
+            html.append("\ndatasets: [{label: 'Commits per day hour',data:").append(data).append(",fill: false,borderColor: 'rgb(75, 192, 192)',tension: 0.1}]};");
             html.append("\nvar chart = new Chart(ctx,{");
             html.append("\ntype: 'line',");
             html.append("\ndata: data,");
