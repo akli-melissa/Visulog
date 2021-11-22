@@ -26,11 +26,10 @@ public class CountMergeCommits implements AnalyzerPlugin{
         }
         return resultat;
     }
-
     @Override
     public void run(){
-        if (this.config.getPluginConfig("countMergeCommits").isPresent()){
-            this.resultats = proceslog(Commit.parseLogFromCommand(this.config.getGitPath(), this.config.getPluginConfig("countMergeCommits").get()));
+        if (this.config.getPluginConfig("countMerge").isPresent()){
+            this.resultats = proceslog(Commit.parseLogFromCommand(this.config.getGitPath(), this.config.getPluginConfig("countMerge").get()));
         }
     }
 
