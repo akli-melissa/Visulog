@@ -17,13 +17,13 @@ public class CLILauncher {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
             try {
-                File f = new File("resultats.html");
+                File f = new File("C:/Users/ECC/Desktop/visolog/viso2/Version2Visolog/Visulog_G2/webgen/ressources/main.html");
                 BufferedWriter bw = new BufferedWriter(new FileWriter(f));
                 bw.write(results.toHTML());
                 bw.close();
                 Desktop.getDesktop().browse(f.toURI());
             } catch (Exception e) {
-                System.out.println("Erreur");
+                System.out.println(e.getMessage());
             }
 
         } else
