@@ -66,7 +66,7 @@ public class CountMergeCommits implements AnalyzerPlugin{
             StringBuilder html = new StringBuilder("");
             String datapoints = "";
             try {
-                BufferedReader in = new BufferedReader(new FileReader(dir+"/webgen/Graph_Circulaire_ex.html"));
+                BufferedReader in = new BufferedReader(new FileReader(dir+"/html/Graph_Circulaire_ex.html"));
                 String str;
                 while ((str = in.readLine()) != null) {
                     html.append(str+"\n");
