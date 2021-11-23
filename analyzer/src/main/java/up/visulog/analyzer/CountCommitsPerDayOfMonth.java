@@ -67,9 +67,9 @@ public class CountCommitsPerDayOfMonth implements AnalyzerPlugin {
             html.append("\nvar ctx = new Chart(document.getElementById('myChart').getContext('2d'));");
             html.append("\n var data = {");
             html.append("\nlabels:").append(labels).append(",");
-            html.append("\ndatasets: [{label: 'Commits per day of month',data:").append(data).append(",fill: false,borderColor: 'rgb(75, 192, 192)',tension: 0.1}]};");
+            html.append("\ndatasets: [{label: 'Commits per day of month',data:").append(data).append(",fill: false,borderColor: 'rgb(75, 192, 192)' ,tension: 0.1}]};");
             html.append("\nvar chart = new Chart(ctx,{");
-            html.append("\ntype: 'bar',");
+            html.append("\ntype: 'line',");
             html.append("\ndata: data,");
             html.append("\noptions:{");
             html.append("\ntitle : {");
