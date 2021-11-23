@@ -17,7 +17,7 @@ public class CLILauncher {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
             try {
-                File f = new File("resultats.html");
+                File f = new File("countMerge.html");
                 BufferedWriter bw = new BufferedWriter(new FileWriter(f));
                 bw.write(results.toHTML());
                 bw.close();
