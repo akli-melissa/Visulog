@@ -1,0 +1,24 @@
+<head>
+	<!-- Load plotly.js into the DOM -->
+	<script src='https://cdn.plot.ly/plotly-2.6.3.min.js'></script>
+</head>
+
+<body>
+	<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+   <script> var x = ["Said","Rahim","Younes",]
+var y = ["8","2","5"]
+
+var data = [
+  {
+    histfunc: "sum",
+    y: y,
+    x: x,
+    type: "histogram",
+    name: "sum"
+  }
+]
+
+
+Plotly.newPlot('myDiv', data) </script>
+
+</body>
