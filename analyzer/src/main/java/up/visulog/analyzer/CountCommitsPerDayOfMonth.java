@@ -3,6 +3,10 @@ package up.visulog.analyzer;
 import up.visulog.config.Configuration;
 import up.visulog.gitrawdata.Commit;
 import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 
 public class CountCommitsPerDayOfMonth implements AnalyzerPlugin {
     private final Configuration configuration;
@@ -51,32 +55,26 @@ public class CountCommitsPerDayOfMonth implements AnalyzerPlugin {
 
         @Override
         public String getResultAsHtmlDiv() {
-            ArrayList<String> labels = new ArrayList<String>();
-            ArrayList<Integer> data = new ArrayList<Integer>();
-            for (Map.Entry<String,Integer> item:commitsPerDayOfMonth.entrySet()){
-                labels.add("\""+item.getKey()+"\"");
-                data.add(item.getValue());
+            String dir = System.getProperty("user.dir");
+            dir = dir.replace("cli","");
+            StringBuilder html = new StringBuilder("");
+            String datapoints = "";
+            try {
+                BufferedReader in = new BufferedReader(new FileReader(dir+"/html/Graph.html"));
+                String str;
+                while ((str = in.readLine()) != null) {
+                    html.append(str+"\n");
+                }
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            StringBuilder html = new StringBuilder("<div style=\"width : 75%\">");
-            html.append("\n<canvas id=\"myChart\"></canvas>");
-            html.append("\n</div>");
-            html.append("\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js\" integrity=\"sha512-vBmx0N/uQOXznm/Nbkp7h0P1RfLSj0HQrFSzV8m7rOGyj30fYAOKHYvCNez+yM8IrfnW0TCodDEjRqf6fodf/Q==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>");
-            html.append("\n<script>");
-            html.append("\n</script>");
-            html.append("\n<script>");
-            html.append("\nvar ctx = new Chart(document.getElementById('myChart').getContext('2d'));");
-            html.append("\n var data = {");
-            html.append("\nlabels:").append(labels).append(",");
-            html.append("\ndatasets: [{label: 'Commits per day of month',data:").append(data).append(",fill: false,borderColor: 'rgb(75, 192, 192)' ,tension: 0.1}]};");
-            html.append("\nvar chart = new Chart(ctx,{");
-            html.append("\ntype: 'line',");
-            html.append("\ndata: data,");
-            html.append("\noptions:{");
-            html.append("\ntitle : {");
-            html.append("\n} } });");
-            html.append("\n </script>\n");
             
-            return html.toString();
+            for (Map.Entry<String,Integer> item:commitsPerDayOfMonth.entrySet()){
+                datapoints+="{y:"+ item.getValue() + " ,label: \'"+item.getKey()+"\'},";
+            }
+            return html.toString().replace("///data///",datapoints.toString());
+
         }
     }
 }
