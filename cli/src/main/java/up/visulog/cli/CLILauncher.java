@@ -54,7 +54,7 @@ public class CLILauncher {
 
                     case "--loadConfigFile":
                         // TODO (load options from a file)
-                        LoadConfigFile(plugins);
+                        LoadConfigFile(pValue);
                         break;
 
                     case "--justSaveConfigFile":
@@ -158,23 +158,19 @@ public class CLILauncher {
         }
     }
 
-    private static void LoadConfigFile(HashMap<String, PluginConfig> plugins) {
-        Scanner input = new Scanner(System.in);
-        String fileName;
-        System.out.print("Entrez le nom du fichier que vous voulez charger");// demander quel fichier l'utilisateur veut
-                                                                             // charger
-        fileName = input.nextLine();// nom du fichier
-        input.close();
+    private static void LoadConfigFile(String fileName) {
         Scanner sc;
         try {// on recupere ligne par ligne les options sauvegardées
             sc = new Scanner(new File(fileName));// Fichier spécifié par l'utilisateur
             sc.useDelimiter("\n");
             while (sc.hasNext()) {
-                runAnalysis(plugins, sc.next());// Et puis on fait l'analyse
+                String data = sc.next();
+                
+                //runAnalysis(plugins, sc.next());// Et puis on fait l'analyse
             }
         } catch (Exception e) {// Si le fichier n'existe pas on revoie une erreur
             System.out.println("Erreur lors de l'ouverture du fichier:");
-            e.printStackTrace();
+           // e.printStackTrace();
             System.exit(1);
         }
     }
