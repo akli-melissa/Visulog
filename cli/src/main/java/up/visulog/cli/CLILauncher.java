@@ -151,7 +151,16 @@ public class CLILauncher {
                 }
             });
             break;
-            
+            case "countCommitsPerHourOfDay": 
+                plugins.put("countCommitsPerHourOfDay", new PluginConfig() {
+                @Override
+                public Map<String,String> config(){
+                    Map<String,String> configurationPlugin = new HashMap<String,String>();
+                    configurationPlugin.put("command","log");//la commande git
+                    return configurationPlugin;
+                }
+            });
+            break;
 
         default:
             return;
