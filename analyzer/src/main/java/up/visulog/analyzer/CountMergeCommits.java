@@ -4,6 +4,9 @@ import up.visulog.config.Configuration;
 import up.visulog.gitrawdata.Commit;
 import java.util.List;
 import java.util.Map;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class CountMergeCommits implements AnalyzerPlugin{
@@ -58,12 +61,25 @@ public class CountMergeCommits implements AnalyzerPlugin{
 
         @Override
         public String getResultAsHtmlDiv(){
-            StringBuilder html = new StringBuilder("<div>MergeCommits per author: <ul>");
-            for (Map.Entry<String,Integer> item:MergeCommit.entrySet()){
-                html.append("<li>").append(item.getKey()).append(" : ").append(item.getValue()).append("</li>");
+            String dir = System.getProperty("user.dir");
+            dir = dir.replace("cli","");
+            StringBuilder html = new StringBuilder("");
+            String datapoints = "";
+            try {
+                BufferedReader in = new BufferedReader(new FileReader(dir+"/html/Graph_Circulaire_ex.html"));
+                String str;
+                while ((str = in.readLine()) != null) {
+                    html.append(str+"\n");
+                }
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            html.append("</ul></div>");
-            return html.toString();
+            
+            for (Map.Entry<String,Integer> item:MergeCommit.entrySet()){
+                datapoints+="{y:"+ item.getValue() + " ,label: \'"+item.getKey()+"\'},";
+            }
+            return html.toString().replace("///data///",datapoints.toString());
         }
     }
 }
