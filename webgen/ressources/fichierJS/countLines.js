@@ -1,3 +1,0 @@
-function linesAdded(){const graph = document.getElementById('graphA').getContext('2d');let myChart = new Chart(graph, {type:"bar",data: {labels:["webgen/ressources/main.html","webgen/ressources/fichierJS/countLines.js"],datasets: [{label:"Ligne Ajoutées",data:["1","2"],backgroundColor:['#003f5c','#7a5195','#ef5675', '#ffa600'], hoverBorderWidth: 3,}],}});}
-
-function linesDeleted(){const graph = document.getElementById('graphB').getContext('2d');let myChart = new Chart(graph, {type:"bar",data: {labels:["webgen/ressources/main.html","webgen/ressources/fichierJS/countLines.js"],datasets: [{label:"Lignes Supprimées",data:["2","2"],backgroundColor:['#003f5c','#7a5195','#ef5675', '#ffa600'], hoverBorderWidth: 3,}],}});}
