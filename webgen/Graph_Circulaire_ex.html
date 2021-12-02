@@ -1,0 +1,23 @@
+<div>
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+</div>
+<script>
+    window.onload = function() {
+    var chart = new CanvasJS.Chart("chartContainer", {
+        theme: "light2",        exportEnabled: true,
+        animationEnabled: true,
+        title: {
+                text: "Commit"
+        },
+        data: [{
+                type: "pie",
+                toolTipContent: "<b>{label}</b>: {y} commits",
+                showInLegend: "true",
+                legendText: "{label}",
+                indexLabelFontSize: 16,
+                indexLabel: "{label} - {y} commits",
+                dataPoints: [
+                ///data///
+                ]}]});chart.render();
+    }    
+</script>

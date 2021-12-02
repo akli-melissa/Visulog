@@ -74,6 +74,7 @@ public class CountLines implements AnalyzerPlugin {
         public String getResultAsString() {
             return this.linesAddedDeleted.toString();
         }
+
         
         // retourn le resultat sous le format HTML
         @Override
@@ -113,7 +114,5 @@ public class CountLines implements AnalyzerPlugin {
 
             return result;
         }
-
     }
-
 }
