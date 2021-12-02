@@ -5,14 +5,9 @@ import java.util.List;
 import java.util.Map;
 import up.visulog.config.Configuration;
 import up.visulog.gitrawdata.Lines;
-
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.Arrays;
 
 //Cette classe est utillisée pour le calcul des lignes ajoutées et supprimées
 //Par @Younes Salhi
