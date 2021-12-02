@@ -3,6 +3,9 @@ package up.visulog.analyzer;
 import up.visulog.config.Configuration;
 import up.visulog.gitrawdata.Commit;
 import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
     private final Configuration configuration;
@@ -51,13 +54,26 @@ public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
         
         @Override
         public String getResultAsHtmlDiv() {
-             // HtmlFlow -> A ajouter
-            StringBuilder html = new StringBuilder("<div>Commits per day of week: <ul>");
-            for (var item : commitsPerDayOfWeek.entrySet()) {
-                html.append("<li>").append(item.getKey()).append(": ").append(item.getValue()).append("</li>");
+            String dir = System.getProperty("user.dir");
+            dir = dir.replace("cli","");
+            StringBuilder html = new StringBuilder("");
+            String datapoints = "";
+            try {
+                BufferedReader in = new BufferedReader(new FileReader(dir+"/html/Graph.html"));
+                String str;
+                while ((str = in.readLine()) != null) {
+                    html.append(str+"\n");
+                }
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            html.append("</ul></div>");
-            return html.toString();
+            
+            for (Map.Entry<String,Integer> item:commitsPerDayOfWeek.entrySet()){
+                datapoints+="{y:"+ item.getValue() + " ,label: \'"+item.getKey()+"\'},";
+            }
+            return html.toString().replace("///data///",datapoints.toString());
+
         }
     }
 }

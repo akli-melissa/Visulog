@@ -7,29 +7,29 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-
-public class CountCommitsPerDayOfMonth implements AnalyzerPlugin {
+public class CountCommitsPerHourOfDay implements AnalyzerPlugin {
     private final Configuration configuration;
     private Result result;// classe interne
 
-    public CountCommitsPerDayOfMonth(Configuration generalConfiguration) {
+    public CountCommitsPerHourOfDay(Configuration generalConfiguration) {
         this.configuration = generalConfiguration;
     }
 
     static Result processLog(List<Commit> gitLog) {
         var result = new Result();
         for (var commit : gitLog) {
-            String day =commit.date.split(" ")[2];
-            var nb = result.commitsPerDayOfMonth.getOrDefault(day, 0);
-            result.commitsPerDayOfMonth.put(day, nb + 1);
+            String hour = commit.date.split(" ")[3].split(":")[0];
+            var nb = result.commitsPerHourOfDay.getOrDefault(hour, 0);
+            result.commitsPerHourOfDay .put(hour, nb + 1);
         }
         return result;
     }
 
     @Override
     public void run() {
-        if (this.configuration.getPluginConfig("countCommitsPerDayOfMonth").isPresent()){
-            result = processLog(Commit.parseLogFromCommand(configuration.getGitPath(), this.configuration.getPluginConfig("countCommitsPerDayOfMonth").get()));
+        if (this.configuration.getPluginConfig("countCommitsPerHourOfDay").isPresent()) {
+            result = processLog(Commit.parseLogFromCommand(configuration.getGitPath(),
+                    this.configuration.getPluginConfig("countCommitsPerHourOfDay").get()));
         }
     }
 
@@ -42,15 +42,16 @@ public class CountCommitsPerDayOfMonth implements AnalyzerPlugin {
 
     // Implementation de la sous interface Result de AnalyzerPlugin
     static class Result implements AnalyzerPlugin.Result {
-        private final Map<String, Integer> commitsPerDayOfMonth = new HashMap<>();// pour chaque user un nombre de commits
+        private final Map<String, Integer> commitsPerHourOfDay = new HashMap<>();// pour chaque user un nombre de
+                                                                                  // commits
 
-        Map<String, Integer> getcommitsPerDayOfMonth() {
-            return commitsPerDayOfMonth;
+        Map<String, Integer> getcommitsPerHourOfWeek() {
+            return commitsPerHourOfDay ;
         }
 
         @Override
         public String getResultAsString() {
-            return commitsPerDayOfMonth.toString();
+            return commitsPerHourOfDay.toString();
         }
 
         @Override
@@ -70,7 +71,7 @@ public class CountCommitsPerDayOfMonth implements AnalyzerPlugin {
                 e.printStackTrace();
             }
             
-            for (Map.Entry<String,Integer> item:commitsPerDayOfMonth.entrySet()){
+            for (Map.Entry<String,Integer> item:commitsPerHourOfDay.entrySet()){
                 datapoints+="{y:"+ item.getValue() + " ,label: \'"+item.getKey()+"\'},";
             }
             return html.toString().replace("///data///",datapoints.toString());
