@@ -125,7 +125,6 @@ public class CLILauncher {
                 public Map<String, String> config() {
                     Map<String, String> configurationPlugin = new HashMap<String, String>();
                     configurationPlugin.put("command", "log");// la commande git
-                   // configurationPlugin.put("options", "--shortstat");
                     return configurationPlugin;
                 }
             });
