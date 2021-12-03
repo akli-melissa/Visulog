@@ -1,10 +1,7 @@
 package up.visulog.gitrawdata;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -87,19 +84,20 @@ public class Commit {
                     .reduce("", (accumulator, currentLine) -> accumulator +"\n"+ currentLine); // concatenate everything
             builder.setDescription(description);
 
-            input.mark(0);
-            String currentLine = input.readLine();
+            input.mark(0);//mark tge current positions
+            String currentLine = input.readLine();//read the line
 
-            if (currentLine != null ){
-                if (!currentLine.startsWith("commit")){
-                input.reset();
-                String commitInfo = input
-                .lines()
-                .takeWhile(currentline -> !currentline.isEmpty())
-                .map(String::trim)
-                .reduce("",(acc,cur)->acc+cur);
-                builder.setCommitInformations(commitInfo);
-                }else input.reset();
+            if (currentLine != null ){//if the line exsists
+                if (!currentLine.startsWith("commit")){//if its not the debue of another commit
+                    //get more informations from the commit
+                    input.reset();
+                    String commitInfo = input
+                    .lines()
+                    .takeWhile(currentline -> !currentline.isEmpty())
+                    .map(String::trim)
+                    .reduce("",(acc,cur)->acc+cur);
+                    builder.setCommitInformations(commitInfo);
+                }else input.reset();//else its a new commit get back to previous position
             }
 
             return Optional.of(builder.createCommit());
