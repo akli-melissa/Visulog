@@ -1,7 +1,10 @@
 package up.visulog.gitrawdata;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,18 +18,21 @@ public class Commit {
     public final String author;
     public final String description;
     public final String mergedFrom;
+    public final String commitInformations;
 
-    public Commit(String id, String author, String date, String description, String mergedFrom) {
+    public Commit(String id, String author, String date, String description, String mergedFrom, String commitInformations) {
         this.id = id;
         this.author = author;
         this.date = date;
         this.description = description;
         this.mergedFrom = mergedFrom;
+        this.commitInformations = commitInformations;
     }
 
     // TODO: factor this out (similar code will have to be used for all git commands)
     public static List<Commit> parseLogFromCommand(Path gitPath, PluginConfig pluginConfig) {
         return parseLog(ExecuteCommande.run(gitPath, pluginConfig));
+        
     }
 
     public static List<Commit> parseLog(BufferedReader reader) {
@@ -78,12 +84,27 @@ public class Commit {
                     .lines() // get a stream of lines to work with
                     .takeWhile(currentLine -> !currentLine.isEmpty()) // take all lines until the first empty one (commits are separated by empty lines). Remark: commit messages are indented with spaces, so any blank line in the message contains at least a couple of spaces.
                     .map(String::trim) // remove indentation
-                    .reduce("", (accumulator, currentLine) -> accumulator + currentLine); // concatenate everything
+                    .reduce("", (accumulator, currentLine) -> accumulator +"\n"+ currentLine); // concatenate everything
             builder.setDescription(description);
 
+            input.mark(0);
+            String currentLine = input.readLine();
+
+            if (currentLine != null ){
+                if (!currentLine.startsWith("commit")){
+                input.reset();
+                String commitInfo = input
+                .lines()
+                .takeWhile(currentline -> !currentline.isEmpty())
+                .map(String::trim)
+                .reduce("",(acc,cur)->acc+cur);
+                builder.setCommitInformations(commitInfo);
+                }else input.reset();
+            }
 
             return Optional.of(builder.createCommit());
         } catch (IOException e) {
+            e.printStackTrace();
             parseError();
         }
         return Optional.empty(); // this is supposed to be unreachable, as parseError should never return

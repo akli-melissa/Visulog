@@ -38,7 +38,7 @@ public class AnalyzerResult {
         
         result.append("<body>" + "\n");
         result.append(subResults.stream().map(AnalyzerPlugin.Result::getResultAsHtmlDiv).reduce("", (acc, cur) -> acc + "\n" + cur));
-        result.append("</body> + \n");
+        result.append("</body> "+ "\n");
         result.append("</html>");
         
         return result.toString();

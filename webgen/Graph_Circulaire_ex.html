@@ -1,9 +1,9 @@
 <div>
-    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    <div id="chartContainer0" style="height: 300px; width: 100%;"></div>
 </div>
 <script>
-    window.onload = function() {
-    var chart = new CanvasJS.Chart("chartContainer", {
+    function afficheGraph0() {
+    var chart = new CanvasJS.Chart("chartContainer0", {
         theme: "light2",        exportEnabled: true,
         animationEnabled: true,
         title: {
@@ -18,6 +18,8 @@
                 indexLabel: "{label} - {y} commits",
                 dataPoints: [
                 ///data///
-                ]}]});chart.render();
-    }    
+                ]}]});
+    chart.render();
+    }
+    afficheGraph0();    
 </script>
