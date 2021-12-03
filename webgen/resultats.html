@@ -9,5 +9,79 @@
 </head>
 <body>
 
-<div>Commits per author: <ul><li>TAFOUGHALT anyes <tafoughaltanyes@gmail.com>: 2</li><li>AMIRA said <amira10586@gmail.com>: 1</li><li>Sofiane Boudet <Sofiane.boudet1@gmail.com>: 3</li><li>Anyes TAFOUGHALT <tafoughaltanyes@gmail.com>: 14</li><li>Said Amira <saidamira@macbook-pro-de-said.home>: 1</li><li>AROUS abderrahim <arous.abderrahim@gmail.com>: 1</li><li>AKLI melissa <aklimeli24@gmail.com>: 7</li><li>Younes Salhi <salhiy@x06.script.univ-paris-diderot.fr>: 1</li><li>Said Amira <saidamira@MacBook-Pro-de-Said.local>: 1</li><li>djeghali <nadinedjeghali@hotmail.com>: 16</li><li>Aldric Degorre <adegorre@irif.fr>: 12</li><li>BOUDET sofiane <sofiane.boudet1@gmail.com>: 2</li><li>Said Amira <saidamira@eduroam-prg-gm-1-0-139.net.univ-paris-diderot.fr>: 2</li><li>Yacine <flici>: 10</li><li>Said Amira <saidamira@eduroam-prg-hf-1-7-23.net.univ-paris-diderot.fr>: 2</li><li>nadine10 <rachanadine2002@gmail.com>: 2</li><li>Xavier Denis <xldenis@gmail.com>: 2</li><li>flici <yacineflici2@gmail.com>: 4</li><li>salhiy <younessalhi520@gmail.com>: 3</li><li>FLICI yacine <yacineflici2@gmail.com>: 8</li><li>Salhi Younes <younessalhi520@gmail.com>: 29</li><li>AKLI MELISSA <aklimeli24@gmail.com>: 5</li><li>Colin Gonzalez <colin@nomadic-labs.com>: 1</li><li>SALHI younes <younessalhi520@gmail.com>: 11</li><li>Arous <arous.abderrahim@gmail.com>: 3</li><li>YAHMI yanis <yanis.yahmi2002@gmail.com>: 1</li><li>= <younessalhi520@gmail.com>: 2</li><li>yahmiy <yanis.yahmi2002@gmail.com>: 13</li><li>Melissa <aklimeli24@gmail.com>: 1</li></ul></div></body> 
+<div>
+    <div id="chartContainer4" style="height: 300px; width: 100%;"></div>
+</div>
+<script>
+function afficheGraph4() {
+    var chart = new CanvasJS.Chart("chartContainer4", {
+    theme: "light2",        exportEnabled: true,
+    animationEnabled: true,
+    title: {
+            text: "Lines Added Per User"
+    },
+    data: [{
+            type: "line",
+            toolTipContent: "<b>{label}</b>: {y} lines",
+            showInLegend: "true",
+            indexLabelFontSize: 16,
+            dataPoints: [
+                {y:3 ,label: 'nadine10 '},{y:239 ,label: 'TAFOUGHALT anyes '},{y:15 ,label: 'FLICI yacine '},{y:16 ,label: '= '},{y:14 ,label: 'flici '},{y:1 ,label: 'Younes Salhi '},{y:194 ,label: 'yahmiy '},{y:0 ,label: 'YAHMI yanis '},{y:2375 ,label: 'Salhi Younes '},{y:591 ,label: 'Yacine '},{y:44 ,label: 'AKLI MELISSA '},{y:12 ,label: 'AMIRA said '},{y:0 ,label: 'AROUS abderrahim '},{y:8 ,label: 'AKLI melissa '},{y:0 ,label: 'Colin Gonzalez '},{y:56 ,label: 'BOUDET sofiane '},{y:33 ,label: 'Arous '},{y:5 ,label: 'Melissa '},{y:107 ,label: 'SALHI younes '},{y:90 ,label: 'Said Amira '},{y:5 ,label: 'Sofiane Boudet '},{y:12 ,label: 'salhiy '},{y:293 ,label: 'djeghali '},{y:267 ,label: 'Anyes TAFOUGHALT '},{y:997 ,label: 'Aldric Degorre '},{y:6 ,label: 'Xavier Denis '},
+    ]}]});
+    chart.render();
+    }
+    afficheGraph4();
+</script>
+            
+<div>
+    <div id="chartContainer5" style="height: 300px; width: 100%;"></div>
+</div>
+<script>
+function afficheGraph5() {
+    var chart = new CanvasJS.Chart("chartContainer5", {
+    theme: "light2",        exportEnabled: true,
+    animationEnabled: true,
+    title: {
+            text: "Lines Deleted Per User"
+    },
+    data: [{
+            type: "line",
+            toolTipContent: "<b>{label}</b>: {y} lines",
+            showInLegend: "true",
+            indexLabelFontSize: 16,
+            dataPoints: [
+                {y:1 ,label: 'nadine10 '},{y:18 ,label: 'TAFOUGHALT anyes '},{y:25 ,label: 'FLICI yacine '},{y:22 ,label: '= '},{y:4 ,label: 'flici '},{y:0 ,label: 'Younes Salhi '},{y:46 ,label: 'yahmiy '},{y:0 ,label: 'YAHMI yanis '},{y:568 ,label: 'Salhi Younes '},{y:239 ,label: 'Yacine '},{y:13 ,label: 'AKLI MELISSA '},{y:0 ,label: 'AMIRA said '},{y:0 ,label: 'AROUS abderrahim '},{y:1 ,label: 'AKLI melissa '},{y:0 ,label: 'Colin Gonzalez '},{y:29 ,label: 'BOUDET sofiane '},{y:0 ,label: 'Arous '},{y:11 ,label: 'Melissa '},{y:21 ,label: 'SALHI younes '},{y:18 ,label: 'Said Amira '},{y:1 ,label: 'Sofiane Boudet '},{y:10 ,label: 'salhiy '},{y:69 ,label: 'djeghali '},{y:213 ,label: 'Anyes TAFOUGHALT '},{y:47 ,label: 'Aldric Degorre '},{y:0 ,label: 'Xavier Denis '},
+    ]}]});
+    chart.render();
+    }
+    afficheGraph5();
+</script>
+            
+
+<div>
+    <div id="chartContainer0" style="height: 300px; width: 100%;"></div>
+</div>
+<script>
+    function afficheGraph0() {
+    var chart = new CanvasJS.Chart("chartContainer0", {
+        theme: "light2",        exportEnabled: true,
+        animationEnabled: true,
+        title: {
+                text: "Commit"
+        },
+        data: [{
+                type: "pie",
+                toolTipContent: "<b>{label}</b>: {y} commits",
+                showInLegend: "true",
+                legendText: "{label}",
+                indexLabelFontSize: 16,
+                indexLabel: "{label} - {y} commits",
+                dataPoints: [
+                {y:1 ,label: 'TAFOUGHALT anyes <tafoughaltanyes@gmail.com>'},{y:1 ,label: 'Sofiane Boudet <Sofiane.boudet1@gmail.com>'},{y:1 ,label: 'Yacine <flici>'},{y:1 ,label: 'Said Amira <saidamira@eduroam-prg-hf-1-7-23.net.univ-paris-diderot.fr>'},{y:1 ,label: 'Xavier Denis <xldenis@gmail.com>'},{y:1 ,label: 'AROUS abderrahim <arous.abderrahim@gmail.com>'},{y:5 ,label: 'FLICI yacine <yacineflici2@gmail.com>'},{y:5 ,label: 'AKLI melissa <aklimeli24@gmail.com>'},{y:10 ,label: 'Salhi Younes <younessalhi520@gmail.com>'},{y:1 ,label: 'djeghali <nadinedjeghali@hotmail.com>'},{y:3 ,label: 'Aldric Degorre <adegorre@irif.fr>'},{y:1 ,label: 'Colin Gonzalez <colin@nomadic-labs.com>'},{y:9 ,label: 'SALHI younes <younessalhi520@gmail.com>'},{y:1 ,label: 'YAHMI yanis <yanis.yahmi2002@gmail.com>'},{y:1 ,label: 'Arous <arous.abderrahim@gmail.com>'},{y:2 ,label: 'yahmiy <yanis.yahmi2002@gmail.com>'},{y:1 ,label: 'Said Amira <saidamira@eduroam-prg-gm-1-0-139.net.univ-paris-diderot.fr>'},
+                ]}]});
+    chart.render();
+    }
+    afficheGraph0();    
+</script>
+</body> 
 </html>
