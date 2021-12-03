@@ -11,6 +11,9 @@ import java.util.*;
 import java.awt.Desktop;
 
 public class CLILauncher {
+
+    private static String[] ALLCommands = {"countLines","countMergeCommits","countCommits","countCommitsPerDayOfWeek","countCommitsPerDayOfMonth","countCommitsPerHourOfDay","countLinesPerAuthor"};
+
     public static void main(String[] args) {
         var config = makeConfigFromCommandLineArgs(args);
         if (config.isPresent()) {
@@ -91,8 +94,17 @@ public class CLILauncher {
         System.exit(0);
     }
 
+    private static void runAllCommand(HashMap<String, PluginConfig> plugins){
+        for (String command:ALLCommands){
+            runAnalysis(plugins,command);
+        }
+    }    
+
     private static void runAnalysis(HashMap<String, PluginConfig> plugins, String pValue) {
         switch (pValue) {
+        case "All": 
+            runAllCommand(plugins);
+        break;
         case "countLinesPerAuthor": 
             plugins.put("countLinesPerAuthor", new PluginConfig() {
                 @Override
