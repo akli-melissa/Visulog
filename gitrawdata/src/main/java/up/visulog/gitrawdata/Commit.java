@@ -81,7 +81,7 @@ public class Commit {
                     .lines() // get a stream of lines to work with
                     .takeWhile(currentLine -> !currentLine.isEmpty()) // take all lines until the first empty one (commits are separated by empty lines). Remark: commit messages are indented with spaces, so any blank line in the message contains at least a couple of spaces.
                     .map(String::trim) // remove indentation
-                    .reduce("", (accumulator, currentLine) -> accumulator +"\n"+ currentLine); // concatenate everything
+                    .reduce("", (accumulator, currentLine) -> accumulator + currentLine); // concatenate everything
             builder.setDescription(description);
 
             input.mark(0);//mark tge current positions
