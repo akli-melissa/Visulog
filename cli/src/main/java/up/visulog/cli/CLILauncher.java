@@ -93,6 +93,17 @@ public class CLILauncher {
 
     private static void runAnalysis(HashMap<String, PluginConfig> plugins, String pValue) {
         switch (pValue) {
+        case "countLinesPerAuthor": 
+            plugins.put("countLinesPerAuthor", new PluginConfig() {
+                @Override
+                public Map<String, String> config() {
+                    Map<String, String> configurationPlugin = new HashMap<String, String>();
+                    configurationPlugin.put("command", "log");// la commande git
+                    configurationPlugin.put("options","--shortstat");//pour plus d'informations sur le commit
+                    return configurationPlugin;
+                }
+            });
+        break;
         case "countLines":
             plugins.put("countLines", new PluginConfig() {
                 // Ajout des conifigurations
