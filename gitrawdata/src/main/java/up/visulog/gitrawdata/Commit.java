@@ -15,13 +15,15 @@ public class Commit {
     public final String author;
     public final String description;
     public final String mergedFrom;
+    public final String commitInformations;
 
-    public Commit(String id, String author, String date, String description, String mergedFrom) {
+    public Commit(String id, String author, String date, String description, String mergedFrom, String commitInformations) {
         this.id = id;
         this.author = author;
         this.date = date;
         this.description = description;
         this.mergedFrom = mergedFrom;
+        this.commitInformations = commitInformations;
     }
 
     // TODO: factor this out (similar code will have to be used for all git commands)
@@ -81,9 +83,24 @@ public class Commit {
                     .reduce("", (accumulator, currentLine) -> accumulator + currentLine); // concatenate everything
             builder.setDescription(description);
 
+            input.mark(0);//mark tge current positions
+            String currentLine = input.readLine();//read the line
+            if (currentLine != null ){//if the line exsists
+                if (!currentLine.startsWith("commit")){//if its not the debue of another commit
+                    //get more informations from the commit
+                    input.reset();
+                    String commitInfo = input
+                    .lines()
+                    .takeWhile(currentline -> !currentline.isEmpty())
+                    .map(String::trim)
+                    .reduce("",(acc,cur)->acc+cur);
+                    builder.setCommitInformations(commitInfo);
+                }else input.reset();//else its a new commit get back to previous position
+            }
 
             return Optional.of(builder.createCommit());
         } catch (IOException e) {
+            e.printStackTrace();
             parseError();
         }
         return Optional.empty(); // this is supposed to be unreachable, as parseError should never return

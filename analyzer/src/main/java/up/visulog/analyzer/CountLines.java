@@ -5,11 +5,9 @@ import java.util.List;
 import java.util.Map;
 import up.visulog.config.Configuration;
 import up.visulog.gitrawdata.Lines;
-
-import java.io.BufferedWriter;
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileWriter;
-import java.util.Arrays;
+import java.io.FileReader;
 
 //Cette classe est utillisée pour le calcul des lignes ajoutées et supprimées
 //Par @Younes Salhi
@@ -26,8 +24,13 @@ public class CountLines implements AnalyzerPlugin {
     public Result procesdiff(List<Lines> listLines) {
         Result result = new Result();
         for (Lines line : listLines) {
-            // On ajoute le fichier aves les lignes ajoutées et supprimées dans un Map
-            result.linesAddedDeleted.put(line.path, new Result.Pair(line.numberAdded, line.numberDeleted));
+            if (!line.path.contains("DS_Store")){
+                // On ajoute le fichier aves les lignes ajoutées et supprimées dans un Map
+                var data = result.linesAddedDeleted.getOrDefault(line.path, new Result.Pair(0, 0));
+                data.a += line.numberAdded;
+                data.b += line.numberDeleted;
+                result.linesAddedDeleted.put( line.path , data );
+            }
         }
         return result;
     }
@@ -77,75 +80,43 @@ public class CountLines implements AnalyzerPlugin {
             return this.linesAddedDeleted.toString();
         }
 
-        // to format the arraysString result ex: string["younes","younes"] ->
-        // "['younes','younes']"
-        private String formatArrayString(String[] data) {
-            String result = Arrays.asList(data).stream().reduce("", (a, b) -> "\"" + a + ",\"" + b + "\"");
-            return "[" + result.substring(result.indexOf(",") + 1, result.length()) + "]";
-        }
-
-        //generate the JsCode to draw the graph
-        private String genJsCode(String params1[],String params2[],String id,String nameFonction,String title){
-            StringBuilder data = new StringBuilder("function "+nameFonction+"(){");
-            data.append("const graph = document.getElementById('"+id+"').getContext('2d');");
-            data.append("let myChart = new Chart(graph, {");
-            data.append("type:\"bar\",");
-            data.append("data: {");
-            data.append("labels:" + formatArrayString(params1) + ",");
-            data.append("datasets: [{");
-            data.append("label:\""+title+"\",");
-            data.append("data:" + formatArrayString(params2) + ",");
-            data.append("backgroundColor:['#003f5c','#7a5195','#ef5675', '#ffa600'],");
-            data.append(" hoverBorderWidth: 3,");
-            data.append("}],");
-            data.append("}");
-            data.append("});}\n");
-            return data.toString();
-        }
-
-        // generation du code javaScript
-        private void parseJs(String id1,String id2) {
-            //get all the data from the map
-            String filesName[] = new String[this.linesAddedDeleted.size()];
-            String linesAdded[] = new String[this.linesAddedDeleted.size()];
-            String linesDeleted[] = new String[this.linesAddedDeleted.size()];
-            int i = 0;
-            
-            for (Map.Entry<String, Pair> entry :this.linesAddedDeleted.entrySet()){
-                filesName[i] = entry.getKey();
-                linesAdded[i] = String.valueOf(entry.getValue().a);
-                linesDeleted[i] = String.valueOf(entry.getValue().b);
-                i++;
-            }
-
-            String LinesAdded = this.genJsCode(filesName, linesAdded, id1 , "linesAdded" , "Ligne Ajoutées");
-            String LinesDeleted = this.genJsCode(filesName, linesDeleted, id2 , "linesDeleted" , "Lignes Supprimées");
-
-            //ecrire dans le fichier js
-            try{
-                File f = new File("..");
-                String path = f.getAbsoluteFile()+"/webgen/ressources/fichierJS/countLines.js";
-                BufferedWriter bw = new BufferedWriter(new FileWriter(path));
-                String data = LinesAdded + "\n" + LinesDeleted;
-                bw.write(data);
-                bw.close();
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-        }
-
+        
         // retourn le resultat sous le format HTML
         @Override
         public String getResultAsHtmlDiv() {
-            StringBuilder builder = new StringBuilder("");
-            builder.append("<canvas id=\"graphA\"></canvas>");
-            builder.append("<canvas id=\"graphB\"></canvas>");
-            builder.append("<script src=\"fichierJS/countLines.js\"></script>");
-            builder.append("<script>linesAdded();linesDeleted();</script>");
-            this.parseJs("graphA","graphB");//generer les graphs
-            return builder.toString();
+            String path = (new File(System.getProperty("user.dir"))).getParentFile() + "/webgen/Graph.html";
+            StringBuilder html = new StringBuilder("");
+            try {
+                BufferedReader in = new BufferedReader(new FileReader(path));
+                String str = "";
+                while ((str = in.readLine()) != null) {
+                    html.append(str+"\n");
+                }
+                in.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            String fileName = "";
+            String dataPoint1 = "";
+            String dataPoint2 = "";
+
+            for (Map.Entry<String,Pair> data:this.linesAddedDeleted.entrySet()) {
+                fileName = data.getKey() ;
+                if (data.getValue().a!=0) dataPoint1 += "{y:"+ data.getValue().a + " ,label: \'"+fileName+"\'},";
+                if (data.getValue().b!=0) dataPoint2 += "{y:"+ data.getValue().b + " ,label: \'"+fileName+"\'},";
+            }
+
+            String graph1 = html.toString();
+            String graph2 = html.toString();
+
+            graph1 = graph1.replace("///data///",dataPoint1).replace("_id","6")
+                    .replace("Commits","Lines Added").replace("commits","lines").replace("//type_graph//","line");
+            
+            graph2 = graph2.replace("///data///",dataPoint2).replace("_id","7")
+                .replace("Commits","Lines Deleted").replace("commits","lines").replace("//type_graph//","line");
+
+            return graph1 + graph2;
         }
-
     }
-
 }
