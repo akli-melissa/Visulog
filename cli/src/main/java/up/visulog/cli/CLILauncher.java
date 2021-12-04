@@ -17,7 +17,8 @@ public class CLILauncher {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
             try {
-                String path = (new File(System.getProperty("user.dir"))).getParentFile() + "/webgen/ressources/main.html";
+
+                String path = (new File(System.getProperty("user.dir"))).getParentFile() + "/webgen/resultats.html";
                 File f2 = new File(path);
                 BufferedWriter bw = new BufferedWriter(new FileWriter(f2));
                 bw.write(results.toHTML());

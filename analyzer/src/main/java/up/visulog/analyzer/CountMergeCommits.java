@@ -9,6 +9,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.Arrays;
+
 public class CountMergeCommits implements AnalyzerPlugin{
 
     private Configuration config;//the configuration
@@ -59,7 +64,6 @@ public class CountMergeCommits implements AnalyzerPlugin{
             return MergeCommit.toString();
         }
 
-        @Override
         public String getResultAsHtmlDiv(){
             String dir = System.getProperty("user.dir");
             dir = dir.replace("cli","");
@@ -81,5 +85,8 @@ public class CountMergeCommits implements AnalyzerPlugin{
             }
             return html.toString().replace("///data///",datapoints.toString());
         }
-    }
+   }
+
+
+
 }
