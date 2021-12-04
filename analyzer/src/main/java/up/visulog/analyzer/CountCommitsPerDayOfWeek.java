@@ -72,7 +72,7 @@ public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
             for (Map.Entry<String,Integer> item:commitsPerDayOfWeek.entrySet()){
                 datapoints+="{y:"+ item.getValue() + " ,label: \'"+item.getKey()+"\'},";
             }
-            return html.toString().replace("///data///",datapoints.toString()).replace("_id","2");
+            return html.toString().replace("///data///",datapoints.toString()).replace("_id","2").replace("Commits","Commits Per Day Of Week").replace("//type_graph//","line");
 
         }
     }

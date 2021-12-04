@@ -74,7 +74,7 @@ public class CountCommitsPerHourOfDay implements AnalyzerPlugin {
             for (Map.Entry<String,Integer> item:commitsPerHourOfDay.entrySet()){
                 datapoints+="{y:"+ item.getValue() + " ,label: \'"+item.getKey()+"\'},";
             }
-            return html.toString().replace("///data///",datapoints.toString()).replace("_id", "3");
+            return html.toString().replace("///data///",datapoints.toString()).replace("_id", "3").replace("Commits","Commits Per Hour Of Day").replace("//type_graph//","line");
 
         }
     }

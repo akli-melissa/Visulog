@@ -73,8 +73,7 @@ public class CountCommitsPerDayOfMonth implements AnalyzerPlugin {
             for (Map.Entry<String,Integer> item:commitsPerDayOfMonth.entrySet()){
                 datapoints+="{y:"+ item.getValue() + " ,label: \'"+item.getKey()+"\'},";
             }
-            return html.toString().replace("///data///",datapoints.toString()).replace("_id","1");
-
+            return html.toString().replace("///data///",datapoints.toString()).replace("_id","1").replace("Commits","Commits Per Day Of Month").replace("//type_graph//","line");
         }
     }
 }

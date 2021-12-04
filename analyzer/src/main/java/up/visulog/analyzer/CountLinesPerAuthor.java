@@ -108,9 +108,9 @@ public class CountLinesPerAuthor implements AnalyzerPlugin{
             String graph1 = html.toString();
 
             graph1 = graph2.replace("///data///",datapointsA).replace("_id","4")
-                    .replace("Commits","Lines Added Per User").replace("commits","lines");
+                    .replace("Commits","Lines Added Per User").replace("commits","lines").replace("//type_graph//","line");
             graph2 = graph2.replace("///data///",datapointsB).replace("_id","5")
-                    .replace("Commits","Lines Deleted Per User").replace("commits","lines");
+                    .replace("Commits","Lines Deleted Per User").replace("commits","lines").replace("//type_graph//","line");
 
             return graph1 + graph2;
         }
