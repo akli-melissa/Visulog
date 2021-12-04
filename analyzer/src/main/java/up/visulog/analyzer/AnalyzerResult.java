@@ -19,18 +19,19 @@ public class AnalyzerResult {
     }
 
     public String toHTML() {
-        StringBuilder html = new StringBuilder("");
-        html.append("<!DOCTYPE html>");
-        html.append("<html lang=\"en\">");
-        html.append("<head>");
-        html.append("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js\" integrity=\"sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>");
-        html.append("<meta charset=\"utf-8\">");
-        html.append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">");
-        html.append("<title>Visulog Statistics</title>");
-        html.append("</head><body>");
-        html.append(subResults.stream().map(AnalyzerPlugin.Result::getResultAsHtmlDiv).reduce("", (acc, cur) -> acc +"\n"+ cur));
-        html.append("</body>");
-        html.append("</html>");
-        return(html.toString());
+        StringBuilder result = new StringBuilder("");
+        result.append("<!DOCTYPE html>");
+        result.append("<html lang=\"en\">");
+        result.append("<head>");
+        result.append("<meta charset=\"utf-8\" />");
+        result.append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">");
+        result.append("<title>Visulog Statistics</title>");
+        result.append("</head>");
+        result.append("<body>");
+        result.append("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js \" integrity=\"sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>");
+        result.append(subResults.stream().map(AnalyzerPlugin.Result::getResultAsHtmlDiv).reduce("", (acc, cur) -> acc + "\n" + cur));
+        result.append("</body>");
+        result.append("</html>");
+        return result.toString();
     }
 }

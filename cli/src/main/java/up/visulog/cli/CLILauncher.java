@@ -17,13 +17,15 @@ public class CLILauncher {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
             try {
-                File f = new File("countMerge.html");
-                BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+
+                String path = (new File(System.getProperty("user.dir"))).getParentFile() + "/webgen/resultats.html";
+                File f2 = new File(path);
+                BufferedWriter bw = new BufferedWriter(new FileWriter(f2));
                 bw.write(results.toHTML());
                 bw.close();
-                Desktop.getDesktop().browse(f.toURI());
+                Desktop.getDesktop().browse(f2.toURI());
             } catch (Exception e) {
-                System.out.println("Erreur");
+                System.out.println(e.getMessage());
             }
 
         } else
@@ -92,34 +94,45 @@ public class CLILauncher {
 
     private static void runAnalysis(HashMap<String, PluginConfig> plugins, String pValue) {
         switch (pValue) {
-            case "countLines":
-                plugins.put("countLines", new PluginConfig(){
-                //Ajout des conifigurations
+        case "countLines":
+            plugins.put("countLines", new PluginConfig() {
+                // Ajout des conifigurations
                 @Override
-                public Map<String,String> config(){
-                    Map<String,String> configurationPlugin = new HashMap<String,String>();
-                    configurationPlugin.put("command","diff");//la commande git
-                    configurationPlugin.put("start","HEAD~");//le dernier Commit
-                    configurationPlugin.put("end","HEAD");
-                    configurationPlugin.put("options","--numstat");//the options
+                public Map<String, String> config() {
+                    Map<String, String> configurationPlugin = new HashMap<String, String>();
+                    configurationPlugin.put("command", "diff");// la commande git
+                    configurationPlugin.put("start", "HEAD~");// le dernier Commit
+                    configurationPlugin.put("end", "HEAD");
+                    configurationPlugin.put("options", "--numstat");// the options
                     return configurationPlugin;
                 }
             });
             break;
 
-            case "countMergeCommits":
-                plugins.put("countMerge", new PluginConfig(){
+        case "countMergeCommits":
+            plugins.put("countMerge", new PluginConfig() {
                 @Override
-                    public Map<String,String> config(){
-                        Map<String,String> configurationPlugin = new HashMap<String,String>();
-                        configurationPlugin.put("command","log");//la commande git
-                        return configurationPlugin;
-                    }
-                });
+                public Map<String, String> config() {
+                    Map<String, String> configurationPlugin = new HashMap<String, String>();
+                    configurationPlugin.put("command", "log");// la commande git
+                    return configurationPlugin;
+                }
+            });
             break;
 
             case "countCommits": 
                 plugins.put("countCommits", new PluginConfig() {
+                @Override
+                public Map<String, String> config() {
+                    Map<String, String> configurationPlugin = new HashMap<String, String>();
+                    configurationPlugin.put("command", "log");// la commande git
+                    return configurationPlugin;
+                }
+            });
+            break;
+
+            case "countCommitsPerDayOfWeek": 
+                plugins.put("countCommitsPerDayOfWeek", new PluginConfig() {
                 @Override
                 public Map<String,String> config(){
                     Map<String,String> configurationPlugin = new HashMap<String,String>();
@@ -127,17 +140,44 @@ public class CLILauncher {
                     return configurationPlugin;
                 }
             });
-
             break;
 
-            default: return;
+            case "countCommitsPerDayOfMonth": 
+                plugins.put("countCommitsPerDayOfMonth", new PluginConfig() {
+                @Override
+                public Map<String,String> config(){
+                    Map<String,String> configurationPlugin = new HashMap<String,String>();
+                    configurationPlugin.put("command","log");//la commande git
+                    return configurationPlugin;
+                }
+            });
+            break;
+            case "countCommitsPerHourOfDay": 
+                plugins.put("countCommitsPerHourOfDay", new PluginConfig() {
+                @Override
+                public Map<String,String> config(){
+                    Map<String,String> configurationPlugin = new HashMap<String,String>();
+                    configurationPlugin.put("command","log");//la commande git
+                    return configurationPlugin;
+                }
+            });
+            break;
+
+        default:
+            return;
         }
     }
 
     private static void LoadConfigFile(HashMap<String, PluginConfig> plugins) {
+        Scanner input = new Scanner(System.in);
+        String fileName;
+        System.out.print("Entrez le nom du fichier que vous voulez charger");// demander quel fichier l'utilisateur veut
+                                                                             // charger
+        fileName = input.nextLine();// nom du fichier
+        input.close();
         Scanner sc;
         try {// on recupere ligne par ligne les options sauvegardées
-            sc = new Scanner(new File("ConfigFile.txt"));
+            sc = new Scanner(new File(fileName));// Fichier spécifié par l'utilisateur
             sc.useDelimiter("\n");
             while (sc.hasNext()) {
                 runAnalysis(plugins, sc.next());// Et puis on fait l'analyse
@@ -150,13 +190,30 @@ public class CLILauncher {
     }
 
     private static void saveConfigFile(String pValue) {
-        try {
-            File file = new File("ConfigFile.txt");
 
-            // création du fichier s'il n'existe pas
-            if (!file.exists()) {
-                file.createNewFile();
+        Scanner input = new Scanner(System.in);
+        String fileName;
+        // création du fichier s'il n'existe pas
+        System.out.print("Entrez le nom du fichier");// Demande du nom du fichier à l'utilisateur
+        fileName = input.nextLine();
+        File file = new File(fileName);
+        input.close();
+        if (file.exists()) {// si le fichier existe déjà, demander si on veut le replace
+            System.out.print("Ce fichier existe déjà, voulez vous le remplacer ?");
+            System.out.println("(y/n)");
+            Scanner sc = new Scanner(System.in);
+            if (sc.hasNext("y") || sc.hasNext("o")) {// si l'utilisateur répond oui, on recrée le fichier
+                sc.close();
+                file.delete();
+                file = new File(fileName);
+            } else {// si l'utilisateur répond non, on préviens que le fichier n'a pas été créé
+                System.out.print("Le fichier n'a pas été créé .");
             }
+
+        }
+        try {
+            file.exists();
+
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
             BufferedWriter buffer = new BufferedWriter(fw);
             for (String s : pValue.split(",")) {// on recupere les options separées par des ','
