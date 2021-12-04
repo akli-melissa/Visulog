@@ -79,7 +79,7 @@ public class CountLines implements AnalyzerPlugin {
         // retourn le resultat sous le format HTML
         @Override
         public String getResultAsHtmlDiv() {
-            String path = (new File(System.getProperty("user.dir"))).getParentFile() + "/webgen/countLines.html";
+            String path = (new File(System.getProperty("user.dir"))).getParentFile() + "/webgen/Graph.html";
             StringBuilder html = new StringBuilder("");
             try {
                 BufferedReader in = new BufferedReader(new FileReader(path));
@@ -92,27 +92,26 @@ public class CountLines implements AnalyzerPlugin {
                 e.printStackTrace();
             }
 
-            String fileNames = "";
-            String data1 = "";
-            String data2 = "";
-
-            int i = 0;
-            int size = this.linesAddedDeleted.size();
+            String fileName = "";
+            String dataPoint1 = "";
+            String dataPoint2 = "";
 
             for (Map.Entry<String,Pair> data:this.linesAddedDeleted.entrySet()) {
-                i++;
-                fileNames += "\"" + data.getKey() + ((i < size) ? "\"," : "\"");
-                data1 += "\"" + String.valueOf(data.getValue().a) + ((i < size) ? "\"," : "\"");
-                data2 += "\"" + String.valueOf(data.getValue().b) + ((i < size) ? "\"," : "\"");
+                fileName = data.getKey() ;
+                dataPoint1 += "{y:"+ data.getValue().a + " ,label: \'"+fileName+"\'},";
+                dataPoint2 += "{y:"+ data.getValue().b + " ,label: \'"+fileName+"\'},";
             }
 
-            String result = html.toString();
+            String graph1 = html.toString();
+            String graph2 = html.toString();
 
-            result = result.replace("/*data_1*/",fileNames);
-            result = result.replace("/*data_2*/",data1);
-            result = result.replace("/*data_3*/",data2);
+            graph1 = graph1.replace("///data///",dataPoint1).replace("_id","6")
+                    .replace("Commits","Lines Added").replace("commits","lines").replace("//type_graph//","pie");
+            
+            graph2 = graph2.replace("///data///",dataPoint2).replace("_id","7")
+                .replace("Commits","Lines Deleted").replace("commits","lines").replace("//type_graph//","pie");
 
-            return result;
+            return graph1 + graph2;
         }
     }
 }

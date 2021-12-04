@@ -80,7 +80,7 @@ public class CountMergeCommits implements AnalyzerPlugin{
             for (Map.Entry<String,Integer> item:MergeCommit.entrySet()){
                 datapoints+="{y:"+ item.getValue() + " ,label: \'"+item.getKey()+"\'},";
             }
-            return html.toString().replace("///data///",datapoints.toString()).replace("Commit","Merge Commit Per User").replace("//type_graph//","pie");
+            return html.toString().replace("///data///",datapoints.toString()).replace("Commit","Merge Commit Per User").replace("//type_graph//","pie").replace("_id","8");
         }
     }
 }

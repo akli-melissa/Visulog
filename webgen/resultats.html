@@ -9,7 +9,156 @@
 </head>
 <body>
 
-<div>Commits per author: <ul><li>TAFOUGHALT anyes <tafoughaltanyes@gmail.com>: 2</li><li>AMIRA said <amira10586@gmail.com>: 1</li><li>Sofiane Boudet <Sofiane.boudet1@gmail.com>: 3</li><li>Anyes TAFOUGHALT <tafoughaltanyes@gmail.com>: 14</li><li>Said Amira <saidamira@macbook-pro-de-said.home>: 1</li><li>AROUS abderrahim <arous.abderrahim@gmail.com>: 1</li><li>AKLI melissa <aklimeli24@gmail.com>: 7</li><li>Younes Salhi <salhiy@x06.script.univ-paris-diderot.fr>: 1</li><li>Said Amira <saidamira@MacBook-Pro-de-Said.local>: 1</li><li>djeghali <nadinedjeghali@hotmail.com>: 16</li><li>Aldric Degorre <adegorre@irif.fr>: 12</li><li>BOUDET sofiane <sofiane.boudet1@gmail.com>: 2</li><li>Said Amira <saidamira@eduroam-prg-gm-1-0-139.net.univ-paris-diderot.fr>: 2</li><li>Yacine <flici>: 10</li><li>Said Amira <saidamira@eduroam-prg-hf-1-7-23.net.univ-paris-diderot.fr>: 2</li><li>nadine10 <rachanadine2002@gmail.com>: 2</li><li>Xavier Denis <xldenis@gmail.com>: 2</li><li>flici <yacineflici2@gmail.com>: 4</li><li>salhiy <younessalhi520@gmail.com>: 3</li><li>FLICI yacine <yacineflici2@gmail.com>: 8</li><li>Salhi Younes <younessalhi520@gmail.com>: 33</li><li>AKLI MELISSA <aklimeli24@gmail.com>: 5</li><li>Colin Gonzalez <colin@nomadic-labs.com>: 1</li><li>SALHI younes <younessalhi520@gmail.com>: 11</li><li>Arous <arous.abderrahim@gmail.com>: 3</li><li>YAHMI yanis <yanis.yahmi2002@gmail.com>: 1</li><li>= <younessalhi520@gmail.com>: 2</li><li>yahmiy <yanis.yahmi2002@gmail.com>: 13</li><li>Melissa <aklimeli24@gmail.com>: 1</li></ul></div>
+<div>Commits per author: <ul><li>TAFOUGHALT anyes <tafoughaltanyes@gmail.com>: 2</li><li>AMIRA said <amira10586@gmail.com>: 1</li><li>Sofiane Boudet <Sofiane.boudet1@gmail.com>: 3</li><li>Anyes TAFOUGHALT <tafoughaltanyes@gmail.com>: 14</li><li>Said Amira <saidamira@macbook-pro-de-said.home>: 1</li><li>AROUS abderrahim <arous.abderrahim@gmail.com>: 1</li><li>AKLI melissa <aklimeli24@gmail.com>: 7</li><li>Younes Salhi <salhiy@x06.script.univ-paris-diderot.fr>: 1</li><li>Said Amira <saidamira@MacBook-Pro-de-Said.local>: 1</li><li>djeghali <nadinedjeghali@hotmail.com>: 16</li><li>Aldric Degorre <adegorre@irif.fr>: 12</li><li>BOUDET sofiane <sofiane.boudet1@gmail.com>: 2</li><li>Said Amira <saidamira@eduroam-prg-gm-1-0-139.net.univ-paris-diderot.fr>: 2</li><li>Yacine <flici>: 10</li><li>Said Amira <saidamira@eduroam-prg-hf-1-7-23.net.univ-paris-diderot.fr>: 2</li><li>nadine10 <rachanadine2002@gmail.com>: 2</li><li>Xavier Denis <xldenis@gmail.com>: 2</li><li>flici <yacineflici2@gmail.com>: 4</li><li>salhiy <younessalhi520@gmail.com>: 3</li><li>FLICI yacine <yacineflici2@gmail.com>: 8</li><li>Salhi Younes <younessalhi520@gmail.com>: 34</li><li>AKLI MELISSA <aklimeli24@gmail.com>: 5</li><li>Colin Gonzalez <colin@nomadic-labs.com>: 1</li><li>SALHI younes <younessalhi520@gmail.com>: 11</li><li>Arous <arous.abderrahim@gmail.com>: 3</li><li>YAHMI yanis <yanis.yahmi2002@gmail.com>: 1</li><li>= <younessalhi520@gmail.com>: 2</li><li>yahmiy <yanis.yahmi2002@gmail.com>: 13</li><li>Melissa <aklimeli24@gmail.com>: 1</li></ul></div>
+<div>
+    <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
+</div>
+<script>
+function afficheGraph1() {
+    var chart = new CanvasJS.Chart("chartContainer1", {
+    theme: "light2",        exportEnabled: true,
+    animationEnabled: true,
+    title: {
+            text: "Commits Per Day Of Month"
+    },
+    data: [{
+            type: "line",
+            toolTipContent: "<b>{label}</b>: {y} commits",
+            showInLegend: "true",
+            indexLabelFontSize: 16,
+            dataPoints: [
+                {y:25 ,label: '22'},{y:4 ,label: '11'},{y:6 ,label: '23'},{y:2 ,label: '13'},{y:1 ,label: '25'},{y:1 ,label: '26'},{y:3 ,label: '16'},{y:4 ,label: '27'},{y:2 ,label: '17'},{y:17 ,label: '18'},{y:16 ,label: '19'},{y:1 ,label: '1'},{y:10 ,label: '2'},{y:7 ,label: '3'},{y:1 ,label: '4'},{y:2 ,label: '5'},{y:4 ,label: '6'},{y:5 ,label: '7'},{y:12 ,label: '8'},{y:12 ,label: '9'},{y:4 ,label: '30'},{y:1 ,label: '31'},{y:17 ,label: '21'},{y:8 ,label: '10'},
+    ]}]});
+    chart.render();
+    }
+    afficheGraph1();
+</script>
+            
+
+<div>
+    <div id="chartContainer6" style="height: 300px; width: 100%;"></div>
+</div>
+<script>
+function afficheGraph6() {
+    var chart = new CanvasJS.Chart("chartContainer6", {
+    theme: "light2",        exportEnabled: true,
+    animationEnabled: true,
+    title: {
+            text: "Lines Added"
+    },
+    data: [{
+            type: "pie",
+            toolTipContent: "<b>{label}</b>: {y} lines",
+            showInLegend: "true",
+            indexLabelFontSize: 16,
+            dataPoints: [
+                {y:2 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLinesPerAuthor.java'},{y:30 ,label: 'webgen/resultats.html'},{y:2 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountMergeLines Added.java'},{y:0 ,label: 'webgen/Graph_Circulaire_ex.html'},{y:1 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines AddedPerDayOfWeek.java'},{y:1 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines AddedPerDayOfMonth.java'},{y:1 ,label: 'webgen/Graph.html'},{y:1 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines AddedPerHourOfDay.java'},
+    ]}]});
+    chart.render();
+    }
+    afficheGraph6();
+</script>
+            
+<div>
+    <div id="chartContainer7" style="height: 300px; width: 100%;"></div>
+</div>
+<script>
+function afficheGraph7() {
+    var chart = new CanvasJS.Chart("chartContainer7", {
+    theme: "light2",        exportEnabled: true,
+    animationEnabled: true,
+    title: {
+            text: "Lines Deleted"
+    },
+    data: [{
+            type: "pie",
+            toolTipContent: "<b>{label}</b>: {y} lines",
+            showInLegend: "true",
+            indexLabelFontSize: 16,
+            dataPoints: [
+                {y:2 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLinesPerAuthor.java'},{y:31 ,label: 'webgen/resultats.html'},{y:2 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountMergeLines Deleted.java'},{y:25 ,label: 'webgen/Graph_Circulaire_ex.html'},{y:1 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines DeletedPerDayOfWeek.java'},{y:2 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines DeletedPerDayOfMonth.java'},{y:1 ,label: 'webgen/Graph.html'},{y:1 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines DeletedPerHourOfDay.java'},
+    ]}]});
+    chart.render();
+    }
+    afficheGraph7();
+</script>
+            
+
+<div>
+    <div id="chartContainer8" style="height: 300px; width: 100%;"></div>
+</div>
+<script>
+function afficheGraph8() {
+    var chart = new CanvasJS.Chart("chartContainer8", {
+    theme: "light2",        exportEnabled: true,
+    animationEnabled: true,
+    title: {
+            text: "Merge Commit Per Users"
+    },
+    data: [{
+            type: "pie",
+            toolTipContent: "<b>{label}</b>: {y} commits",
+            showInLegend: "true",
+            indexLabelFontSize: 16,
+            dataPoints: [
+                {y:1 ,label: 'TAFOUGHALT anyes <tafoughaltanyes@gmail.com>'},{y:1 ,label: 'Sofiane Boudet <Sofiane.boudet1@gmail.com>'},{y:1 ,label: 'Yacine <flici>'},{y:1 ,label: 'Said Amira <saidamira@eduroam-prg-hf-1-7-23.net.univ-paris-diderot.fr>'},{y:1 ,label: 'Xavier Denis <xldenis@gmail.com>'},{y:1 ,label: 'AROUS abderrahim <arous.abderrahim@gmail.com>'},{y:5 ,label: 'FLICI yacine <yacineflici2@gmail.com>'},{y:5 ,label: 'AKLI melissa <aklimeli24@gmail.com>'},{y:10 ,label: 'Salhi Younes <younessalhi520@gmail.com>'},{y:1 ,label: 'djeghali <nadinedjeghali@hotmail.com>'},{y:3 ,label: 'Aldric Degorre <adegorre@irif.fr>'},{y:1 ,label: 'Colin Gonzalez <colin@nomadic-labs.com>'},{y:9 ,label: 'SALHI younes <younessalhi520@gmail.com>'},{y:1 ,label: 'YAHMI yanis <yanis.yahmi2002@gmail.com>'},{y:1 ,label: 'Arous <arous.abderrahim@gmail.com>'},{y:2 ,label: 'yahmiy <yanis.yahmi2002@gmail.com>'},{y:1 ,label: 'Said Amira <saidamira@eduroam-prg-gm-1-0-139.net.univ-paris-diderot.fr>'},
+    ]}]});
+    chart.render();
+    }
+    afficheGraph8();
+</script>
+            
+
+<div>
+    <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
+</div>
+<script>
+function afficheGraph3() {
+    var chart = new CanvasJS.Chart("chartContainer3", {
+    theme: "light2",        exportEnabled: true,
+    animationEnabled: true,
+    title: {
+            text: "Commits Per Hour Of Day"
+    },
+    data: [{
+            type: "line",
+            toolTipContent: "<b>{label}</b>: {y} commits",
+            showInLegend: "true",
+            indexLabelFontSize: 16,
+            dataPoints: [
+                {y:18 ,label: '11'},{y:7 ,label: '00'},{y:11 ,label: '22'},{y:11 ,label: '23'},{y:10 ,label: '12'},{y:3 ,label: '01'},{y:5 ,label: '02'},{y:10 ,label: '13'},{y:16 ,label: '14'},{y:12 ,label: '15'},{y:13 ,label: '16'},{y:7 ,label: '17'},{y:3 ,label: '18'},{y:7 ,label: '07'},{y:4 ,label: '19'},{y:2 ,label: '09'},{y:11 ,label: '20'},{y:7 ,label: '21'},{y:8 ,label: '10'},
+    ]}]});
+    chart.render();
+    }
+    afficheGraph3();
+</script>
+            
+
+<div>
+    <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+</div>
+<script>
+function afficheGraph2() {
+    var chart = new CanvasJS.Chart("chartContainer2", {
+    theme: "light2",        exportEnabled: true,
+    animationEnabled: true,
+    title: {
+            text: "Commits Per Day Of Week"
+    },
+    data: [{
+            type: "line",
+            toolTipContent: "<b>{label}</b>: {y} commits",
+            showInLegend: "true",
+            indexLabelFontSize: 16,
+            dataPoints: [
+                {y:21 ,label: 'Thu'},{y:43 ,label: 'Tue'},{y:5 ,label: 'Sat'},{y:17 ,label: 'Wed'},{y:13 ,label: 'Fri'},{y:47 ,label: 'Mon'},{y:19 ,label: 'Sun'},
+    ]}]});
+    chart.render();
+    }
+    afficheGraph2();
+</script>
+            
+
 <div>
     <div id="chartContainer4" style="height: 300px; width: 100%;"></div>
 </div>
@@ -27,7 +176,7 @@ function afficheGraph4() {
             showInLegend: "true",
             indexLabelFontSize: 16,
             dataPoints: [
-                {y:3 ,label: 'nadine10 '},{y:239 ,label: 'TAFOUGHALT anyes '},{y:15 ,label: 'FLICI yacine '},{y:16 ,label: '= '},{y:14 ,label: 'flici '},{y:1 ,label: 'Younes Salhi '},{y:194 ,label: 'yahmiy '},{y:0 ,label: 'YAHMI yanis '},{y:2627 ,label: 'Salhi Younes '},{y:591 ,label: 'Yacine '},{y:44 ,label: 'AKLI MELISSA '},{y:12 ,label: 'AMIRA said '},{y:0 ,label: 'AROUS abderrahim '},{y:8 ,label: 'AKLI melissa '},{y:0 ,label: 'Colin Gonzalez '},{y:56 ,label: 'BOUDET sofiane '},{y:33 ,label: 'Arous '},{y:5 ,label: 'Melissa '},{y:107 ,label: 'SALHI younes '},{y:90 ,label: 'Said Amira '},{y:5 ,label: 'Sofiane Boudet '},{y:12 ,label: 'salhiy '},{y:293 ,label: 'djeghali '},{y:267 ,label: 'Anyes TAFOUGHALT '},{y:997 ,label: 'Aldric Degorre '},{y:6 ,label: 'Xavier Denis '},
+                {y:3 ,label: 'nadine10 '},{y:239 ,label: 'TAFOUGHALT anyes '},{y:15 ,label: 'FLICI yacine '},{y:16 ,label: '= '},{y:14 ,label: 'flici '},{y:1 ,label: 'Younes Salhi '},{y:194 ,label: 'yahmiy '},{y:0 ,label: 'YAHMI yanis '},{y:2665 ,label: 'Salhi Younes '},{y:591 ,label: 'Yacine '},{y:44 ,label: 'AKLI MELISSA '},{y:12 ,label: 'AMIRA said '},{y:0 ,label: 'AROUS abderrahim '},{y:8 ,label: 'AKLI melissa '},{y:0 ,label: 'Colin Gonzalez '},{y:56 ,label: 'BOUDET sofiane '},{y:33 ,label: 'Arous '},{y:5 ,label: 'Melissa '},{y:107 ,label: 'SALHI younes '},{y:90 ,label: 'Said Amira '},{y:5 ,label: 'Sofiane Boudet '},{y:12 ,label: 'salhiy '},{y:293 ,label: 'djeghali '},{y:267 ,label: 'Anyes TAFOUGHALT '},{y:997 ,label: 'Aldric Degorre '},{y:6 ,label: 'Xavier Denis '},
     ]}]});
     chart.render();
     }
@@ -51,152 +200,11 @@ function afficheGraph5() {
             showInLegend: "true",
             indexLabelFontSize: 16,
             dataPoints: [
-                {y:1 ,label: 'nadine10 '},{y:18 ,label: 'TAFOUGHALT anyes '},{y:25 ,label: 'FLICI yacine '},{y:22 ,label: '= '},{y:4 ,label: 'flici '},{y:0 ,label: 'Younes Salhi '},{y:46 ,label: 'yahmiy '},{y:0 ,label: 'YAHMI yanis '},{y:581 ,label: 'Salhi Younes '},{y:239 ,label: 'Yacine '},{y:13 ,label: 'AKLI MELISSA '},{y:0 ,label: 'AMIRA said '},{y:0 ,label: 'AROUS abderrahim '},{y:1 ,label: 'AKLI melissa '},{y:0 ,label: 'Colin Gonzalez '},{y:29 ,label: 'BOUDET sofiane '},{y:0 ,label: 'Arous '},{y:11 ,label: 'Melissa '},{y:21 ,label: 'SALHI younes '},{y:18 ,label: 'Said Amira '},{y:1 ,label: 'Sofiane Boudet '},{y:10 ,label: 'salhiy '},{y:69 ,label: 'djeghali '},{y:213 ,label: 'Anyes TAFOUGHALT '},{y:47 ,label: 'Aldric Degorre '},{y:0 ,label: 'Xavier Denis '},
+                {y:1 ,label: 'nadine10 '},{y:18 ,label: 'TAFOUGHALT anyes '},{y:25 ,label: 'FLICI yacine '},{y:22 ,label: '= '},{y:4 ,label: 'flici '},{y:0 ,label: 'Younes Salhi '},{y:46 ,label: 'yahmiy '},{y:0 ,label: 'YAHMI yanis '},{y:646 ,label: 'Salhi Younes '},{y:239 ,label: 'Yacine '},{y:13 ,label: 'AKLI MELISSA '},{y:0 ,label: 'AMIRA said '},{y:0 ,label: 'AROUS abderrahim '},{y:1 ,label: 'AKLI melissa '},{y:0 ,label: 'Colin Gonzalez '},{y:29 ,label: 'BOUDET sofiane '},{y:0 ,label: 'Arous '},{y:11 ,label: 'Melissa '},{y:21 ,label: 'SALHI younes '},{y:18 ,label: 'Said Amira '},{y:1 ,label: 'Sofiane Boudet '},{y:10 ,label: 'salhiy '},{y:69 ,label: 'djeghali '},{y:213 ,label: 'Anyes TAFOUGHALT '},{y:47 ,label: 'Aldric Degorre '},{y:0 ,label: 'Xavier Denis '},
     ]}]});
     chart.render();
     }
     afficheGraph5();
-</script>
-            
-
-<div>
-    <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
-</div>
-<script>
-function afficheGraph2() {
-    var chart = new CanvasJS.Chart("chartContainer2", {
-    theme: "light2",        exportEnabled: true,
-    animationEnabled: true,
-    title: {
-            text: "Commits Per Day Of Week"
-    },
-    data: [{
-            type: "line",
-            toolTipContent: "<b>{label}</b>: {y} commits",
-            showInLegend: "true",
-            indexLabelFontSize: 16,
-            dataPoints: [
-                {y:21 ,label: 'Thu'},{y:43 ,label: 'Tue'},{y:17 ,label: 'Wed'},{y:4 ,label: 'Sat'},{y:13 ,label: 'Fri'},{y:47 ,label: 'Mon'},{y:19 ,label: 'Sun'},
-    ]}]});
-    chart.render();
-    }
-    afficheGraph2();
-</script>
-            
-
-<div>
-    <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
-</div>
-<script>
-function afficheGraph3() {
-    var chart = new CanvasJS.Chart("chartContainer3", {
-    theme: "light2",        exportEnabled: true,
-    animationEnabled: true,
-    title: {
-            text: "Commits Per Hour Of Day"
-    },
-    data: [{
-            type: "line",
-            toolTipContent: "<b>{label}</b>: {y} commits",
-            showInLegend: "true",
-            indexLabelFontSize: 16,
-            dataPoints: [
-                {y:18 ,label: '11'},{y:7 ,label: '00'},{y:11 ,label: '22'},{y:11 ,label: '23'},{y:10 ,label: '12'},{y:3 ,label: '01'},{y:5 ,label: '02'},{y:10 ,label: '13'},{y:16 ,label: '14'},{y:12 ,label: '15'},{y:12 ,label: '16'},{y:7 ,label: '17'},{y:3 ,label: '18'},{y:7 ,label: '07'},{y:4 ,label: '19'},{y:2 ,label: '09'},{y:11 ,label: '20'},{y:7 ,label: '21'},{y:8 ,label: '10'},
-    ]}]});
-    chart.render();
-    }
-    afficheGraph3();
-</script>
-            
-
-<div>
-    <div id="chartContainer_id" style="height: 300px; width: 100%;"></div>
-</div>
-<script>
-function afficheGraph_id() {
-    var chart = new CanvasJS.Chart("chartContainer_id", {
-    theme: "light2",        exportEnabled: true,
-    animationEnabled: true,
-    title: {
-            text: "Merge Commit Per Users"
-    },
-    data: [{
-            type: "pie",
-            toolTipContent: "<b>{label}</b>: {y} commits",
-            showInLegend: "true",
-            indexLabelFontSize: 16,
-            dataPoints: [
-                {y:1 ,label: 'TAFOUGHALT anyes <tafoughaltanyes@gmail.com>'},{y:1 ,label: 'Sofiane Boudet <Sofiane.boudet1@gmail.com>'},{y:1 ,label: 'Yacine <flici>'},{y:1 ,label: 'Said Amira <saidamira@eduroam-prg-hf-1-7-23.net.univ-paris-diderot.fr>'},{y:1 ,label: 'Xavier Denis <xldenis@gmail.com>'},{y:1 ,label: 'AROUS abderrahim <arous.abderrahim@gmail.com>'},{y:5 ,label: 'FLICI yacine <yacineflici2@gmail.com>'},{y:5 ,label: 'AKLI melissa <aklimeli24@gmail.com>'},{y:10 ,label: 'Salhi Younes <younessalhi520@gmail.com>'},{y:1 ,label: 'djeghali <nadinedjeghali@hotmail.com>'},{y:3 ,label: 'Aldric Degorre <adegorre@irif.fr>'},{y:1 ,label: 'Colin Gonzalez <colin@nomadic-labs.com>'},{y:9 ,label: 'SALHI younes <younessalhi520@gmail.com>'},{y:1 ,label: 'YAHMI yanis <yanis.yahmi2002@gmail.com>'},{y:1 ,label: 'Arous <arous.abderrahim@gmail.com>'},{y:2 ,label: 'yahmiy <yanis.yahmi2002@gmail.com>'},{y:1 ,label: 'Said Amira <saidamira@eduroam-prg-gm-1-0-139.net.univ-paris-diderot.fr>'},
-    ]}]});
-    chart.render();
-    }
-    afficheGraph_id();
-</script>
-            
-
-<canvas id="graphA"></canvas>
-<canvas id="graphB"></canvas>
-<script>
-        function linesAdded(){
-        const graph = document.getElementById('graphA').getContext('2d');
-        let myChart = new Chart(graph, 
-        {type:"bar",
-        data: {
-            labels:["webgen/resultats.html","cli/src/main/java/up/visulog/cli/CLILauncher.java"],
-            datasets: [
-                {
-                    label:"Ligne Ajoutées",
-                    data:["119","12"],
-                    backgroundColor:['#003f5c','#7a5195','#ef5675', '#ffa600'],
-                    hoverBorderWidth: 3
-                }
-            ],
-        }
-        });
-    }
-
-        function linesDeleted(){
-            const graph = document.getElementById('graphB').getContext('2d');
-            let myChart = new Chart(graph, 
-            {type:"bar",data: 
-                {labels:["webgen/resultats.html","cli/src/main/java/up/visulog/cli/CLILauncher.java"],
-                datasets: [
-                    {
-                        label:"Lignes Supprimées",
-                        data:["2","0"],
-                        backgroundColor:['#003f5c','#7a5195','#ef5675', '#ffa600'],
-                        hoverBorderWidth: 3
-                    }
-                ],
-            }
-            });
-        }
-    linesAdded();
-    linesDeleted();
-</script>
-
-<div>
-    <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
-</div>
-<script>
-function afficheGraph1() {
-    var chart = new CanvasJS.Chart("chartContainer1", {
-    theme: "light2",        exportEnabled: true,
-    animationEnabled: true,
-    title: {
-            text: "Commits Per Day Of Month"
-    },
-    data: [{
-            type: "line",
-            toolTipContent: "<b>{label}</b>: {y} commits",
-            showInLegend: "true",
-            indexLabelFontSize: 16,
-            dataPoints: [
-                {y:25 ,label: '22'},{y:4 ,label: '11'},{y:6 ,label: '23'},{y:2 ,label: '13'},{y:1 ,label: '25'},{y:1 ,label: '26'},{y:3 ,label: '16'},{y:4 ,label: '27'},{y:2 ,label: '17'},{y:17 ,label: '18'},{y:16 ,label: '19'},{y:1 ,label: '1'},{y:10 ,label: '2'},{y:7 ,label: '3'},{y:2 ,label: '5'},{y:4 ,label: '6'},{y:5 ,label: '7'},{y:12 ,label: '8'},{y:12 ,label: '9'},{y:4 ,label: '30'},{y:1 ,label: '31'},{y:17 ,label: '21'},{y:8 ,label: '10'},
-    ]}]});
-    chart.render();
-    }
-    afficheGraph1();
 </script>
             
 </body> 
