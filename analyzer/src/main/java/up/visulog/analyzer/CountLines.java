@@ -24,8 +24,13 @@ public class CountLines implements AnalyzerPlugin {
     public Result procesdiff(List<Lines> listLines) {
         Result result = new Result();
         for (Lines line : listLines) {
-            // On ajoute le fichier aves les lignes ajoutées et supprimées dans un Map
-            result.linesAddedDeleted.put(line.path, new Result.Pair(line.numberAdded, line.numberDeleted));
+            if (!line.path.contains("DS_Store")){
+                // On ajoute le fichier aves les lignes ajoutées et supprimées dans un Map
+                var data = result.linesAddedDeleted.getOrDefault(line.path, new Result.Pair(0, 0));
+                data.a += line.numberAdded;
+                data.b += line.numberDeleted;
+                result.linesAddedDeleted.put( line.path , data );
+            }
         }
         return result;
     }
@@ -98,18 +103,18 @@ public class CountLines implements AnalyzerPlugin {
 
             for (Map.Entry<String,Pair> data:this.linesAddedDeleted.entrySet()) {
                 fileName = data.getKey() ;
-                dataPoint1 += "{y:"+ data.getValue().a + " ,label: \'"+fileName+"\'},";
-                dataPoint2 += "{y:"+ data.getValue().b + " ,label: \'"+fileName+"\'},";
+                if (data.getValue().a!=0) dataPoint1 += "{y:"+ data.getValue().a + " ,label: \'"+fileName+"\'},";
+                if (data.getValue().b!=0) dataPoint2 += "{y:"+ data.getValue().b + " ,label: \'"+fileName+"\'},";
             }
 
             String graph1 = html.toString();
             String graph2 = html.toString();
 
             graph1 = graph1.replace("///data///",dataPoint1).replace("_id","6")
-                    .replace("Commits","Lines Added").replace("commits","lines").replace("//type_graph//","pie");
+                    .replace("Commits","Lines Added").replace("commits","lines").replace("//type_graph//","line");
             
             graph2 = graph2.replace("///data///",dataPoint2).replace("_id","7")
-                .replace("Commits","Lines Deleted").replace("commits","lines").replace("//type_graph//","pie");
+                .replace("Commits","Lines Deleted").replace("commits","lines").replace("//type_graph//","line");
 
             return graph1 + graph2;
         }

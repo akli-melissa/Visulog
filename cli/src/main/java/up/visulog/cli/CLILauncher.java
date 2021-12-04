@@ -49,7 +49,6 @@ public class CLILauncher {
                     case "--addPlugin":
                         // TODO: parse argument and make an instance of PluginConfig
 
-                        // Let's just trivially do this, before the TODO is fixed:
 
                         runAnalysis(plugins, pValue);
 
@@ -111,7 +110,7 @@ public class CLILauncher {
                 public Map<String, String> config() {
                     Map<String, String> configurationPlugin = new HashMap<String, String>();
                     configurationPlugin.put("command", "log");// la commande git
-                    configurationPlugin.put("options","--shortstat");//pour plus d'informations sur le commit
+                    configurationPlugin.put("option1","--shortstat");//pour plus d'informations sur le commit
                     return configurationPlugin;
                 }
             });
@@ -122,10 +121,9 @@ public class CLILauncher {
                 @Override
                 public Map<String, String> config() {
                     Map<String, String> configurationPlugin = new HashMap<String, String>();
-                    configurationPlugin.put("command", "diff");// la commande git
-                    configurationPlugin.put("start", "HEAD~");// le dernier Commit
-                    configurationPlugin.put("end", "HEAD");
-                    configurationPlugin.put("options", "--numstat");// the options
+                    configurationPlugin.put("command", "whatchanged");// la commande git
+                    configurationPlugin.put("option1", "--numstat");// the options
+                    configurationPlugin.put("option2", "--pretty=\"\"");// the options
                     return configurationPlugin;
                 }
             });
