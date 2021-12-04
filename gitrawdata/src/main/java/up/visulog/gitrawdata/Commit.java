@@ -29,7 +29,6 @@ public class Commit {
     // TODO: factor this out (similar code will have to be used for all git commands)
     public static List<Commit> parseLogFromCommand(Path gitPath, PluginConfig pluginConfig) {
         return parseLog(ExecuteCommande.run(gitPath, pluginConfig));
-        
     }
 
     public static List<Commit> parseLog(BufferedReader reader) {
@@ -86,7 +85,6 @@ public class Commit {
 
             input.mark(0);//mark tge current positions
             String currentLine = input.readLine();//read the line
-            System.out.println(currentLine);
             if (currentLine != null ){//if the line exsists
                 if (!currentLine.startsWith("commit")){//if its not the debue of another commit
                     //get more informations from the commit
