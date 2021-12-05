@@ -44,8 +44,12 @@ public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
 
     @Override
     public void run() {
-        if (this.configuration.getPluginConfig("countCommits").isPresent()){
-            result = processLog(Commit.parseLogFromCommand(configuration.getGitPath(), this.configuration.getPluginConfig("countCommits").get()));
+        if (this.configuration.getPluginConfig("countCommits"+"/"+dateDebut+"/"+dateFin).isPresent()){
+            try{
+                result = processLog(Commit.parseLogFromCommand(configuration.getGitPath(), this.configuration.getPluginConfig("countCommits"+"/"+dateDebut+"/"+dateFin).get()));
+            }catch(Exception e){
+                System.out.println(e);           }
+            
         }
     }
 
