@@ -24,7 +24,7 @@ public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
             for (var commit : gitLog) {
                 String [] dateTable=commit.date.split(" ");
                 String day =dateTable[0]+dateTable[1]+dateTable[2]+dateTable[4];
-                if(day.contains(item.getKey())){
+                if(dateTable[0].equals(item.getKey())/*day.contains(item.getKey())*/){
                     var nb = commitsPerDay.getOrDefault(day, 0);
                     commitsPerDay.put(day, nb + 1);
                 } 
