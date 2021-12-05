@@ -21,7 +21,7 @@ public class CountLines implements AnalyzerPlugin {
         this.config = config;
     }
 
-    public Result procesdiff(List<Lines> listLines) {
+    public static Result procesdiff(List<Lines> listLines) {
         Result result = new Result();
         for (Lines line : listLines) {
             if (!line.path.contains("DS_Store")){
