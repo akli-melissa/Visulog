@@ -93,7 +93,8 @@ public class CLILauncher {
     }
 
     private static void runAnalysis(HashMap<String, PluginConfig> plugins, String pValue) {
-        switch (pValue) {
+        String[] pValues = pValue.split("/");
+        switch (pValues[0]) {
         case "countLines":
             plugins.put("countLines", new PluginConfig() {
                 // Ajout des conifigurations
