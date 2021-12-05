@@ -56,10 +56,10 @@ public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
 
     // Implementation de la sous interface Result de AnalyzerPlugin
     static class Result implements AnalyzerPlugin.Result {
-        private final Map<String, Integer> commitsPerDayOfWeek ;// pour chaque user un nombre de commits
+        private final LinkedHashMap<String, Integer> commitsPerDayOfWeek ;// pour chaque user un nombre de commits
 
         Result(){
-            commitsPerDayOfWeek = new HashMap<>();
+            commitsPerDayOfWeek = new LinkedHashMap<>();
             commitsPerDayOfWeek.put("Sun",0);
             commitsPerDayOfWeek.put("Mon",0);
             commitsPerDayOfWeek.put("Tue",0);
