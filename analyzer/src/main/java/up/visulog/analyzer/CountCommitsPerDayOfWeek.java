@@ -17,11 +17,13 @@ public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
 
     static Result processLog(List<Commit> gitLog) {
         var result = new Result();
+
         for (var commit : gitLog) {
             String day =commit.date.split(" ")[0];
             var nb = result.commitsPerDayOfWeek.getOrDefault(day, 0);
             result.commitsPerDayOfWeek.put(day, nb + 1);
         }
+
         return result;
     }
 
@@ -41,7 +43,7 @@ public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
 
     // Implementation de la sous interface Result de AnalyzerPlugin
     static class Result implements AnalyzerPlugin.Result {
-        private final Map<String, Integer> commitsPerDayOfWeek = new HashMap<>();// pour chaque user un nombre de commits
+        private final Map<String, Integer> commitsPerDayOfWeek = new HashMap<>();;// pour chaque user un nombre de commits
 
         Map<String, Integer> getcommitsPerDayOfWeek() {
             return commitsPerDayOfWeek;
@@ -68,7 +70,7 @@ public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            
+
             for (Map.Entry<String,Integer> item:commitsPerDayOfWeek.entrySet()){
                 datapoints+="{y:"+ item.getValue() + " ,label: \'"+item.getKey()+"\'},";
             }

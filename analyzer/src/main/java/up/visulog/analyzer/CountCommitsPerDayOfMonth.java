@@ -18,10 +18,12 @@ public class CountCommitsPerDayOfMonth implements AnalyzerPlugin {
 
     static Result processLog(List<Commit> gitLog) {
         var result = new Result();
-        for (var commit : gitLog) {
-            String day =commit.date.split(" ")[2];
-            var nb = result.commitsPerDayOfMonth.getOrDefault(day, 0);
-            result.commitsPerDayOfMonth.put(day, nb + 1);
+        for (Map.Entry<String,Integer> item:result.commitsPerDayOfMonth.entrySet()){
+            for (var commit : gitLog) {
+                String day =commit.date.split(" ")[2];
+                var nb = result.commitsPerDayOfMonth.getOrDefault(day, 0);
+                result.commitsPerDayOfMonth.put(day, nb + 1);
+            }
         }
         return result;
     }
