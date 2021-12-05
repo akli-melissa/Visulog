@@ -121,7 +121,7 @@ public class CLILauncher {
             break;
 
             case "countCommits": 
-                plugins.put("countCommits", new PluginConfig() {
+                plugins.put(pValue, new PluginConfig() {
                 @Override
                 public Map<String, String> config() {
                     Map<String, String> configurationPlugin = new HashMap<String, String>();
