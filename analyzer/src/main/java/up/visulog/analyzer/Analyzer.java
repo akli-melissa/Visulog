@@ -39,15 +39,26 @@ public class Analyzer {
 
     // TODO: find a way so that the list of plugins is not hardcoded in this factory
     private Optional<AnalyzerPlugin> makePlugin(String pluginName, PluginConfig pluginConfig) {
-        switch (pluginName) {
-            case "countLines": return Optional.of( new CountLines(config) );
-            case "countMerge": return Optional.of( new CountMergeCommits(config));
-            case "countCommits" : return Optional.of( new CountCommitsPerAuthorPlugin(config));
-            case "countCommitsPerDayOfWeek" : return Optional.of( new CountCommitsPerDayOfWeek(config));
-            case "countCommitsPerDayOfMonth" : return Optional.of( new CountCommitsPerDayOfMonth(config));
-            case "countCommitsPerHourOfDay" : return Optional.of( new CountCommitsPerHourOfDay(config));
-
-            default : return Optional.empty();
+        String[] plugin = pluginName.split("/");
+        try{
+            switch (plugin[0]) {
+                case "countLines": return Optional.of( new CountLines(config) );
+                case "countMerge": return Optional.of( new CountMergeCommits(config));
+                case "countCommits" : 
+                if(plugin.length > 1){
+                    return Optional.of( new CountCommitsPerAuthorPlugin(config,plugin[1],plugin[2]));
+                }else{
+                    return Optional.of( new CountCommitsPerAuthorPlugin(config));
+                }
+                case "countCommitsPerDayOfWeek" : return Optional.of( new CountCommitsPerDayOfWeek(config));
+                case "countCommitsPerDayOfMonth" : return Optional.of( new CountCommitsPerDayOfMonth(config));
+                case "countCommitsPerHourOfDay" : return Optional.of( new CountCommitsPerHourOfDay(config));
+    
+                default : return Optional.empty();
+            }
+        }catch(Exception e){
+            System.out.println(e);
+            return Optional.empty();
         }
     }
 }
