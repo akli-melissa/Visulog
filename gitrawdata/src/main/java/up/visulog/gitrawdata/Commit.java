@@ -50,7 +50,7 @@ public class Commit {
 
     private static void solveDuplicate(List<Commit> listeC,Commit commit) {
         for (var cm:listeC){
-            if (percentOfSimilarity(cm.author, commit.author) >= 50.0){
+            if (percentOfSimilarity(cm.author, commit.author) >= 70.0){
                 commit.author = cm.author;
                 return;
             }

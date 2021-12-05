@@ -9,32 +9,6 @@
 </head>
 <body>
 
-<div>Commits per author: <ul><li>TAFOUGHALT anyes <tafoughaltanyes@gmail.com>: 16</li><li>AMIRA said <amira10586@gmail.com>: 1</li><li>Sofiane Boudet <Sofiane.boudet1@gmail.com>: 3</li><li>Yacine <flici>: 10</li><li>Said Amira <saidamira@eduroam-prg-hf-1-7-23.net.univ-paris-diderot.fr>: 6</li><li>nadine10 <rachanadine2002@gmail.com>: 2</li><li>Xavier Denis <xldenis@gmail.com>: 2</li><li>AROUS abderrahim <arous.abderrahim@gmail.com>: 4</li><li>FLICI yacine <yacineflici2@gmail.com>: 12</li><li>AKLI melissa <aklimeli24@gmail.com>: 13</li><li>Salhi Younes <younessalhi520@gmail.com>: 54</li><li>Younes Salhi <salhiy@x06.script.univ-paris-diderot.fr>: 1</li><li>djeghali <nadinedjeghali@hotmail.com>: 16</li><li>Aldric Degorre <adegorre@irif.fr>: 12</li><li>Colin Gonzalez <colin@nomadic-labs.com>: 1</li><li>BOUDET sofiane <sofiane.boudet1@gmail.com>: 2</li><li>yahmiy <yanis.yahmi2002@gmail.com>: 14</li></ul></div>
-<div>
-    <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
-</div>
-<script>
-function afficheGraph1() {
-    var chart = new CanvasJS.Chart("chartContainer1", {
-    theme: "light2",        exportEnabled: true,
-    animationEnabled: true,
-    title: {
-            text: "Commits Per Day Of Month"
-    },
-    data: [{
-            type: "line",
-            toolTipContent: "<b>{label}</b>: {y} commits",
-            showInLegend: "true",
-            indexLabelFontSize: 16,
-            dataPoints: [
-                {y:25 ,label: '22'},{y:4 ,label: '11'},{y:6 ,label: '23'},{y:2 ,label: '13'},{y:1 ,label: '25'},{y:1 ,label: '26'},{y:3 ,label: '16'},{y:4 ,label: '27'},{y:2 ,label: '17'},{y:17 ,label: '18'},{y:16 ,label: '19'},{y:1 ,label: '1'},{y:10 ,label: '2'},{y:7 ,label: '3'},{y:5 ,label: '4'},{y:2 ,label: '5'},{y:4 ,label: '6'},{y:5 ,label: '7'},{y:12 ,label: '8'},{y:12 ,label: '9'},{y:4 ,label: '30'},{y:1 ,label: '31'},{y:17 ,label: '21'},{y:8 ,label: '10'},
-    ]}]});
-    chart.render();
-    }
-    afficheGraph1();
-</script>
-            
-
 <div>
     <div id="chartContainer6" style="height: 300px; width: 100%;"></div>
 </div>
@@ -85,40 +59,15 @@ function afficheGraph7() {
             
 
 <div>
-    <div id="chartContainer8" style="height: 300px; width: 100%;"></div>
+    <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
 </div>
 <script>
-function afficheGraph8() {
-    var chart = new CanvasJS.Chart("chartContainer8", {
+function afficheGraph1() {
+    var chart = new CanvasJS.Chart("chartContainer1", {
     theme: "light2",        exportEnabled: true,
     animationEnabled: true,
     title: {
-            text: "Merge Commit Per Users"
-    },
-    data: [{
-            type: "pie",
-            toolTipContent: "<b>{label}</b>: {y} commits",
-            showInLegend: "true",
-            indexLabelFontSize: 16,
-            dataPoints: [
-                {y:1 ,label: 'TAFOUGHALT anyes <tafoughaltanyes@gmail.com>'},{y:1 ,label: 'Sofiane Boudet <Sofiane.boudet1@gmail.com>'},{y:1 ,label: 'Yacine <flici>'},{y:2 ,label: 'Said Amira <saidamira@eduroam-prg-hf-1-7-23.net.univ-paris-diderot.fr>'},{y:1 ,label: 'Xavier Denis <xldenis@gmail.com>'},{y:2 ,label: 'AROUS abderrahim <arous.abderrahim@gmail.com>'},{y:5 ,label: 'FLICI yacine <yacineflici2@gmail.com>'},{y:5 ,label: 'AKLI melissa <aklimeli24@gmail.com>'},{y:19 ,label: 'Salhi Younes <younessalhi520@gmail.com>'},{y:1 ,label: 'djeghali <nadinedjeghali@hotmail.com>'},{y:3 ,label: 'Aldric Degorre <adegorre@irif.fr>'},{y:1 ,label: 'Colin Gonzalez <colin@nomadic-labs.com>'},{y:3 ,label: 'yahmiy <yanis.yahmi2002@gmail.com>'},
-    ]}]});
-    chart.render();
-    }
-    afficheGraph8();
-</script>
-            
-
-<div>
-    <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
-</div>
-<script>
-function afficheGraph3() {
-    var chart = new CanvasJS.Chart("chartContainer3", {
-    theme: "light2",        exportEnabled: true,
-    animationEnabled: true,
-    title: {
-            text: "Commits Per Hour Of Day"
+            text: "Commits Per Day Of Month"
     },
     data: [{
             type: "line",
@@ -126,39 +75,15 @@ function afficheGraph3() {
             showInLegend: "true",
             indexLabelFontSize: 16,
             dataPoints: [
-                {y:12 ,label: '22'},{y:18 ,label: '11'},{y:7 ,label: '00'},{y:11 ,label: '23'},{y:10 ,label: '12'},{y:3 ,label: '01'},{y:5 ,label: '02'},{y:10 ,label: '13'},{y:16 ,label: '14'},{y:12 ,label: '15'},{y:14 ,label: '16'},{y:7 ,label: '17'},{y:3 ,label: '18'},{y:7 ,label: '07'},{y:4 ,label: '19'},{y:2 ,label: '09'},{y:13 ,label: '20'},{y:7 ,label: '21'},{y:8 ,label: '10'},
+                {y:25 ,label: '22'},{y:4 ,label: '11'},{y:6 ,label: '23'},{y:2 ,label: '13'},{y:1 ,label: '25'},{y:1 ,label: '26'},{y:3 ,label: '16'},{y:4 ,label: '27'},{y:2 ,label: '17'},{y:17 ,label: '18'},{y:16 ,label: '19'},{y:1 ,label: '1'},{y:10 ,label: '2'},{y:7 ,label: '3'},{y:5 ,label: '4'},{y:2 ,label: '5'},{y:4 ,label: '6'},{y:5 ,label: '7'},{y:12 ,label: '8'},{y:12 ,label: '9'},{y:4 ,label: '30'},{y:1 ,label: '31'},{y:17 ,label: '21'},{y:8 ,label: '10'},
     ]}]});
     chart.render();
     }
-    afficheGraph3();
+    afficheGraph1();
 </script>
             
 
-<div>
-    <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
-</div>
-<script>
-function afficheGraph2() {
-    var chart = new CanvasJS.Chart("chartContainer2", {
-    theme: "light2",        exportEnabled: true,
-    animationEnabled: true,
-    title: {
-            text: "Commits Per Day Of Week"
-    },
-    data: [{
-            type: "line",
-            toolTipContent: "<b>{label}</b>: {y} commits",
-            showInLegend: "true",
-            indexLabelFontSize: 16,
-            dataPoints: [
-                {y:21 ,label: 'Thu'},{y:43 ,label: 'Tue'},{y:9 ,label: 'Sat'},{y:17 ,label: 'Wed'},{y:13 ,label: 'Fri'},{y:47 ,label: 'Mon'},{y:19 ,label: 'Sun'},
-    ]}]});
-    chart.render();
-    }
-    afficheGraph2();
-</script>
-            
-
+<div>Commits per author: <ul><li>TAFOUGHALT anyes <tafoughaltanyes@gmail.com>: 16</li><li>AMIRA said <amira10586@gmail.com>: 1</li><li>Sofiane Boudet <Sofiane.boudet1@gmail.com>: 3</li><li>Yacine <flici>: 10</li><li>Said Amira <saidamira@eduroam-prg-hf-1-7-23.net.univ-paris-diderot.fr>: 6</li><li>nadine10 <rachanadine2002@gmail.com>: 2</li><li>Xavier Denis <xldenis@gmail.com>: 2</li><li>AROUS abderrahim <arous.abderrahim@gmail.com>: 4</li><li>FLICI yacine <yacineflici2@gmail.com>: 12</li><li>AKLI melissa <aklimeli24@gmail.com>: 13</li><li>Salhi Younes <younessalhi520@gmail.com>: 54</li><li>Younes Salhi <salhiy@x06.script.univ-paris-diderot.fr>: 1</li><li>djeghali <nadinedjeghali@hotmail.com>: 16</li><li>Aldric Degorre <adegorre@irif.fr>: 12</li><li>Colin Gonzalez <colin@nomadic-labs.com>: 1</li><li>BOUDET sofiane <sofiane.boudet1@gmail.com>: 2</li><li>yahmiy <yanis.yahmi2002@gmail.com>: 14</li></ul></div>
 <div>
     <div id="chartContainer4" style="height: 300px; width: 100%;"></div>
 </div>
@@ -205,6 +130,81 @@ function afficheGraph5() {
     chart.render();
     }
     afficheGraph5();
+</script>
+            
+
+<div>
+    <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+</div>
+<script>
+function afficheGraph2() {
+    var chart = new CanvasJS.Chart("chartContainer2", {
+    theme: "light2",        exportEnabled: true,
+    animationEnabled: true,
+    title: {
+            text: "Commits Per Day Of Week"
+    },
+    data: [{
+            type: "line",
+            toolTipContent: "<b>{label}</b>: {y} commits",
+            showInLegend: "true",
+            indexLabelFontSize: 16,
+            dataPoints: [
+                {y:21 ,label: 'Thu'},{y:43 ,label: 'Tue'},{y:9 ,label: 'Sat'},{y:17 ,label: 'Wed'},{y:13 ,label: 'Fri'},{y:47 ,label: 'Mon'},{y:19 ,label: 'Sun'},
+    ]}]});
+    chart.render();
+    }
+    afficheGraph2();
+</script>
+            
+
+<div>
+    <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
+</div>
+<script>
+function afficheGraph3() {
+    var chart = new CanvasJS.Chart("chartContainer3", {
+    theme: "light2",        exportEnabled: true,
+    animationEnabled: true,
+    title: {
+            text: "Commits Per Hour Of Day"
+    },
+    data: [{
+            type: "line",
+            toolTipContent: "<b>{label}</b>: {y} commits",
+            showInLegend: "true",
+            indexLabelFontSize: 16,
+            dataPoints: [
+                {y:12 ,label: '22'},{y:18 ,label: '11'},{y:7 ,label: '00'},{y:11 ,label: '23'},{y:10 ,label: '12'},{y:3 ,label: '01'},{y:5 ,label: '02'},{y:10 ,label: '13'},{y:16 ,label: '14'},{y:12 ,label: '15'},{y:14 ,label: '16'},{y:7 ,label: '17'},{y:3 ,label: '18'},{y:7 ,label: '07'},{y:4 ,label: '19'},{y:2 ,label: '09'},{y:13 ,label: '20'},{y:7 ,label: '21'},{y:8 ,label: '10'},
+    ]}]});
+    chart.render();
+    }
+    afficheGraph3();
+</script>
+            
+
+<div>
+    <div id="chartContainer8" style="height: 300px; width: 100%;"></div>
+</div>
+<script>
+function afficheGraph8() {
+    var chart = new CanvasJS.Chart("chartContainer8", {
+    theme: "light2",        exportEnabled: true,
+    animationEnabled: true,
+    title: {
+            text: "Merge Commit Per Users"
+    },
+    data: [{
+            type: "pie",
+            toolTipContent: "<b>{label}</b>: {y} commits",
+            showInLegend: "true",
+            indexLabelFontSize: 16,
+            dataPoints: [
+                {y:1 ,label: 'TAFOUGHALT anyes <tafoughaltanyes@gmail.com>'},{y:1 ,label: 'Sofiane Boudet <Sofiane.boudet1@gmail.com>'},{y:1 ,label: 'Yacine <flici>'},{y:2 ,label: 'Said Amira <saidamira@eduroam-prg-hf-1-7-23.net.univ-paris-diderot.fr>'},{y:1 ,label: 'Xavier Denis <xldenis@gmail.com>'},{y:2 ,label: 'AROUS abderrahim <arous.abderrahim@gmail.com>'},{y:5 ,label: 'FLICI yacine <yacineflici2@gmail.com>'},{y:5 ,label: 'AKLI melissa <aklimeli24@gmail.com>'},{y:19 ,label: 'Salhi Younes <younessalhi520@gmail.com>'},{y:1 ,label: 'djeghali <nadinedjeghali@hotmail.com>'},{y:3 ,label: 'Aldric Degorre <adegorre@irif.fr>'},{y:1 ,label: 'Colin Gonzalez <colin@nomadic-labs.com>'},{y:3 ,label: 'yahmiy <yanis.yahmi2002@gmail.com>'},
+    ]}]});
+    chart.render();
+    }
+    afficheGraph8();
 </script>
             
 </body> 
