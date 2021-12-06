@@ -55,8 +55,13 @@ public class CountCommitsPerHourOfDay implements AnalyzerPlugin {
 
     // Implementation de la sous interface Result de AnalyzerPlugin
     static class Result implements AnalyzerPlugin.Result {
-        private final Map<String, Integer> commitsPerHourOfDay = new HashMap<>();// pour chaque user un nombre de
-                                                                                  // commits
+        private final Map<String, Integer> commitsPerHourOfDay ;// pour chaque user un nombre de
+        Result(){
+            commitsPerHourOfDay = new LinkedHashMap<>();
+            for(int i=0;i<24;i++){
+                commitsPerHourOfDay.put(String.valueOf(i),0);
+            }
+        }                                                                       // commits
 
         Map<String, Integer> getcommitsPerHourOfWeek() {
             return commitsPerHourOfDay ;
