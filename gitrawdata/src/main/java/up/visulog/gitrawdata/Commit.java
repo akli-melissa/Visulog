@@ -112,7 +112,7 @@ public class Commit {
                     .reduce("", (accumulator, currentLine) -> accumulator + currentLine); // concatenate everything
             builder.setDescription(description);
 
-            input.mark(0);//mark tge current positions
+            input.mark(1000);//mark tge current positions
             String currentLine = input.readLine();//read the line
             if (currentLine != null ){//if the line exsists
                 if (!currentLine.startsWith("commit")){//if its not the debue of another commit

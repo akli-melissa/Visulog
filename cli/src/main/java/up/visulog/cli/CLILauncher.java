@@ -123,7 +123,7 @@ public class CLILauncher {
                     Map<String, String> configurationPlugin = new HashMap<String, String>();
                     configurationPlugin.put("command", "whatchanged");// la commande git
                     configurationPlugin.put("option1", "--numstat");// the options
-                    configurationPlugin.put("option2", "--pretty=\"\"");// the options
+                    configurationPlugin.put("option2", "--pretty=");// the options
                     return configurationPlugin;
                 }
             });

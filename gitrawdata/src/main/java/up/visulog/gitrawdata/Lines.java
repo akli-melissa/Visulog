@@ -45,6 +45,7 @@ public class Lines {
             if (data.length != 3) return Optional.empty();
             if (!Character.isDigit(data[0].charAt(0))) data[0] = "0";
             if (!Character.isDigit(data[1].charAt(0))) data[1] = "0";
+            
             return Optional.of(new Lines(Integer.parseInt(data[0]),Integer.parseInt(data[1]),data[2]));
         }catch(IOException e){
             e.printStackTrace();
