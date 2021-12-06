@@ -9,11 +9,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.util.Arrays;
-
 public class CountMergeCommits implements AnalyzerPlugin{
 
     private Configuration config;//the configuration
@@ -34,6 +29,7 @@ public class CountMergeCommits implements AnalyzerPlugin{
         }
         return resultat;
     }
+    
     @Override
     public void run(){
         if (this.config.getPluginConfig("countMerge").isPresent()){
@@ -70,7 +66,7 @@ public class CountMergeCommits implements AnalyzerPlugin{
             StringBuilder html = new StringBuilder("");
             String datapoints = "";
             try {
-                BufferedReader in = new BufferedReader(new FileReader(dir+"/html/Graph_Circulaire_ex.html"));
+                BufferedReader in = new BufferedReader(new FileReader(dir+"/webgen/Graph.html"));
                 String str;
                 while ((str = in.readLine()) != null) {
                     html.append(str+"\n");
@@ -83,7 +79,7 @@ public class CountMergeCommits implements AnalyzerPlugin{
             for (Map.Entry<String,Integer> item:MergeCommit.entrySet()){
                 datapoints+="{y:"+ item.getValue() + " ,label: \'"+item.getKey()+"\'},";
             }
-            return html.toString().replace("///data///",datapoints.toString());
+            return html.toString().replace("///data///",datapoints.toString()).replace("Commit","Merge Commit Per User").replace("//type_graph//","pie").replace("_id","8");
         }
    }
 

@@ -20,9 +20,11 @@ public interface ExecuteCommande {
         builder = new ProcessBuilder(
             "git",
             pluginConfig.config().get("command"),//la commande
-            pluginConfig.config().getOrDefault("start","-a"),//Commit de debut
-            pluginConfig.config().getOrDefault("end","-a"),//Commit de fin
-            pluginConfig.config().getOrDefault("options","-a")//Options supplémentaire
+            pluginConfig.config().getOrDefault("option1","-a"),//Options supplémentaire
+            pluginConfig.config().getOrDefault("option2","-a"),//Options supplémentaire
+            pluginConfig.config().getOrDefault("option3","-a"),//Options supplémentaire
+            pluginConfig.config().getOrDefault("option4","-a"),//Options supplémentaire
+            pluginConfig.config().getOrDefault("option5","-a")//Options supplémentaire
         );
 
         builder.directory(path.toFile());

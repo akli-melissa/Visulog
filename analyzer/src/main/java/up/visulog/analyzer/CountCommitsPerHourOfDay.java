@@ -20,7 +20,7 @@ public class CountCommitsPerHourOfDay implements AnalyzerPlugin {
         for (var commit : gitLog) {
             String hour = commit.date.split(" ")[3].split(":")[0];
             var nb = result.commitsPerHourOfDay.getOrDefault(hour, 0);
-            result.commitsPerHourOfDay .put(hour, nb + 1);
+            result.commitsPerHourOfDay.put(hour, nb + 1);
         }
         return result;
     }
@@ -61,7 +61,7 @@ public class CountCommitsPerHourOfDay implements AnalyzerPlugin {
             StringBuilder html = new StringBuilder("");
             String datapoints = "";
             try {
-                BufferedReader in = new BufferedReader(new FileReader(dir+"/html/Graph.html"));
+                BufferedReader in = new BufferedReader(new FileReader(dir+"/webgen/Graph.html"));
                 String str;
                 while ((str = in.readLine()) != null) {
                     html.append(str+"\n");
@@ -74,7 +74,7 @@ public class CountCommitsPerHourOfDay implements AnalyzerPlugin {
             for (Map.Entry<String,Integer> item:commitsPerHourOfDay.entrySet()){
                 datapoints+="{y:"+ item.getValue() + " ,label: \'"+item.getKey()+"\'},";
             }
-            return html.toString().replace("///data///",datapoints.toString());
+            return html.toString().replace("///data///",datapoints.toString()).replace("_id", "3").replace("Commits","Commits Per Hour Of Day").replace("//type_graph//","line");
 
         }
     }
