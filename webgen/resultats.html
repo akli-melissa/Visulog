@@ -1,2 +1,51 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>Visulog Statistics</title></head><body><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js " integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<div>Commits per author: <ul><li>AKLI melissa <aklimeli24@gmail.com>: 1</li><li>TAFOUGHALT anyes <tafoughaltanyes@gmail.com>: 1</li><li>SALHI younes <younessalhi520@gmail.com>: 4</li><li>Yacine <flici>: 5</li><li>Anyes TAFOUGHALT <tafoughaltanyes@gmail.com>: 4</li></ul></div></body></html>
+<!DOCTYPE html>
+<html>
+        <head>
+                <meta charset="utf-8">
+                <link rel="stylesheet" href="css/style.css">
+                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        </head>
+        <body>
+                <header>
+                        <div class="head">
+                                <a href="https://gaufre.informatique.univ-paris-diderot.fr/nodin/visulog">
+                                </a>
+                                <span>
+                                        Visulog
+                                </span>
+                                <div class="?">
+                                </div>
+                        </div>
+                </header>
+                <div>
+                        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                </div>
+                <script>
+                                window.onload = function() {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+        theme: "light2",        exportEnabled: true,
+        animationEnabled: true,
+        title: {
+                text: "Commits"
+        },
+        data: [{
+                type: "line",
+                toolTipContent: "<b>{label}</b>: {y} commits",
+                showInLegend: "true",
+                indexLabelFontSize: 16,
+                dataPoints: [
+{y:0 ,label: '0'},{y:0 ,label: '1'},{y:0 ,label: '2'},{y:0 ,label: '3'},{y:0 ,label: '4'},{y:0 ,label: '5'},{y:0 ,label: '6'},{y:0 ,label: '7'},{y:0 ,label: '8'},{y:0 ,label: '9'},{y:8 ,label: '10'},{y:17 ,label: '11'},{y:15 ,label: '12'},{y:10 ,label: '13'},{y:13 ,label: '14'},{y:11 ,label: '15'},{y:7 ,label: '16'},{y:3 ,label: '17'},{y:2 ,label: '18'},{y:4 ,label: '19'},{y:13 ,label: '20'},{y:5 ,label: '21'},{y:6 ,label: '22'},{y:10 ,label: '23'},]       }]});chart.render();}
+                </script>
+                <div class="?">
+                        <div class="?">
+                                <p>
+                                </p>
+                        </div>
+                        <div class="?">
+                        </div>
+                </div>
+        </body>
+</html>
+</body></html>
