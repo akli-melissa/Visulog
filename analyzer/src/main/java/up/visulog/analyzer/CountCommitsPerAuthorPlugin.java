@@ -5,6 +5,7 @@ import up.visulog.gitrawdata.Commit;
 import java.util.*;
 import java.text.SimpleDateFormat; 
 
+
 public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
     private String dateDebut;
     private String dateFin;
@@ -76,13 +77,25 @@ public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
         @Override
         public String getResultAsHtmlDiv() {
 
-            // HtmlFlow -> A ajouter
-            StringBuilder html = new StringBuilder("<div>Commits per author: <ul>");
-            for (var item : commitsPerAuthor.entrySet()) {
-                html.append("<li>").append(item.getKey()).append(": ").append(item.getValue()).append("</li>");
+            String dir = System.getProperty("user.dir");
+            dir = dir.replace("cli","");
+            StringBuilder html = new StringBuilder("");
+            String datapoints = "";
+            try {
+                BufferedReader in = new BufferedReader(new FileReader(dir+"/webgen/Graph.html"));
+                String str;
+                while ((str = in.readLine()) != null) {
+                    html.append(str+"\n");
+                }
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            html.append("</ul></div>");
-            return html.toString();
+            
+            for (Map.Entry<String,Integer> item:commitsPerAuthor.entrySet()){
+                datapoints+="{y:"+ item.getValue() + " ,label: \'"+item.getKey()+"\'},";
+            }
+            return html.toString().replace("///data///",datapoints.toString()).replace("Commit","Commit Per User").replace("//type_graph//","pie").replace("_id","9");
         }
     }
 }

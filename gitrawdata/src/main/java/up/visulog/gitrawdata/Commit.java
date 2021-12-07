@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import up.visulog.config.PluginConfig;
@@ -12,16 +13,18 @@ public class Commit {
     // FIXME: (some of) these fields could have more specialized types than String
     public final String id;
     public final String date;
-    public final String author;
+    public String author;
     public final String description;
     public final String mergedFrom;
+    public final String commitInformations;
 
-    public Commit(String id, String author, String date, String description, String mergedFrom) {
+    public Commit(String id, String author, String date, String description, String mergedFrom, String commitInformations) {
         this.id = id;
         this.author = author;
         this.date = date;
         this.description = description;
         this.mergedFrom = mergedFrom;
+        this.commitInformations = commitInformations;
     }
 
     // TODO: factor this out (similar code will have to be used for all git commands)
@@ -29,12 +32,40 @@ public class Commit {
         return parseLog(ExecuteCommande.run(gitPath, pluginConfig));
     }
 
+    private static double percentOfSimilarity(String s1,String s2){
+        int indexOfMail = s1.indexOf("<");
+        String mail = s1.substring(indexOfMail,s1.length()-2);
+        if (s2.contains(mail)) return 100.0;//its the same mail -> the same person
+        s1 = s1.toLowerCase().substring(0,indexOfMail);
+        int indexOfMail1 = s2.indexOf("<");
+        s2 = s2.toLowerCase().substring(0,indexOfMail1);
+        int matchCount = 0;
+        for (int x = 0; x<s1.length() && x<s2.length() ; x++)
+           if (s1.charAt(x) == s2.charAt(x)) matchCount++;
+        int longestString = s1.length();
+        if (s2.length() > longestString) longestString = s2.length();
+        double result = matchCount * 100 / longestString;
+        return result;
+    }
+
+    private static void solveDuplicate(List<Commit> listeC,Commit commit) {
+        for (var cm:listeC){
+            if (percentOfSimilarity(cm.author, commit.author) >= 70.0){
+                commit.author = cm.author;
+                return;
+            }
+        }
+    }
+
     public static List<Commit> parseLog(BufferedReader reader) {
         var result = new ArrayList<Commit>();
-        Optional<Commit> commit = parseCommit(reader);
-        while (commit.isPresent()) {
-            result.add(commit.get());
-            commit = parseCommit(reader);
+        Optional<Commit> Optcommit = parseCommit(reader);
+        Commit commit;
+        while (Optcommit.isPresent()) {
+            commit = Optcommit.get();
+            solveDuplicate(result,commit);
+            result.add(commit);
+            Optcommit = parseCommit(reader);
         }
         return result;
     }
@@ -81,9 +112,24 @@ public class Commit {
                     .reduce("", (accumulator, currentLine) -> accumulator + currentLine); // concatenate everything
             builder.setDescription(description);
 
+            input.mark(1000);//mark tge current positions
+            String currentLine = input.readLine();//read the line
+            if (currentLine != null ){//if the line exsists
+                if (!currentLine.startsWith("commit")){//if its not the debue of another commit
+                    //get more informations from the commit
+                    input.reset();
+                    String commitInfo = input
+                    .lines()
+                    .takeWhile(currentline -> !currentline.isEmpty())
+                    .map(String::trim)
+                    .reduce("",(acc,cur)->acc+cur);
+                    builder.setCommitInformations(commitInfo);
+                }else input.reset();//else its a new commit get back to previous position
+            }
 
             return Optional.of(builder.createCommit());
         } catch (IOException e) {
+            e.printStackTrace();
             parseError();
         }
         return Optional.empty(); // this is supposed to be unreachable, as parseError should never return

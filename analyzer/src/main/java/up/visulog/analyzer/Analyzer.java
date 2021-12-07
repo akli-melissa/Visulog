@@ -39,6 +39,7 @@ public class Analyzer {
 
     // TODO: find a way so that the list of plugins is not hardcoded in this factory
     private Optional<AnalyzerPlugin> makePlugin(String pluginName, PluginConfig pluginConfig) {
+
         String[] plugin = pluginName.split("/");
         try{
             switch (plugin[0]) {
@@ -59,6 +60,7 @@ public class Analyzer {
         }catch(Exception e){
             System.out.println(e);
             return Optional.empty();
+
         }
     }
 }
