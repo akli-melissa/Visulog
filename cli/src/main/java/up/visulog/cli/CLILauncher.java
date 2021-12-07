@@ -16,7 +16,8 @@ public class CLILauncher {
         if (config.isPresent()) {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
-            try {
+            if(results.getSubResults().size()!=0){
+                try {
 
                 String path = (new File(System.getProperty("user.dir"))).getParentFile() + "/webgen/resultats.html";
                 File f2 = new File(path);
@@ -24,12 +25,13 @@ public class CLILauncher {
                 bw.write(results.toHTML());
                 bw.close();
                 Desktop.getDesktop().browse(f2.toURI());
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-
-        } else
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }else{
             displayHelpAndExit();
+            }   
+        } 
     }
 
     static Optional<Configuration> makeConfigFromCommandLineArgs(String[] args) {
