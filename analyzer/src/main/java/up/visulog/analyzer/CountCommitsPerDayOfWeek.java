@@ -85,7 +85,7 @@ public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
             StringBuilder html = new StringBuilder("");
             String datapoints = "";
             try {
-                BufferedReader in = new BufferedReader(new FileReader(dir+"/html/Graph.html"));
+                BufferedReader in = new BufferedReader(new FileReader(dir+"/webgen/Graph.html"));
                 String str;
                 while ((str = in.readLine()) != null) {
                     html.append(str+"\n");
@@ -98,7 +98,7 @@ public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
             for (Map.Entry<String,Integer> item:commitsPerDayOfWeek.entrySet()){
                 datapoints+="{y:"+ item.getValue() + " ,label: \'"+item.getKey()+"\'},";
             }
-            return html.toString().replace("///data///",datapoints.toString());
+            return html.toString().replace("///data///",datapoints.toString()).replace("_id","2").replace("Commits","Commits Per Day Of Week").replace("//type_graph//","line");
 
         }
     }

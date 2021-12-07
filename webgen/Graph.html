@@ -1,0 +1,24 @@
+<div>
+    <div id="chartContainer_id" style="height: 300px; width: 100%;"></div>
+</div>
+<script>
+function afficheGraph_id() {
+    var chart = new CanvasJS.Chart("chartContainer_id", {
+    theme: "light2",        exportEnabled: true,
+    animationEnabled: true,
+    title: {
+            text: "Commits"
+    },
+    data: [{
+            type: "//type_graph//",
+            toolTipContent: "<b>{label}</b>: {y} commits",
+            showInLegend: "true",
+            indexLabelFontSize: 16,
+            dataPoints: [
+                ///data///
+    ]}]});
+    chart.render();
+    }
+    afficheGraph_id();
+</script>
+            
