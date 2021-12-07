@@ -100,7 +100,8 @@ public class CLILauncher {
     }    
 
     private static void runAnalysis(HashMap<String, PluginConfig> plugins, String pValue) {
-        switch (pValue) {
+        String[] pValues = pValue.split("/");
+        switch (pValues[0]) {
         case "All": 
             runAllCommand(plugins);
         break;
@@ -141,7 +142,7 @@ public class CLILauncher {
             break;
 
             case "countCommits": 
-                plugins.put("countCommits", new PluginConfig() {
+                plugins.put(pValue, new PluginConfig() {
                 @Override
                 public Map<String, String> config() {
                     Map<String, String> configurationPlugin = new HashMap<String, String>();
