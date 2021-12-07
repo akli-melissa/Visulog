@@ -5,6 +5,7 @@ public class CommitBuilder {
     private String date;
     private String description;
     private String mergedFrom;
+    private String commitInformations;
 
     public CommitBuilder(String id) {
         this.id = id;
@@ -30,7 +31,12 @@ public class CommitBuilder {
         return this;
     }
 
+    public CommitBuilder setCommitInformations(String commitInformations){
+        this.commitInformations = commitInformations;
+        return this;
+    }
+
     public Commit createCommit() {
-        return new Commit(id, author, date, description, mergedFrom);
+        return new Commit(id, author, date, description, mergedFrom, commitInformations);
     }
 }

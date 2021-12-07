@@ -14,13 +14,27 @@ public class CountCommitsPerHourOfDay implements AnalyzerPlugin {
     public CountCommitsPerHourOfDay(Configuration generalConfiguration) {
         this.configuration = generalConfiguration;
     }
-
     static Result processLog(List<Commit> gitLog) {
         var result = new Result();
-        for (var commit : gitLog) {
-            String hour = commit.date.split(" ")[3].split(":")[0];
-            var nb = result.commitsPerHourOfDay.getOrDefault(hour, 0);
-            result.commitsPerHourOfDay .put(hour, nb + 1);
+       for (Map.Entry<String,Integer> item:result.commitsPerHourOfDay.entrySet()){
+            Map<String, Integer> commitsPerHour = new HashMap<>();// pour chaque dimanche precis(Mon 12/20 Jan)
+
+            for (var commit : gitLog) {
+                String [] dateTable=commit.date.split(" ");
+                String hour =dateTable[3].split(":")[0];
+                if(hour.equals(item.getKey())){
+                    var nb = commitsPerHour.getOrDefault(hour, 0);
+                    commitsPerHour.put(hour, nb + 1);
+                } 
+            }
+            if(commitsPerHour.size()!=0){
+                int sum=0;
+                for(int val:commitsPerHour.values()){
+                    sum+=val;
+                }
+               result.commitsPerHourOfDay.put(item.getKey(),sum/commitsPerHour.size());
+            }
+
         }
         return result;
     }
@@ -42,8 +56,13 @@ public class CountCommitsPerHourOfDay implements AnalyzerPlugin {
 
     // Implementation de la sous interface Result de AnalyzerPlugin
     static class Result implements AnalyzerPlugin.Result {
-        private final Map<String, Integer> commitsPerHourOfDay = new HashMap<>();// pour chaque user un nombre de
-                                                                                  // commits
+        private final Map<String, Integer> commitsPerHourOfDay ;// pour chaque user un nombre de
+        Result(){
+            commitsPerHourOfDay = new LinkedHashMap<>();
+            for(int i=0;i<24;i++){
+                commitsPerHourOfDay.put(String.valueOf(i),0);
+            }
+        }                                                                       // commits
 
         Map<String, Integer> getcommitsPerHourOfWeek() {
             return commitsPerHourOfDay ;
@@ -61,7 +80,7 @@ public class CountCommitsPerHourOfDay implements AnalyzerPlugin {
             StringBuilder html = new StringBuilder("");
             String datapoints = "";
             try {
-                BufferedReader in = new BufferedReader(new FileReader(dir+"/html/Graph.html"));
+                BufferedReader in = new BufferedReader(new FileReader(dir+"/webgen/Graph.html"));
                 String str;
                 while ((str = in.readLine()) != null) {
                     html.append(str+"\n");
@@ -74,7 +93,7 @@ public class CountCommitsPerHourOfDay implements AnalyzerPlugin {
             for (Map.Entry<String,Integer> item:commitsPerHourOfDay.entrySet()){
                 datapoints+="{y:"+ item.getValue() + " ,label: \'"+item.getKey()+"\'},";
             }
-            return html.toString().replace("///data///",datapoints.toString());
+            return html.toString().replace("///data///",datapoints.toString()).replace("_id", "3").replace("Commits","Commits Per Hour Of Day").replace("//type_graph//","line");
 
         }
     }

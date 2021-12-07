@@ -11,14 +11,16 @@ import java.util.*;
 import java.awt.Desktop;
 
 public class CLILauncher {
+
+    private static String[] ALLCommands = {"countLines","countMergeCommits","countCommits/12-11-2021/15-12-2021","countCommitsPerDayOfWeek","countCommitsPerDayOfMonth","countCommitsPerHourOfDay","countLinesPerAuthor"};
+
     public static void main(String[] args) {
         var config = makeConfigFromCommandLineArgs(args);
         if (config.isPresent()) {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
-            if(results.getSubResults().size()!=0){
-                try {
 
+            try {
                 String path = (new File(System.getProperty("user.dir"))).getParentFile() + "/webgen/resultats.html";
                 File f2 = new File(path);
                 BufferedWriter bw = new BufferedWriter(new FileWriter(f2));
@@ -32,7 +34,7 @@ public class CLILauncher {
             displayHelpAndExit();
             }   
         } 
-    }
+    
 
     static Optional<Configuration> makeConfigFromCommandLineArgs(String[] args) {
         var gitPath = FileSystems.getDefault().getPath(".");
@@ -49,7 +51,6 @@ public class CLILauncher {
                     case "--addPlugin":
                         // TODO: parse argument and make an instance of PluginConfig
 
-                        // Let's just trivially do this, before the TODO is fixed:
 
                         runAnalysis(plugins, pValue);
 
@@ -57,7 +58,7 @@ public class CLILauncher {
 
                     case "--loadConfigFile":
                         // TODO (load options from a file)
-                        LoadConfigFile(plugins);
+                        LoadConfigFile(pValue);
                         break;
 
                     case "--justSaveConfigFile":
@@ -94,18 +95,38 @@ public class CLILauncher {
         System.exit(0);
     }
 
+    private static void runAllCommand(HashMap<String, PluginConfig> plugins){
+        for (String command:ALLCommands){
+            runAnalysis(plugins,command);
+        }
+    }    
+
     private static void runAnalysis(HashMap<String, PluginConfig> plugins, String pValue) {
-        switch (pValue) {
+        String[] pValues = pValue.split("/");
+        switch (pValues[0]) {
+        case "All": 
+            runAllCommand(plugins);
+        break;
+        case "countLinesPerAuthor": 
+            plugins.put("countLinesPerAuthor", new PluginConfig() {
+                @Override
+                public Map<String, String> config() {
+                    Map<String, String> configurationPlugin = new HashMap<String, String>();
+                    configurationPlugin.put("command", "log");// la commande git
+                    configurationPlugin.put("option1","--shortstat");//pour plus d'informations sur le commit
+                    return configurationPlugin;
+                }
+            });
+        break;
         case "countLines":
             plugins.put("countLines", new PluginConfig() {
                 // Ajout des conifigurations
                 @Override
                 public Map<String, String> config() {
                     Map<String, String> configurationPlugin = new HashMap<String, String>();
-                    configurationPlugin.put("command", "diff");// la commande git
-                    configurationPlugin.put("start", "HEAD~");// le dernier Commit
-                    configurationPlugin.put("end", "HEAD");
-                    configurationPlugin.put("options", "--numstat");// the options
+                    configurationPlugin.put("command", "whatchanged");// la commande git
+                    configurationPlugin.put("option1", "--numstat");// the options
+                    configurationPlugin.put("option2", "--pretty=");// the options
                     return configurationPlugin;
                 }
             });
@@ -123,7 +144,7 @@ public class CLILauncher {
             break;
 
             case "countCommits": 
-                plugins.put("countCommits", new PluginConfig() {
+                plugins.put(pValue, new PluginConfig() {
                 @Override
                 public Map<String, String> config() {
                     Map<String, String> configurationPlugin = new HashMap<String, String>();
@@ -170,23 +191,19 @@ public class CLILauncher {
         }
     }
 
-    private static void LoadConfigFile(HashMap<String, PluginConfig> plugins) {
-        Scanner input = new Scanner(System.in);
-        String fileName;
-        System.out.print("Entrez le nom du fichier que vous voulez charger");// demander quel fichier l'utilisateur veut
-                                                                             // charger
-        fileName = input.nextLine();// nom du fichier
-        input.close();
+    private static void LoadConfigFile(String fileName) {
         Scanner sc;
         try {// on recupere ligne par ligne les options sauvegardées
             sc = new Scanner(new File(fileName));// Fichier spécifié par l'utilisateur
             sc.useDelimiter("\n");
             while (sc.hasNext()) {
-                runAnalysis(plugins, sc.next());// Et puis on fait l'analyse
+                String data = sc.next();
+                
+                //runAnalysis(plugins, sc.next());// Et puis on fait l'analyse
             }
         } catch (Exception e) {// Si le fichier n'existe pas on revoie une erreur
             System.out.println("Erreur lors de l'ouverture du fichier:");
-            e.printStackTrace();
+           // e.printStackTrace();
             System.exit(1);
         }
     }
