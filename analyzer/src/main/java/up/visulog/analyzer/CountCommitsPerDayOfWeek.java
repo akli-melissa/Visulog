@@ -6,6 +6,7 @@ import java.util.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 
 public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
     private final Configuration configuration;
@@ -14,19 +15,19 @@ public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
     public CountCommitsPerDayOfWeek(Configuration generalConfiguration) {
         this.configuration = generalConfiguration;
     }
-
-    static Result processLog(List<Commit> gitLog) {
+    static Result processLog(List<Commit> gitLog) throws Exception {
         var result = new Result();
 
        for (Map.Entry<String,Integer> item:result.commitsPerDayOfWeek.entrySet()){
             Map<String, Integer> commitsPerDay = new HashMap<>();// pour chaque dimanche precis(Mon 12/20 Jan)
 
             for (var commit : gitLog) {
-                String [] dateTable=commit.date.split(" ");
-                String day =dateTable[0]+dateTable[1]+dateTable[2]+dateTable[4];
-                if(dateTable[0].equals(item.getKey())/*day.contains(item.getKey())*/){
-                    var nb = commitsPerDay.getOrDefault(day, 0);
-                    commitsPerDay.put(day, nb + 1);
+                Date date=commit.date;
+                SimpleDateFormat d = new SimpleDateFormat("EEEE",Locale.ENGLISH);
+                SimpleDateFormat day = new SimpleDateFormat("EEE MMM d yyyy",Locale.ENGLISH);
+                if(d.format(date).equals(item.getKey())){
+                    var nb = commitsPerDay.getOrDefault(day.format(date), 0);
+                    commitsPerDay.put(day.format(date), nb + 1);
                 } 
             }
             if(commitsPerDay.size()!=0){
@@ -43,7 +44,11 @@ public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
     @Override
     public void run() {
         if (this.configuration.getPluginConfig("countCommitsPerDayOfWeek").isPresent()){
+           try{
             result = processLog(Commit.parseLogFromCommand(configuration.getGitPath(), this.configuration.getPluginConfig("countCommitsPerDayOfWeek").get()));
+            }catch(Exception e){
+                System.out.println(e);           
+            }
         }
     }
 
@@ -60,13 +65,13 @@ public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
 
         Result(){
             commitsPerDayOfWeek = new LinkedHashMap<>();
-            commitsPerDayOfWeek.put("Sun",0);
-            commitsPerDayOfWeek.put("Mon",0);
-            commitsPerDayOfWeek.put("Tue",0);
-            commitsPerDayOfWeek.put("Wed",0);
-            commitsPerDayOfWeek.put("Thu",0);
-            commitsPerDayOfWeek.put("Fri",0);
-            commitsPerDayOfWeek.put("Sat",0);
+            commitsPerDayOfWeek.put("Sunday",0);
+            commitsPerDayOfWeek.put("Monday",0);
+            commitsPerDayOfWeek.put("Tuesday",0);
+            commitsPerDayOfWeek.put("Wednesday",0);
+            commitsPerDayOfWeek.put("Thursday",0);
+            commitsPerDayOfWeek.put("Friday",0);
+            commitsPerDayOfWeek.put("Szaturday",0);
 
         }
         Map<String, Integer> getcommitsPerDayOfWeek() {
