@@ -4,15 +4,12 @@ import up.visulog.config.Configuration;
 import up.visulog.gitrawdata.Commit;
 import java.util.*;
 import java.text.SimpleDateFormat; 
-
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
-    private String dateDebut;
-    private String dateFin;
+    private String extension = "";
     static private Date debut=null;
     static private Date fin=null;
     private final Configuration configuration;
@@ -23,10 +20,9 @@ public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
     }
     public CountCommitsPerAuthorPlugin(Configuration generalConfiguration, String dateDebut , String dateFin)throws Exception {
         this.configuration = generalConfiguration;
-        this.dateDebut = dateDebut; 
+        extension = "/"+dateDebut+"/"+dateFin; 
         debut = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss",Locale.ENGLISH).parse(dateDebut+" 00:00:00");
-        this.dateFin = dateFin ;
-        fin = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss",Locale.ENGLISH).parse(dateFin+" 23:59:59");
+       fin = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss",Locale.ENGLISH).parse(dateFin+" 23:59:59");
     }
     static Result processLog(List<Commit> gitLog) throws Exception {
         var result = new Result();
@@ -49,9 +45,9 @@ public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
 
     @Override
     public void run() {
-        if (this.configuration.getPluginConfig("countCommits"+"/"+dateDebut+"/"+dateFin).isPresent()){
+        if (this.configuration.getPluginConfig("countCommits"+extension).isPresent()){
             try{
-                result = processLog(Commit.parseLogFromCommand(configuration.getGitPath(), this.configuration.getPluginConfig("countCommits"+"/"+dateDebut+"/"+dateFin).get()));
+                result = processLog(Commit.parseLogFromCommand(configuration.getGitPath(), this.configuration.getPluginConfig("countCommits"+extension).get()));
             }catch(Exception e){
                 System.out.println(e);           }
             
