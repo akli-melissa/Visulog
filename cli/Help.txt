@@ -1,5 +1,26 @@
-Voici les options que vous pouvez faire
---addPlugin=arg
---justSaveConfigFile=(arg1,arg2..)
---loadConfigFile
-(arg peut etre countcommits, countmerge ...)
+*******************HELP***********************
+Voici les options que vous pouvez utiliser:
+
+	--addPlugin = argument
+	
+	--justSaveConfigFile = argument1,argument2,...
+	
+	--loadConfigFile = nomDufichierDeConfiguration
+	
+argument peut avoir les valeurs suivantes :
+	**-All : pour executer toutes les options en meme temps.
+	
+	**-countLinesPerAuthor : pour le nombre de lignes modifiées par un utilisateur.
+	
+	**-countLines : pour le nombre de lignes modifiées (Tous les utilisateurs).
+	
+	**-countMergeCommits :  pour le nombre de merges.
+	
+	**-countCommits : pour le nombre de commits.
+	
+	**-countCommitsPerDayOfWeek : pour le nombre de commits par jour de semaine ( Lundi,Mardi,...).
+	
+	**-countCommitsPerDayOfMonth : pour le nombre de commits par jours de mois ( 20 janvier,10 avril ,...).
+	
+	**-countCommitsPerHourOfDay : pour le nombre de commits par heures ( 13h,08h,...).
+
