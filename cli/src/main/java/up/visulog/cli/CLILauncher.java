@@ -19,21 +19,24 @@ public class CLILauncher {
         if (config.isPresent()) {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
-
-            try {
-                String path = (new File(System.getProperty("user.dir"))).getParentFile() + "/webgen/resultats.html";
-                File f2 = new File(path);
-                BufferedWriter bw = new BufferedWriter(new FileWriter(f2));
-                bw.write(results.toHTML());
-                bw.close();
-                Desktop.getDesktop().browse(f2.toURI());
+            if(results.getSubResults().size()!=0){
+                try {
+                    String path = (new File(System.getProperty("user.dir"))).getParentFile() + "/webgen/resultats.html";
+                    File f2 = new File(path);
+                    BufferedWriter bw = new BufferedWriter(new FileWriter(f2));
+                    bw.write(results.toHTML());
+                    bw.close();
+                    Desktop.getDesktop().browse(f2.toURI());
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             }else{
-            displayHelpAndExit();
-            }   
-        } 
+                displayHelpAndExit();  
+            }
+        }else{
+                displayHelpAndExit();  
+            }
+    }
     
 
     static Optional<Configuration> makeConfigFromCommandLineArgs(String[] args) {
@@ -58,7 +61,7 @@ public class CLILauncher {
 
                     case "--loadConfigFile":
                         // TODO (load options from a file)
-                        LoadConfigFile(pValue);
+                        LoadConfigFile(plugins,pValue);
                         break;
 
                     case "--justSaveConfigFile":
@@ -191,15 +194,14 @@ public class CLILauncher {
         }
     }
 
-    private static void LoadConfigFile(String fileName) {
+    private static void LoadConfigFile(HashMap<String, PluginConfig> plugins,String fileName) {
         Scanner sc;
         try {// on recupere ligne par ligne les options sauvegardées
             sc = new Scanner(new File(fileName));// Fichier spécifié par l'utilisateur
             sc.useDelimiter("\n");
             while (sc.hasNext()) {
                 String data = sc.next();
-                
-                //runAnalysis(plugins, sc.next());// Et puis on fait l'analyse
+                runAnalysis(plugins,data);// Et puis on fait l'analyse
             }
         } catch (Exception e) {// Si le fichier n'existe pas on revoie une erreur
             System.out.println("Erreur lors de l'ouverture du fichier:");
@@ -214,34 +216,38 @@ public class CLILauncher {
         String fileName;
         // création du fichier s'il n'existe pas
         System.out.print("Entrez le nom du fichier");// Demande du nom du fichier à l'utilisateur
-        fileName = input.nextLine();
-        File file = new File(fileName);
+        if(input.hasNext()){
+            fileName = input.next();
+            System.out.print(fileName);
+            File file = new File(fileName);
+            if (file.exists()) {// si le fichier existe déjà, demander si on veut le replace
+                System.out.print("Ce fichier existe déjà, voulez vous le remplacer ?");
+                System.out.println("(y/n)");
+                Scanner sc = new Scanner(System.in);
+                if (sc.hasNext("y") || sc.hasNext("o")) {// si l'utilisateur répond oui, on recrée le fichier
+                    sc.close();
+                    file.delete();
+                    file = new File(fileName);
+                } else {// si l'utilisateur répond non, on préviens que le fichier n'a pas été créé
+                    System.out.print("Le fichier n'a pas été créé .");
+                }
+
+            }
+            try {
+                file.exists();
+
+                FileWriter fw = new FileWriter(file.getAbsoluteFile());
+                BufferedWriter buffer = new BufferedWriter(fw);
+                for (String s : pValue.split(",")) {// on recupere les options separées par des ','
+                    buffer.write(s + "\n");// pValue
+                }
+                buffer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         input.close();
-        if (file.exists()) {// si le fichier existe déjà, demander si on veut le replace
-            System.out.print("Ce fichier existe déjà, voulez vous le remplacer ?");
-            System.out.println("(y/n)");
-            Scanner sc = new Scanner(System.in);
-            if (sc.hasNext("y") || sc.hasNext("o")) {// si l'utilisateur répond oui, on recrée le fichier
-                sc.close();
-                file.delete();
-                file = new File(fileName);
-            } else {// si l'utilisateur répond non, on préviens que le fichier n'a pas été créé
-                System.out.print("Le fichier n'a pas été créé .");
-            }
 
-        }
-        try {
-            file.exists();
-
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter buffer = new BufferedWriter(fw);
-            for (String s : pValue.split(",")) {// on recupere les options separées par des ','
-                buffer.write(s + "\n");// pValue
-            }
-            buffer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
 
