@@ -4,7 +4,7 @@ plugins {
     application
 }
 
-application.mainClass.set("up.visulog.cli.CLILauncher")
+application.mainClass.set("up.visulog.cli.GIULancher")
 
 dependencies {
     implementation(project(":analyzer"))
