@@ -1,5 +1,5 @@
 *******************HELP***********************
-Voici les options que vous pouvez utiliser:
+Voici les options que vous pouvez utiliser (VEUILLEZ BIEN RESPECTER LA SYNTAXE IMPOSÉE):
 
 	--addPlugin = argument
 	
@@ -27,3 +27,5 @@ Voici les options que vous pouvez utiliser:
 
 "nomDufichierDeConfiguration" : le nom du fichier dans le quel vous voulez sauvegarder 
 				 vos options argument1 argument2 separés par des virgules ','
+				 
+
