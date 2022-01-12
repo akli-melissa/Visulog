@@ -3,11 +3,11 @@ Voici les options que vous pouvez utiliser:
 
 	--addPlugin = argument
 	
-	--justSaveConfigFile = argument1,argument2,...
+	--justSaveConfigFile = nomDufichierDeConfiguration : argument1,argument2,...
 	
 	--loadConfigFile = nomDufichierDeConfiguration
 	
-argument peut avoir les valeurs suivantes :
+"argument" :  peut avoir les valeurs suivantes :
 	**-All : pour executer toutes les options en meme temps.
 	
 	**-countLinesPerAuthor : pour le nombre de lignes modifiées par un utilisateur.
@@ -24,3 +24,6 @@ argument peut avoir les valeurs suivantes :
 	
 	**-countCommitsPerHourOfDay : pour le nombre de commits par heures ( 13h,08h,...).
 
+
+"nomDufichierDeConfiguration" : le nom du fichier dans le quel vous voulez sauvegarder 
+				 vos options argument1 argument2 separés par des virgules ','
