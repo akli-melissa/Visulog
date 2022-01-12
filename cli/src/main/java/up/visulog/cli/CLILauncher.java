@@ -12,9 +12,9 @@ import java.awt.Desktop;
 
 public class CLILauncher {
 
-    private static String[] ALLCommands = {"countLines","countMergeCommits","countCommits","countCommitsPerDayOfWeek","countCommitsPerDayOfMonth","countCommitsPerHourOfDay","countLinesPerAuthor"};
+    public static String[] ALLCommands = {"countLines","countMergeCommits","countCommits","countCommitsPerDayOfWeek","countCommitsPerDayOfMonth","countCommitsPerHourOfDay","countLinesPerAuthor"};
 
-    public static void main(String[] args) {
+    public static void run(String[] args) {
         var config = makeConfigFromCommandLineArgs(args);
         if (config.isPresent()) {
             var analyzer = new Analyzer(config.get());
