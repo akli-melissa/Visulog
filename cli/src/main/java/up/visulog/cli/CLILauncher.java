@@ -12,13 +12,14 @@ import java.awt.Desktop;
 
 public class CLILauncher {
 
-    public static String[] ALLCommands = {"countLines","countMergeCommits","countCommits","countCommitsPerDayOfWeek","countCommitsPerDayOfMonth","countCommitsPerHourOfDay","countLinesPerAuthor"};
+    private static String[] ALLCommands = {"countLines","countMergeCommits","countCommits/12-11-2021/15-12-2021","countCommitsPerDayOfWeek","countCommitsPerDayOfMonth","countCommitsPerHourOfDay","countLinesPerAuthor"};
 
     public static void run(String[] args) {
         var config = makeConfigFromCommandLineArgs(args);
         if (config.isPresent()) {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
+
             try {
                 String path = (new File(System.getProperty("user.dir"))).getParentFile() + "/webgen/resultats.html";
                 File f2 = new File(path);
@@ -26,13 +27,14 @@ public class CLILauncher {
                 bw.write(results.toHTML());
                 bw.close();
                 Desktop.getDesktop().browse(f2.toURI());
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-
-        } else
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }else{
             displayHelpAndExit();
-    }
+            }   
+        } 
+    
 
     static Optional<Configuration> makeConfigFromCommandLineArgs(String[] args) {
         var gitPath = FileSystems.getDefault().getPath(".");
@@ -100,7 +102,8 @@ public class CLILauncher {
     }    
 
     private static void runAnalysis(HashMap<String, PluginConfig> plugins, String pValue) {
-        switch (pValue) {
+        String[] pValues = pValue.split("/");
+        switch (pValues[0]) {
         case "All": 
             runAllCommand(plugins);
         break;
@@ -123,7 +126,7 @@ public class CLILauncher {
                     Map<String, String> configurationPlugin = new HashMap<String, String>();
                     configurationPlugin.put("command", "whatchanged");// la commande git
                     configurationPlugin.put("option1", "--numstat");// the options
-                    configurationPlugin.put("option2", "--pretty=\"\"");// the options
+                    configurationPlugin.put("option2", "--pretty=");// the options
                     return configurationPlugin;
                 }
             });
@@ -141,7 +144,7 @@ public class CLILauncher {
             break;
 
             case "countCommits": 
-                plugins.put("countCommits", new PluginConfig() {
+                plugins.put(pValue, new PluginConfig() {
                 @Override
                 public Map<String, String> config() {
                     Map<String, String> configurationPlugin = new HashMap<String, String>();
