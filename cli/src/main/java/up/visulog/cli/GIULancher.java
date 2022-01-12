@@ -88,7 +88,7 @@ public class GIULancher extends JFrame{
     }
 
     public static void main(String args[]){
-        if (args.length > 0) return;//CLILauncher.run(args);
+        if (args.length>0 && !args[0].equals("ShowGUI")) CLILauncher.run(args);//CLILauncher.run(args);
         else{
             SwingUtilities.invokeLater(new Runnable(){
                 public void run(){
