@@ -53,10 +53,9 @@ public class CLILauncher {
                     switch (pName) {
                     case "--addPlugin":
                         // TODO: parse argument and make an instance of PluginConfig
-
-
-                        runAnalysis(plugins, pValue);
-
+                        if(!runAnalysis(plugins, pValue)){
+                            return Optional.empty();
+                        }
                         break;
 
                     case "--loadConfigFile":
@@ -104,7 +103,7 @@ public class CLILauncher {
         }
     }    
 
-    private static void runAnalysis(HashMap<String, PluginConfig> plugins, String pValue) {
+    private static boolean runAnalysis(HashMap<String, PluginConfig> plugins, String pValue) {
         String[] pValues = pValue.split("/");
         switch (pValues[0]) {
         case "All": 
@@ -190,8 +189,9 @@ public class CLILauncher {
             break;
 
         default:
-            return;
+            return false ;
         }
+        return true;
     }
 
     private static void LoadConfigFile(HashMap<String, PluginConfig> plugins,String fileName) {
