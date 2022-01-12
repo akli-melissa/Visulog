@@ -1,5 +1,6 @@
 package up.visulog.cli;
 
+import java.util.Scanner;
 import up.visulog.analyzer.Analyzer;
 import up.visulog.config.Configuration;
 import up.visulog.config.PluginConfig;
@@ -16,7 +17,8 @@ public class CLILauncher {
 
     public static void main(String[] args) {
         var config = makeConfigFromCommandLineArgs(args);
-        if (config.isPresent()) {
+        if (config == null) {}//Dans le cas d'un justSaveConfigFile
+        else if (config.isPresent()) {
             var analyzer = new Analyzer(config.get());
             var results = analyzer.computeResults();
             if(results.getSubResults().size()!=0){
@@ -34,8 +36,8 @@ public class CLILauncher {
                 displayHelpAndExit();  
             }
         }else{
-                displayHelpAndExit();  
-            }
+            displayHelpAndExit();  
+        }
     }
     
 
@@ -52,21 +54,20 @@ public class CLILauncher {
                     String pValue = parts[1];
                     switch (pName) {
                     case "--addPlugin":
-                        // TODO: parse argument and make an instance of PluginConfig
-                        if(!runAnalysis(plugins, pValue)){
+                        if(!runAnalysis(plugins, pValue)){//Si jamais l'option choisie n'existe pas
                             return Optional.empty();
                         }
                         break;
 
                     case "--loadConfigFile":
-                        // TODO (load options from a file)
                         LoadConfigFile(plugins,pValue);
                         break;
 
                     case "--justSaveConfigFile":
-                        // TODO (save command line options to a file instead of running the analysis)
-                        saveConfigFile(pValue);
-                        break;
+                        if(!saveConfigFile(pValue)){//Afficher le help si jamais l'utilisateur n'a pas respecté la syntaxe
+                            displayHelpAndExit();  
+                        }
+                        return null;
 
                     default:
                         return Optional.empty();
@@ -82,7 +83,6 @@ public class CLILauncher {
     private static void displayHelpAndExit() {
         Scanner sc;
         System.out.println("Wrong command...");
-        // TODO: print the list of options and their syntax
         try {
             sc = new Scanner(new File("Help.txt"));
             sc.useDelimiter("\n");
@@ -197,56 +197,39 @@ public class CLILauncher {
     private static void LoadConfigFile(HashMap<String, PluginConfig> plugins,String fileName) {
         Scanner sc;
         try {// on recupere ligne par ligne les options sauvegardées
-            sc = new Scanner(new File(fileName));// Fichier spécifié par l'utilisateur
+            File file =new File(fileName);
+            sc = new Scanner(file);// Fichier spécifié par l'utilisateur
             sc.useDelimiter("\n");
             while (sc.hasNext()) {
                 String data = sc.next();
                 runAnalysis(plugins,data);// Et puis on fait l'analyse
             }
-        } catch (Exception e) {// Si le fichier n'existe pas on revoie une erreur
+        }catch (Exception e) {// Si le fichier n'existe pas on revoie une erreur
             System.out.println("Erreur lors de l'ouverture du fichier:");
-           // e.printStackTrace();
-            System.exit(1);
         }
     }
 
-    private static void saveConfigFile(String pValue) {
+    private static boolean saveConfigFile(String pValue) {
+        String[] pValues = pValue.split(":");
+        if(pValues.length==2){
+            String fileName=pValues[0];
+            String optionValues=pValues[1];
 
-        Scanner input = new Scanner(System.in);
-        String fileName;
-        // création du fichier s'il n'existe pas
-        System.out.print("Entrez le nom du fichier");// Demande du nom du fichier à l'utilisateur
-        if(input.hasNext()){
-            fileName = input.next();
-            System.out.print(fileName);
             File file = new File(fileName);
-            if (file.exists()) {// si le fichier existe déjà, demander si on veut le replace
-                System.out.print("Ce fichier existe déjà, voulez vous le remplacer ?");
-                System.out.println("(y/n)");
-                Scanner sc = new Scanner(System.in);
-                if (sc.hasNext("y") || sc.hasNext("o")) {// si l'utilisateur répond oui, on recrée le fichier
-                    sc.close();
-                    file.delete();
-                    file = new File(fileName);
-                } else {// si l'utilisateur répond non, on préviens que le fichier n'a pas été créé
-                    System.out.print("Le fichier n'a pas été créé .");
-                }
-
-            }
             try {
                 file.exists();
-
                 FileWriter fw = new FileWriter(file.getAbsoluteFile());
                 BufferedWriter buffer = new BufferedWriter(fw);
-                for (String s : pValue.split(",")) {// on recupere les options separées par des ','
+                for (String s : optionValues.split(",")) {// on recupere les options separées par des ','
                     buffer.write(s + "\n");// pValue
                 }
                 buffer.close();
+                return true;
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        input.close();
+        return false;
 
     }
 }
