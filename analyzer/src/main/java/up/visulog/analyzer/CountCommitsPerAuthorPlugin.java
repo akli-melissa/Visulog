@@ -1,5 +1,6 @@
 package up.visulog.analyzer;
 
+
 import up.visulog.config.Configuration;
 import up.visulog.gitrawdata.Commit;
 import java.util.*;
