@@ -6,7 +6,7 @@ import java.util.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
+import java.text.SimpleDateFormat;
 
 public class CountCommitsPerDayOfMonth implements AnalyzerPlugin {
     private final Configuration configuration;
@@ -15,18 +15,20 @@ public class CountCommitsPerDayOfMonth implements AnalyzerPlugin {
     public CountCommitsPerDayOfMonth(Configuration generalConfiguration) {
         this.configuration = generalConfiguration;
     }
-
     static Result processLog(List<Commit> gitLog) {
         var result = new Result();
        for (Map.Entry<String,Integer> item:result.commitsPerDayOfMonth.entrySet()){
             Map<String, Integer> commitsPerDay = new HashMap<>();// pour chaque dimanche precis(Mon 12/20 Jan)
 
             for (var commit : gitLog) {
-                String [] dateTable=commit.date.split(" ");
-                String day =dateTable[1]+dateTable[2]+dateTable[4];
-                if(dateTable[2].equals(item.getKey())){
-                    var nb = commitsPerDay.getOrDefault(day, 0);
-                    commitsPerDay.put(day, nb + 1);
+                Date date=commit.date;
+                SimpleDateFormat d = new SimpleDateFormat("d",Locale.ENGLISH);
+                SimpleDateFormat day = new SimpleDateFormat("d MMM yyyy",Locale.ENGLISH);
+                //String [] dateTable=commit.date.split(" ");
+                //String day =dateTable[1]+d.format(date)+dateTable[4];
+                if(d.format(date).equals(item.getKey())){
+                    var nb = commitsPerDay.getOrDefault(day.format(date), 0);
+                    commitsPerDay.put(day.format(date), nb + 1);
                 } 
             }
             if(commitsPerDay.size()!=0){
@@ -61,7 +63,11 @@ public class CountCommitsPerDayOfMonth implements AnalyzerPlugin {
         Result(){
             commitsPerDayOfMonth = new LinkedHashMap<>();
             for(int i=1;i<32;i++){
-                commitsPerDayOfMonth.put(String.valueOf(i),0);
+                String s = String.valueOf(i);
+                if(s.length()==1){
+                    s="0"+s;
+                }
+                commitsPerDayOfMonth.put(s,0);
             }
         }
         Map<String, Integer> getcommitsPerDayOfMonth() {

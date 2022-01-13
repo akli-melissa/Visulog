@@ -6,6 +6,7 @@ import java.util.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 
 public class CountCommitsPerHourOfDay implements AnalyzerPlugin {
     private final Configuration configuration;
@@ -14,17 +15,19 @@ public class CountCommitsPerHourOfDay implements AnalyzerPlugin {
     public CountCommitsPerHourOfDay(Configuration generalConfiguration) {
         this.configuration = generalConfiguration;
     }
-    static Result processLog(List<Commit> gitLog) {
+    
+    static Result processLog(List<Commit> gitLog) throws Exception {
         var result = new Result();
        for (Map.Entry<String,Integer> item:result.commitsPerHourOfDay.entrySet()){
             Map<String, Integer> commitsPerHour = new HashMap<>();// pour chaque dimanche precis(Mon 12/20 Jan)
 
             for (var commit : gitLog) {
-                String [] dateTable=commit.date.split(" ");
-                String hour =dateTable[3].split(":")[0];
-                if(hour.equals(item.getKey())){
-                    var nb = commitsPerHour.getOrDefault(hour, 0);
-                    commitsPerHour.put(hour, nb + 1);
+                Date date=commit.date;
+                SimpleDateFormat hour = new SimpleDateFormat("HH");
+                SimpleDateFormat day = new SimpleDateFormat("MMM d HH yyyy");
+                if(hour.format(date).equals(item.getKey())){
+                    var nb = commitsPerHour.getOrDefault(day.format(date), 0);
+                    commitsPerHour.put(day.format(date), nb + 1);
                 } 
             }
             if(commitsPerHour.size()!=0){
@@ -42,8 +45,12 @@ public class CountCommitsPerHourOfDay implements AnalyzerPlugin {
     @Override
     public void run() {
         if (this.configuration.getPluginConfig("countCommitsPerHourOfDay").isPresent()) {
+            try{
             result = processLog(Commit.parseLogFromCommand(configuration.getGitPath(),
                     this.configuration.getPluginConfig("countCommitsPerHourOfDay").get()));
+            }catch(Exception e){
+                System.out.println(e);           
+            }
         }
     }
 
@@ -60,11 +67,15 @@ public class CountCommitsPerHourOfDay implements AnalyzerPlugin {
         Result(){
             commitsPerHourOfDay = new LinkedHashMap<>();
             for(int i=0;i<24;i++){
-                commitsPerHourOfDay.put(String.valueOf(i),0);
+                String s = String.valueOf(i);
+                if(s.length()==1){
+                    s="0"+s;
+                }
+                commitsPerHourOfDay.put(s,0);
             }
         }                                                                       // commits
 
-        Map<String, Integer> getcommitsPerHourOfWeek() {
+        Map<String, Integer> getcommitsPerHourOfDay() {
             return commitsPerHourOfDay ;
         }
 

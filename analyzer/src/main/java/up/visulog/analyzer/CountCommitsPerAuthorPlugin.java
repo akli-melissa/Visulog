@@ -33,8 +33,8 @@ public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
                 result.commitsPerAuthor.put(commit.author, nb + 1);
             }
             else{
-                String sDate =commit.date;
-                Date date = new SimpleDateFormat("EEE MMM d HH:mm:ss yyyy z",Locale.ENGLISH).parse(sDate); 
+                Date date =commit.date;
+                //Date date = new SimpleDateFormat("EEE MMM d HH:mm:ss yyyy z",Locale.ENGLISH).parse(sDate); 
                 if(date.compareTo(debut) >= 0 && date.compareTo(fin) <= 0){
                     var nb = result.commitsPerAuthor.getOrDefault(commit.author, 0);
                     result.commitsPerAuthor.put(commit.author, nb + 1);
