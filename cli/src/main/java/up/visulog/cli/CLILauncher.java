@@ -105,10 +105,34 @@ public class CLILauncher {
 
     private static boolean runAnalysis(HashMap<String, PluginConfig> plugins, String pValue) {
         String[] pValues = pValue.split("/");
+        
         switch (pValues[0]) {
         case "All": 
             runAllCommand(plugins);
         break;
+        case "countLinesPerAuthor": 
+            plugins.put("countLinesPerAuthor", new PluginConfig() {
+                @Override
+                public Map<String, String> config() {
+                    Map<String, String> configurationPlugin = new HashMap<String, String>();
+                    configurationPlugin.put("command", "log");// la commande git
+                    configurationPlugin.put("option1","--shortstat");//pour plus d'informations sur le commit
+                    return configurationPlugin;
+                }
+            });
+        break;
+        case "userStats":
+            plugins.put(pValue, new PluginConfig() {
+                // Ajout des conifigurations
+                @Override
+                public Map<String, String> config() {
+                    Map<String, String> configurationPlugin = new HashMap<String, String>();
+                    configurationPlugin.put("command", "log");// la commande git
+                    configurationPlugin.put("option1","--shortstat");//pour plus d'informations sur le commit
+                    return configurationPlugin;
+                }
+            });
+            break;
 
         case "countLines":
             plugins.put("countLines", new PluginConfig() {
@@ -122,19 +146,7 @@ public class CLILauncher {
                     return configurationPlugin;
                 }
             });
-        break;
-
-        case "countLinesPerAuthor":
-            plugins.put("countLinesPerAuthor", new PluginConfig() {
-                @Override
-                public Map<String, String> config() {
-                    Map<String, String> configurationPlugin = new HashMap<String, String>();
-                    configurationPlugin.put("command", "log");// la commande git
-                    configurationPlugin.put("option1","--shortstat");//pour plus d'informations sur le commit
-                    return configurationPlugin;
-                }
-            });
-        break;
+            break;
 
         case "countMergeCommits":
             plugins.put("countMerge", new PluginConfig() {
@@ -145,18 +157,18 @@ public class CLILauncher {
                     return configurationPlugin;
                 }
             });
-        break;
+            break;
 
-        case "countCommits": 
-            plugins.put(pValue, new PluginConfig() {
-            @Override
+            case "countCommits": 
+                plugins.put(pValue, new PluginConfig() {
+                @Override
                 public Map<String, String> config() {
                     Map<String, String> configurationPlugin = new HashMap<String, String>();
                     configurationPlugin.put("command", "log");// la commande git
                     return configurationPlugin;
                 }
             });
-        break;
+            break;
 
             case "countCommitsPerDayOfWeek": 
                 plugins.put("countCommitsPerDayOfWeek", new PluginConfig() {
@@ -179,22 +191,22 @@ public class CLILauncher {
                 }
             });
             break;
-        
-        case "countCommitsPerHourOfDay": 
-            plugins.put("countCommitsPerHourOfDay", new PluginConfig() {
-            @Override
+            case "countCommitsPerHourOfDay": 
+                plugins.put("countCommitsPerHourOfDay", new PluginConfig() {
+                @Override
                 public Map<String,String> config(){
                     Map<String,String> configurationPlugin = new HashMap<String,String>();
                     configurationPlugin.put("command","log");//la commande git
                     return configurationPlugin;
                 }
             });
-        break;
+            break;
 
         default:
             return false ;
         }
         return true;
+
     }
 
     private static void LoadConfigFile(HashMap<String, PluginConfig> plugins,String fileName) {

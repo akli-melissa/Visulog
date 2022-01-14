@@ -45,6 +45,11 @@ public class Analyzer {
             switch (plugin[0]) {
                 case "countLines": return Optional.of( new CountLines(config) );
                 case "countMerge": return Optional.of( new CountMergeCommits(config));
+                case "userStats":
+                if (plugin.length >1 ){
+                    return Optional.of(new User_Activity(config,plugin[1]));                
+                } 
+                else throw new Exception();
                 case "countCommits" : 
                 if(plugin.length > 1){
                     return Optional.of( new CountCommitsPerAuthorPlugin(config,plugin[1],plugin[2]));
