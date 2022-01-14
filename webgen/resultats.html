@@ -42,68 +42,6 @@
             </div>
 <body>
 
-<div id="cnt9" class="tabPanel" style="height: 620px; width: 100%; overflow: scroll;">
-    <div id="chartContainer9" style="height: 100%; width: 100%;"></div>
-</div>
-<script>
-function afficheGraph9() {
-    var w = document.getElementById('chartContainer9').offsetWidth;
-    var h = document.getElementById('chartContainer9').offsetHeight;
-    var chart = new CanvasJS.Chart("chartContainer9", {
-    width:w,height:h,
-    theme: "light2",        exportEnabled: true,
-    animationEnabled: true,
-    title: {
-            text: "Commit Per User "
-    }, 
-    data: [{
-            type: "pie",
-            toolTipContent: "<b>{label}</b>: {y} commits",
-            showInLegend: "true",
-            indexLabelFontSize: 16,
-            dataPoints: [
-                {y:25 ,label: 'DJEGHALI racha nadine <nadinedjeghali@hotmail.com>'},{y:1 ,label: 'AMIRA said <amira10586@gmail.com>'},{y:3 ,label: 'Sofiane Boudet <Sofiane.boudet1@gmail.com>'},{y:11 ,label: 'Yacine <flici>'},{y:40 ,label: 'Anyes TAFOUGHALT <tafoughaltanyes@gmail.com>'},{y:6 ,label: 'Said Amira <saidamira@eduroam-prg-hf-1-7-23.net.univ-paris-diderot.fr>'},{y:2 ,label: 'nadine10 <rachanadine2002@gmail.com>'},{y:2 ,label: 'Xavier Denis <xldenis@gmail.com>'},{y:4 ,label: 'AROUS abderrahim <arous.abderrahim@gmail.com>'},{y:12 ,label: 'FLICI yacine <yacineflici2@gmail.com>'},{y:14 ,label: 'AKLI melissa <aklimeli24@gmail.com>'},{y:66 ,label: 'Salhi Younes <younessalhi520@gmail.com>'},{y:1 ,label: 'Younes Salhi <salhiy@x06.script.univ-paris-diderot.fr>'},{y:12 ,label: 'Aldric Degorre <adegorre@irif.fr>'},{y:1 ,label: 'Colin Gonzalez <colin@nomadic-labs.com>'},{y:18 ,label: 'yahmiy <yanis.yahmi2002@gmail.com>'},{y:2 ,label: 'BOUDET sofiane <sofiane.boudet1@gmail.com>'},
-    ]}]});
-    chart.render();
-    }
-    afficheGraph9();
-    document.getElementById("9").disabled = false;
-    document.getElementById("9").style.background = "#0E4BEF";
-    document.getElementById("cnt9").style.display = "none";
-</script>
-            
-
-<div id="cnt3" class="tabPanel" style="height: 620px; width: 100%; overflow: scroll;">
-    <div id="chartContainer3" style="height: 100%; width: 100%;"></div>
-</div>
-<script>
-function afficheGraph3() {
-    var w = document.getElementById('chartContainer3').offsetWidth;
-    var h = document.getElementById('chartContainer3').offsetHeight;
-    var chart = new CanvasJS.Chart("chartContainer3", {
-    width:w,height:h,
-    theme: "light2",        exportEnabled: true,
-    animationEnabled: true,
-    title: {
-            text: "Commits Per Hour Of Day"
-    }, 
-    data: [{
-            type: "line",
-            toolTipContent: "<b>{label}</b>: {y} commits",
-            showInLegend: "true",
-            indexLabelFontSize: 16,
-            dataPoints: [
-                {y:1 ,label: '00'},{y:2 ,label: '01'},{y:2 ,label: '02'},{y:2 ,label: '03'},{y:0 ,label: '04'},{y:0 ,label: '05'},{y:0 ,label: '06'},{y:3 ,label: '07'},{y:1 ,label: '08'},{y:2 ,label: '09'},{y:1 ,label: '10'},{y:2 ,label: '11'},{y:3 ,label: '12'},{y:2 ,label: '13'},{y:2 ,label: '14'},{y:1 ,label: '15'},{y:1 ,label: '16'},{y:2 ,label: '17'},{y:3 ,label: '18'},{y:1 ,label: '19'},{y:2 ,label: '20'},{y:1 ,label: '21'},{y:2 ,label: '22'},{y:2 ,label: '23'},
-    ]}]});
-    chart.render();
-    }
-    afficheGraph3();
-    document.getElementById("3").disabled = false;
-    document.getElementById("3").style.background = "#0E4BEF";
-    document.getElementById("cnt3").style.display = "none";
-</script>
-            
-
 <div id="cnt4" class="tabPanel" style="height: 620px; width: 100%; overflow: scroll;">
     <div id="chartContainer4" style="height: 100%; width: 100%;"></div>
 </div>
@@ -124,7 +62,7 @@ function afficheGraph4() {
             showInLegend: "true",
             indexLabelFontSize: 16,
             dataPoints: [
-                {y:3 ,label: 'nadine10 '},{y:0 ,label: 'Colin Gonzalez '},{y:56 ,label: 'BOUDET sofiane '},{y:29 ,label: 'FLICI yacine '},{y:1 ,label: 'Younes Salhi '},{y:256 ,label: 'yahmiy '},{y:6553 ,label: 'Salhi Younes '},{y:2373 ,label: 'Yacine '},{y:90 ,label: 'Said Amira '},{y:5 ,label: 'Sofiane Boudet '},{y:1327 ,label: 'Anyes TAFOUGHALT '},{y:572 ,label: 'DJEGHALI racha nadine '},{y:997 ,label: 'Aldric Degorre '},{y:12 ,label: 'AMIRA said '},{y:6 ,label: 'Xavier Denis '},{y:33 ,label: 'AROUS abderrahim '},{y:73 ,label: 'AKLI melissa '},
+                {y:3 ,label: 'nadine10 '},{y:0 ,label: 'Colin Gonzalez '},{y:56 ,label: 'BOUDET sofiane '},{y:29 ,label: 'FLICI yacine '},{y:1 ,label: 'Younes Salhi '},{y:256 ,label: 'yahmiy '},{y:6794 ,label: 'Salhi Younes '},{y:2373 ,label: 'Yacine '},{y:90 ,label: 'Said Amira '},{y:5 ,label: 'Sofiane Boudet '},{y:1327 ,label: 'Anyes TAFOUGHALT '},{y:572 ,label: 'DJEGHALI racha nadine '},{y:997 ,label: 'Aldric Degorre '},{y:12 ,label: 'AMIRA said '},{y:6 ,label: 'Xavier Denis '},{y:33 ,label: 'AROUS abderrahim '},{y:73 ,label: 'AKLI melissa '},
     ]}]});
     chart.render();
     }
@@ -154,7 +92,7 @@ function afficheGraph5() {
             showInLegend: "true",
             indexLabelFontSize: 16,
             dataPoints: [
-                {y:1 ,label: 'nadine10 '},{y:0 ,label: 'Colin Gonzalez '},{y:29 ,label: 'BOUDET sofiane '},{y:29 ,label: 'FLICI yacine '},{y:0 ,label: 'Younes Salhi '},{y:231 ,label: 'yahmiy '},{y:4152 ,label: 'Salhi Younes '},{y:287 ,label: 'Yacine '},{y:18 ,label: 'Said Amira '},{y:1 ,label: 'Sofiane Boudet '},{y:882 ,label: 'Anyes TAFOUGHALT '},{y:175 ,label: 'DJEGHALI racha nadine '},{y:47 ,label: 'Aldric Degorre '},{y:0 ,label: 'AMIRA said '},{y:0 ,label: 'Xavier Denis '},{y:0 ,label: 'AROUS abderrahim '},{y:28 ,label: 'AKLI melissa '},
+                {y:1 ,label: 'nadine10 '},{y:0 ,label: 'Colin Gonzalez '},{y:29 ,label: 'BOUDET sofiane '},{y:29 ,label: 'FLICI yacine '},{y:0 ,label: 'Younes Salhi '},{y:231 ,label: 'yahmiy '},{y:4336 ,label: 'Salhi Younes '},{y:287 ,label: 'Yacine '},{y:18 ,label: 'Said Amira '},{y:1 ,label: 'Sofiane Boudet '},{y:882 ,label: 'Anyes TAFOUGHALT '},{y:175 ,label: 'DJEGHALI racha nadine '},{y:47 ,label: 'Aldric Degorre '},{y:0 ,label: 'AMIRA said '},{y:0 ,label: 'Xavier Denis '},{y:0 ,label: 'AROUS abderrahim '},{y:28 ,label: 'AKLI melissa '},
     ]}]});
     chart.render();
     }
@@ -216,7 +154,7 @@ function afficheGraph1() {
             showInLegend: "true",
             indexLabelFontSize: 16,
             dataPoints: [
-                {y:0 ,label: '01'},{y:0 ,label: '02'},{y:0 ,label: '03'},{y:0 ,label: '04'},{y:0 ,label: '05'},{y:0 ,label: '06'},{y:0 ,label: '07'},{y:0 ,label: '08'},{y:0 ,label: '09'},{y:4 ,label: '10'},{y:4 ,label: '11'},{y:5 ,label: '12'},{y:3 ,label: '13'},{y:4 ,label: '14'},{y:0 ,label: '15'},{y:3 ,label: '16'},{y:2 ,label: '17'},{y:8 ,label: '18'},{y:16 ,label: '19'},{y:0 ,label: '20'},{y:8 ,label: '21'},{y:12 ,label: '22'},{y:6 ,label: '23'},{y:0 ,label: '24'},{y:1 ,label: '25'},{y:1 ,label: '26'},{y:4 ,label: '27'},{y:0 ,label: '28'},{y:0 ,label: '29'},{y:4 ,label: '30'},{y:1 ,label: '31'},
+                {y:0 ,label: '01'},{y:0 ,label: '02'},{y:0 ,label: '03'},{y:0 ,label: '04'},{y:0 ,label: '05'},{y:0 ,label: '06'},{y:0 ,label: '07'},{y:0 ,label: '08'},{y:0 ,label: '09'},{y:4 ,label: '10'},{y:4 ,label: '11'},{y:5 ,label: '12'},{y:3 ,label: '13'},{y:5 ,label: '14'},{y:0 ,label: '15'},{y:3 ,label: '16'},{y:2 ,label: '17'},{y:8 ,label: '18'},{y:16 ,label: '19'},{y:0 ,label: '20'},{y:8 ,label: '21'},{y:12 ,label: '22'},{y:6 ,label: '23'},{y:0 ,label: '24'},{y:1 ,label: '25'},{y:1 ,label: '26'},{y:4 ,label: '27'},{y:0 ,label: '28'},{y:0 ,label: '29'},{y:4 ,label: '30'},{y:1 ,label: '31'},
     ]}]});
     chart.render();
     }
@@ -397,7 +335,7 @@ function afficheGraph6() {
             showInLegend: "true",
             indexLabelFontSize: 16,
             dataPoints: [
-                {y:119 ,label: 'analyzer/src/main/java/up/visulog/analyzer/Analyzer.java'},{y:34 ,label: 'webgen/Graph.html'},{y:2 ,label: 'file.html'},{y:15 ,label: 'webgen/build.gradle.kts'},{y:5 ,label: 'gitrawdata/src/test/java/up/visulog/gitrawdata/TestLines.java'},{y:33 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountLines AddedPerHourOfDay.java'},{y:20 ,label: 'cli/build.gradle.kts'},{y:32 ,label: 'Documentation/gitrawdata.txt'},{y:1 ,label: 'cli/toDelete.htm'},{y:49 ,label: 'html/Graph.html'},{y:42 ,label: 'Contacts/contact.org'},{y:23 ,label: 'Documentation/AnalyzerPlugin.txt'},{y:66 ,label: 'gitrawdata/src/main/java/up/visulog/gitrawdata/Lines.java'},{y:55 ,label: 'gitrawdata/src/test/java/up/visulog/gitrawdata/TestCommit.java'},{y:330 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines.java'},{y:823 ,label: 'webgen/User.html'},{y:13 ,label: 'Documentation/CountLines Added.txt'},{y:104 ,label: 'analyzer/src/main/java/up/visulog/analyzer/Graph_Circulaire_ex.html'},{y:42 ,label: 'webgen/head.html'},{y:2 ,label: 'cli/racha.txt'},{y:126 ,label: 'analyzer/src/main/java/up/visulog/analyzer/AnalyzerResult.java'},{y:7 ,label: 'webgen/Graph_Circulaire_ex.html'},{y:1 ,label: 'webgen/ressources/fichierJS/coutnLines.js'},{y:6 ,label: 'gradle/wrapper/gradle-wrapper.properties'},{y:31 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountMergeLines Added.java'},{y:5 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountCommitPerDayOfWeek.java'},{y:66 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines AddedPerDay.java'},{y:3 ,label: 'cli/ConfigFile.txt'},{y:19 ,label: 'webgen/ressources/fichierJS/countLines.js'},{y:606 ,label: 'cli/src/main/java/up/visulog/cli/CLILauncher.java'},{y:5 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountLinesPerAuthor.java'},{y:59 ,label: 'webgen/ressources/main.html'},{y:186 ,label: 'webgen/team.html'},{y:265 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines AddedPerDayOfMonth.java'},{y:81 ,label: 'ToDo/ToDo.txt'},{y:2123 ,label: 'q'},{y:2753 ,label: 'webgen/resultats.html'},{y:1 ,label: 'cli/file name'},{y:26 ,label: 'analyzer/src/main/java/up/visulog/analyzer/AnalyzerPlugin.java'},{y:902 ,label: 'webgen/Style.css'},{y:161 ,label: 'webgen/styleTeam.css'},{y:10 ,label: 'config/build.gradle.kts'},{y:12 ,label: 'Documentation/CommitBuilderCR.txt'},{y:2 ,label: 'cli/younes.txt'},{y:84 ,label: 'gradlew.bat'},{y:336 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines AddedPerHourOfDay.java'},{y:34 ,label: 'build.gradle.kts'},{y:44 ,label: 'Documentation/cli.txt'},{y:217 ,label: 'cli/src/main/java/up/visulog/cli/GIULancher.java'},{y:1 ,label: 'cli/countMerge.js'},{y:2 ,label: 'cli/nadine.txt'},{y:172 ,label: 'gradlew'},{y:26 ,label: 'config/src/main/java/up/visulog/config/PluginConfig.java'},{y:147 ,label: 'analyzer/src/main/java/up/visulog/analyzer/User_Activity.java'},{y:30 ,label: 'analyzer/src/test/java/up.visulog.analyzer/TestCountLines AddedPerAuthorPlugin.java'},{y:34 ,label: 'webgen/showPanel.html'},{y:239 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines AddedPerAuthorPlugin.java'},{y:94 ,label: 'README.md'},{y:4 ,label: 'analyzer/src/main/java/up/visulog/analyzer/{CountLines AddedPerDay.java => CountLines AddedPerDayOfWeek.java}'},{y:63 ,label: 'webgen/countLines.html'},{y:259 ,label: 'cli/resultats.html'},{y:8 ,label: 'config/src/test/java/up/visulog/config/TestConfiguration.java'},{y:121 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines AddedPerDayOfWeek.java'},{y:7 ,label: '.gitignore'},{y:12 ,label: 'Documentation/config.txt'},{y:12 ,label: 'analyzer/build.gradle.kts'},{y:102 ,label: 'gitrawdata/src/main/java/up/visulog/gitrawdata/CommitBuilder.java'},{y:1 ,label: 'cli/toDelete.html'},{y:118 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CreateChart.java'},{y:37 ,label: 'Documentation/analyzer.txt'},{y:132 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLinesPerAuthor.java'},{y:38 ,label: 'analyzer/src/main/java/up/visulog/analyzer/Multithreading.java'},{y:45 ,label: 'gitrawdata/src/main/java/up/visulog/gitrawdata/ExecuteCommande.java'},{y:26 ,label: 'cli/src/test/java/up/visulog/cli/TestCLILauncher.java'},{y:1 ,label: 'SCRIPT/envsetup'},{y:142 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountMergeLines Added.java'},{y:40 ,label: 'cli/Help.txt'},{y:3 ,label: '.vscode/settings.json'},{y:2 ,label: 'settings.gradle.kts'},{y:35 ,label: 'config/src/main/java/up/visulog/config/Configuration.java'},{y:11 ,label: 'gitrawdata/build.gradle.kts'},{y:2 ,label: 'cli/countMerge.html'},{y:31 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountCommitPerDayOfMonth.java'},{y:104 ,label: 'Graph_Circulaire_ex.html'},{y:41 ,label: 'gitrawdata/src/test/resources/git.log'},{y:9 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountLines.java'},{y:11 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountLines AddedPerAuthorPlugin.java'},{y:2 ,label: 'cli/ee'},{y:241 ,label: 'gitrawdata/src/main/java/up/visulog/gitrawdata/Commit.java'},
+                {y:119 ,label: 'analyzer/src/main/java/up/visulog/analyzer/Analyzer.java'},{y:34 ,label: 'webgen/Graph.html'},{y:2 ,label: 'file.html'},{y:15 ,label: 'webgen/build.gradle.kts'},{y:5 ,label: 'gitrawdata/src/test/java/up/visulog/gitrawdata/TestLines.java'},{y:33 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountLines AddedPerHourOfDay.java'},{y:20 ,label: 'cli/build.gradle.kts'},{y:32 ,label: 'Documentation/gitrawdata.txt'},{y:1 ,label: 'cli/toDelete.htm'},{y:49 ,label: 'html/Graph.html'},{y:42 ,label: 'Contacts/contact.org'},{y:23 ,label: 'Documentation/AnalyzerPlugin.txt'},{y:66 ,label: 'gitrawdata/src/main/java/up/visulog/gitrawdata/Lines.java'},{y:55 ,label: 'gitrawdata/src/test/java/up/visulog/gitrawdata/TestCommit.java'},{y:330 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines.java'},{y:823 ,label: 'webgen/User.html'},{y:13 ,label: 'Documentation/CountLines Added.txt'},{y:104 ,label: 'analyzer/src/main/java/up/visulog/analyzer/Graph_Circulaire_ex.html'},{y:42 ,label: 'webgen/head.html'},{y:2 ,label: 'cli/racha.txt'},{y:126 ,label: 'analyzer/src/main/java/up/visulog/analyzer/AnalyzerResult.java'},{y:7 ,label: 'webgen/Graph_Circulaire_ex.html'},{y:1 ,label: 'webgen/ressources/fichierJS/coutnLines.js'},{y:6 ,label: 'gradle/wrapper/gradle-wrapper.properties'},{y:31 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountMergeLines Added.java'},{y:5 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountCommitPerDayOfWeek.java'},{y:66 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines AddedPerDay.java'},{y:3 ,label: 'cli/ConfigFile.txt'},{y:19 ,label: 'webgen/ressources/fichierJS/countLines.js'},{y:606 ,label: 'cli/src/main/java/up/visulog/cli/CLILauncher.java'},{y:5 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountLinesPerAuthor.java'},{y:59 ,label: 'webgen/ressources/main.html'},{y:186 ,label: 'webgen/team.html'},{y:265 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines AddedPerDayOfMonth.java'},{y:81 ,label: 'ToDo/ToDo.txt'},{y:2123 ,label: 'q'},{y:2937 ,label: 'webgen/resultats.html'},{y:1 ,label: 'cli/file name'},{y:26 ,label: 'analyzer/src/main/java/up/visulog/analyzer/AnalyzerPlugin.java'},{y:902 ,label: 'webgen/Style.css'},{y:161 ,label: 'webgen/styleTeam.css'},{y:10 ,label: 'config/build.gradle.kts'},{y:12 ,label: 'Documentation/CommitBuilderCR.txt'},{y:2 ,label: 'cli/younes.txt'},{y:84 ,label: 'gradlew.bat'},{y:336 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines AddedPerHourOfDay.java'},{y:34 ,label: 'build.gradle.kts'},{y:44 ,label: 'Documentation/cli.txt'},{y:217 ,label: 'cli/src/main/java/up/visulog/cli/GIULancher.java'},{y:1 ,label: 'cli/countMerge.js'},{y:2 ,label: 'cli/nadine.txt'},{y:172 ,label: 'gradlew'},{y:26 ,label: 'config/src/main/java/up/visulog/config/PluginConfig.java'},{y:147 ,label: 'analyzer/src/main/java/up/visulog/analyzer/User_Activity.java'},{y:30 ,label: 'analyzer/src/test/java/up.visulog.analyzer/TestCountLines AddedPerAuthorPlugin.java'},{y:34 ,label: 'webgen/showPanel.html'},{y:239 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines AddedPerAuthorPlugin.java'},{y:151 ,label: 'README.md'},{y:4 ,label: 'analyzer/src/main/java/up/visulog/analyzer/{CountLines AddedPerDay.java => CountLines AddedPerDayOfWeek.java}'},{y:63 ,label: 'webgen/countLines.html'},{y:259 ,label: 'cli/resultats.html'},{y:8 ,label: 'config/src/test/java/up/visulog/config/TestConfiguration.java'},{y:121 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines AddedPerDayOfWeek.java'},{y:7 ,label: '.gitignore'},{y:12 ,label: 'Documentation/config.txt'},{y:12 ,label: 'analyzer/build.gradle.kts'},{y:102 ,label: 'gitrawdata/src/main/java/up/visulog/gitrawdata/CommitBuilder.java'},{y:1 ,label: 'cli/toDelete.html'},{y:118 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CreateChart.java'},{y:37 ,label: 'Documentation/analyzer.txt'},{y:132 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLinesPerAuthor.java'},{y:38 ,label: 'analyzer/src/main/java/up/visulog/analyzer/Multithreading.java'},{y:45 ,label: 'gitrawdata/src/main/java/up/visulog/gitrawdata/ExecuteCommande.java'},{y:26 ,label: 'cli/src/test/java/up/visulog/cli/TestCLILauncher.java'},{y:1 ,label: 'SCRIPT/envsetup'},{y:142 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountMergeLines Added.java'},{y:40 ,label: 'cli/Help.txt'},{y:3 ,label: '.vscode/settings.json'},{y:2 ,label: 'settings.gradle.kts'},{y:35 ,label: 'config/src/main/java/up/visulog/config/Configuration.java'},{y:11 ,label: 'gitrawdata/build.gradle.kts'},{y:2 ,label: 'cli/countMerge.html'},{y:31 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountCommitPerDayOfMonth.java'},{y:104 ,label: 'Graph_Circulaire_ex.html'},{y:41 ,label: 'gitrawdata/src/test/resources/git.log'},{y:9 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountLines.java'},{y:11 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountLines AddedPerAuthorPlugin.java'},{y:2 ,label: 'cli/ee'},{y:241 ,label: 'gitrawdata/src/main/java/up/visulog/gitrawdata/Commit.java'},
     ]}]});
     chart.render();
     }
@@ -427,7 +365,7 @@ function afficheGraph7() {
             showInLegend: "true",
             indexLabelFontSize: 16,
             dataPoints: [
-                {y:51 ,label: 'analyzer/src/main/java/up/visulog/analyzer/Analyzer.java'},{y:4 ,label: 'webgen/Graph.html'},{y:2 ,label: 'file.html'},{y:2 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountLines DeletedPerHourOfDay.java'},{y:4 ,label: 'cli/build.gradle.kts'},{y:1 ,label: 'cli/toDelete.htm'},{y:49 ,label: 'html/Graph.html'},{y:33 ,label: 'Contacts/contact.org'},{y:12 ,label: 'gitrawdata/src/test/java/up/visulog/gitrawdata/TestCommit.java'},{y:146 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines.java'},{y:736 ,label: 'webgen/User.html'},{y:1 ,label: 'webgen/head.html'},{y:1 ,label: 'cli/racha.txt'},{y:45 ,label: 'analyzer/src/main/java/up/visulog/analyzer/AnalyzerResult.java'},{y:30 ,label: 'webgen/Graph_Circulaire_ex.html'},{y:1 ,label: 'webgen/ressources/fichierJS/coutnLines.js'},{y:1 ,label: 'gradle/wrapper/gradle-wrapper.properties'},{y:7 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountMergeLines Deleted.java'},{y:1 ,label: 'cli/ConfigFile.txt'},{y:16 ,label: 'webgen/ressources/fichierJS/countLines.js'},{y:348 ,label: 'cli/src/main/java/up/visulog/cli/CLILauncher.java'},{y:9 ,label: 'webgen/ressources/main.html'},{y:160 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines DeletedPerDayOfMonth.java'},{y:25 ,label: 'ToDo/ToDo.txt'},{y:2123 ,label: 'q'},{y:998 ,label: 'webgen/resultats.html'},{y:4 ,label: 'analyzer/src/main/java/up/visulog/analyzer/AnalyzerPlugin.java'},{y:9 ,label: 'webgen/Style.css'},{y:226 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines DeletedPerHourOfDay.java'},{y:10 ,label: 'build.gradle.kts'},{y:1 ,label: 'Documentation/cli.txt'},{y:16 ,label: 'cli/src/main/java/up/visulog/cli/GIULancher.java'},{y:14 ,label: 'config/src/main/java/up/visulog/config/PluginConfig.java'},{y:11 ,label: 'analyzer/src/main/java/up/visulog/analyzer/User_Activity.java'},{y:3 ,label: 'analyzer/src/test/java/up.visulog.analyzer/TestCountLines DeletedPerAuthorPlugin.java'},{y:146 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines DeletedPerAuthorPlugin.java'},{y:19 ,label: 'README.md'},{y:4 ,label: 'analyzer/src/main/java/up/visulog/analyzer/{CountLines DeletedPerDay.java => CountLines DeletedPerDayOfWeek.java}'},{y:63 ,label: 'webgen/countLines.html'},{y:148 ,label: 'cli/resultats.html'},{y:77 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines DeletedPerDayOfWeek.java'},{y:4 ,label: 'Documentation/config.txt'},{y:59 ,label: 'gitrawdata/src/main/java/up/visulog/gitrawdata/CommitBuilder.java'},{y:1 ,label: 'cli/toDelete.html'},{y:59 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CreateChart.java'},{y:1 ,label: 'Documentation/analyzer.txt'},{y:12 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLinesPerAuthor.java'},{y:16 ,label: 'analyzer/src/main/java/up/visulog/analyzer/Multithreading.java'},{y:3 ,label: 'gitrawdata/src/main/java/up/visulog/gitrawdata/ExecuteCommande.java'},{y:7 ,label: 'cli/src/test/java/up/visulog/cli/TestCLILauncher.java'},{y:49 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountMergeLines Deleted.java'},{y:9 ,label: 'cli/Help.txt'},{y:6 ,label: 'config/src/main/java/up/visulog/config/Configuration.java'},{y:1 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountCommitPerDayOfMonth.java'},{y:3 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountLines.java'},{y:11 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountLines DeletedPerAuthorPlugin.java'},{y:82 ,label: 'gitrawdata/src/main/java/up/visulog/gitrawdata/Commit.java'},
+                {y:51 ,label: 'analyzer/src/main/java/up/visulog/analyzer/Analyzer.java'},{y:4 ,label: 'webgen/Graph.html'},{y:2 ,label: 'file.html'},{y:2 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountLines DeletedPerHourOfDay.java'},{y:4 ,label: 'cli/build.gradle.kts'},{y:1 ,label: 'cli/toDelete.htm'},{y:49 ,label: 'html/Graph.html'},{y:33 ,label: 'Contacts/contact.org'},{y:12 ,label: 'gitrawdata/src/test/java/up/visulog/gitrawdata/TestCommit.java'},{y:146 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines.java'},{y:736 ,label: 'webgen/User.html'},{y:1 ,label: 'webgen/head.html'},{y:1 ,label: 'cli/racha.txt'},{y:45 ,label: 'analyzer/src/main/java/up/visulog/analyzer/AnalyzerResult.java'},{y:30 ,label: 'webgen/Graph_Circulaire_ex.html'},{y:1 ,label: 'webgen/ressources/fichierJS/coutnLines.js'},{y:1 ,label: 'gradle/wrapper/gradle-wrapper.properties'},{y:7 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountMergeLines Deleted.java'},{y:1 ,label: 'cli/ConfigFile.txt'},{y:16 ,label: 'webgen/ressources/fichierJS/countLines.js'},{y:348 ,label: 'cli/src/main/java/up/visulog/cli/CLILauncher.java'},{y:9 ,label: 'webgen/ressources/main.html'},{y:160 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines DeletedPerDayOfMonth.java'},{y:25 ,label: 'ToDo/ToDo.txt'},{y:2123 ,label: 'q'},{y:1182 ,label: 'webgen/resultats.html'},{y:4 ,label: 'analyzer/src/main/java/up/visulog/analyzer/AnalyzerPlugin.java'},{y:9 ,label: 'webgen/Style.css'},{y:226 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines DeletedPerHourOfDay.java'},{y:10 ,label: 'build.gradle.kts'},{y:1 ,label: 'Documentation/cli.txt'},{y:16 ,label: 'cli/src/main/java/up/visulog/cli/GIULancher.java'},{y:14 ,label: 'config/src/main/java/up/visulog/config/PluginConfig.java'},{y:11 ,label: 'analyzer/src/main/java/up/visulog/analyzer/User_Activity.java'},{y:3 ,label: 'analyzer/src/test/java/up.visulog.analyzer/TestCountLines DeletedPerAuthorPlugin.java'},{y:146 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines DeletedPerAuthorPlugin.java'},{y:19 ,label: 'README.md'},{y:4 ,label: 'analyzer/src/main/java/up/visulog/analyzer/{CountLines DeletedPerDay.java => CountLines DeletedPerDayOfWeek.java}'},{y:63 ,label: 'webgen/countLines.html'},{y:148 ,label: 'cli/resultats.html'},{y:77 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLines DeletedPerDayOfWeek.java'},{y:4 ,label: 'Documentation/config.txt'},{y:59 ,label: 'gitrawdata/src/main/java/up/visulog/gitrawdata/CommitBuilder.java'},{y:1 ,label: 'cli/toDelete.html'},{y:59 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CreateChart.java'},{y:1 ,label: 'Documentation/analyzer.txt'},{y:12 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountLinesPerAuthor.java'},{y:16 ,label: 'analyzer/src/main/java/up/visulog/analyzer/Multithreading.java'},{y:3 ,label: 'gitrawdata/src/main/java/up/visulog/gitrawdata/ExecuteCommande.java'},{y:7 ,label: 'cli/src/test/java/up/visulog/cli/TestCLILauncher.java'},{y:49 ,label: 'analyzer/src/main/java/up/visulog/analyzer/CountMergeLines Deleted.java'},{y:9 ,label: 'cli/Help.txt'},{y:6 ,label: 'config/src/main/java/up/visulog/config/Configuration.java'},{y:1 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountCommitPerDayOfMonth.java'},{y:3 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountLines.java'},{y:11 ,label: 'analyzer/src/test/java/up/visulog/analyzer/TestCountLines DeletedPerAuthorPlugin.java'},{y:82 ,label: 'gitrawdata/src/main/java/up/visulog/gitrawdata/Commit.java'},
     ]}]});
     chart.render();
     }
@@ -435,6 +373,68 @@ function afficheGraph7() {
     document.getElementById("7").disabled = false;
     document.getElementById("7").style.background = "#0E4BEF";
     document.getElementById("cnt7").style.display = "none";
+</script>
+            
+
+<div id="cnt9" class="tabPanel" style="height: 620px; width: 100%; overflow: scroll;">
+    <div id="chartContainer9" style="height: 100%; width: 100%;"></div>
+</div>
+<script>
+function afficheGraph9() {
+    var w = document.getElementById('chartContainer9').offsetWidth;
+    var h = document.getElementById('chartContainer9').offsetHeight;
+    var chart = new CanvasJS.Chart("chartContainer9", {
+    width:w,height:h,
+    theme: "light2",        exportEnabled: true,
+    animationEnabled: true,
+    title: {
+            text: "Commit Per User "
+    }, 
+    data: [{
+            type: "pie",
+            toolTipContent: "<b>{label}</b>: {y} commits",
+            showInLegend: "true",
+            indexLabelFontSize: 16,
+            dataPoints: [
+                {y:25 ,label: 'DJEGHALI racha nadine <nadinedjeghali@hotmail.com>'},{y:1 ,label: 'AMIRA said <amira10586@gmail.com>'},{y:3 ,label: 'Sofiane Boudet <Sofiane.boudet1@gmail.com>'},{y:11 ,label: 'Yacine <flici>'},{y:40 ,label: 'Anyes TAFOUGHALT <tafoughaltanyes@gmail.com>'},{y:6 ,label: 'Said Amira <saidamira@eduroam-prg-hf-1-7-23.net.univ-paris-diderot.fr>'},{y:2 ,label: 'nadine10 <rachanadine2002@gmail.com>'},{y:2 ,label: 'Xavier Denis <xldenis@gmail.com>'},{y:4 ,label: 'AROUS abderrahim <arous.abderrahim@gmail.com>'},{y:12 ,label: 'FLICI yacine <yacineflici2@gmail.com>'},{y:14 ,label: 'AKLI melissa <aklimeli24@gmail.com>'},{y:67 ,label: 'Salhi Younes <younessalhi520@gmail.com>'},{y:1 ,label: 'Younes Salhi <salhiy@x06.script.univ-paris-diderot.fr>'},{y:12 ,label: 'Aldric Degorre <adegorre@irif.fr>'},{y:1 ,label: 'Colin Gonzalez <colin@nomadic-labs.com>'},{y:18 ,label: 'yahmiy <yanis.yahmi2002@gmail.com>'},{y:2 ,label: 'BOUDET sofiane <sofiane.boudet1@gmail.com>'},
+    ]}]});
+    chart.render();
+    }
+    afficheGraph9();
+    document.getElementById("9").disabled = false;
+    document.getElementById("9").style.background = "#0E4BEF";
+    document.getElementById("cnt9").style.display = "none";
+</script>
+            
+
+<div id="cnt3" class="tabPanel" style="height: 620px; width: 100%; overflow: scroll;">
+    <div id="chartContainer3" style="height: 100%; width: 100%;"></div>
+</div>
+<script>
+function afficheGraph3() {
+    var w = document.getElementById('chartContainer3').offsetWidth;
+    var h = document.getElementById('chartContainer3').offsetHeight;
+    var chart = new CanvasJS.Chart("chartContainer3", {
+    width:w,height:h,
+    theme: "light2",        exportEnabled: true,
+    animationEnabled: true,
+    title: {
+            text: "Commits Per Hour Of Day"
+    }, 
+    data: [{
+            type: "line",
+            toolTipContent: "<b>{label}</b>: {y} commits",
+            showInLegend: "true",
+            indexLabelFontSize: 16,
+            dataPoints: [
+                {y:1 ,label: '00'},{y:2 ,label: '01'},{y:2 ,label: '02'},{y:2 ,label: '03'},{y:0 ,label: '04'},{y:0 ,label: '05'},{y:0 ,label: '06'},{y:3 ,label: '07'},{y:1 ,label: '08'},{y:2 ,label: '09'},{y:1 ,label: '10'},{y:2 ,label: '11'},{y:3 ,label: '12'},{y:2 ,label: '13'},{y:2 ,label: '14'},{y:1 ,label: '15'},{y:1 ,label: '16'},{y:2 ,label: '17'},{y:3 ,label: '18'},{y:1 ,label: '19'},{y:2 ,label: '20'},{y:1 ,label: '21'},{y:2 ,label: '22'},{y:2 ,label: '23'},
+    ]}]});
+    chart.render();
+    }
+    afficheGraph3();
+    document.getElementById("3").disabled = false;
+    document.getElementById("3").style.background = "#0E4BEF";
+    document.getElementById("cnt3").style.display = "none";
 </script>
             
 <div id="cnt12" class="tabPanel" style="height: 620px; width: 100%; background: transparent;">
