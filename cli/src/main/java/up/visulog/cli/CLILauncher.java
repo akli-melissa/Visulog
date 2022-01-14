@@ -13,7 +13,7 @@ import java.awt.Desktop;
 
 public class CLILauncher {
 
-    private static String[] ALLCommands = {"countCommits","countCommits/10-12-2021/10-01-2022","countLines","countMergeCommits","countCommitsPerDayOfWeek","countCommitsPerDayOfMonth","countCommitsPerHourOfDay","countLinesPerAuthor"};
+    private static String[] ALLCommands = {"countCommits","countCommits/10-12-2021/10-01-2022","countLines","countMergeCommits","countCommitsPerDayOfWeek","countCommitsPerDayOfMonth","countCommitsPerHourOfDay","countLinesPerAuthor","userStats/Salhi_Younes"};
 
     public static void run(String[] args) {
         var config = makeConfigFromCommandLineArgs(args);
@@ -105,7 +105,6 @@ public class CLILauncher {
 
     private static boolean runAnalysis(HashMap<String, PluginConfig> plugins, String pValue) {
         String[] pValues = pValue.split("/");
-        
         switch (pValues[0]) {
         case "All": 
             runAllCommand(plugins);

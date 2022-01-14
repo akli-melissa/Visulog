@@ -2,15 +2,10 @@ package up.visulog.analyzer;
 
 import java.util.Map;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.io.BufferedReader;
-import java.io.File;
-import java.util.ArrayList;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import up.visulog.config.Configuration;
 import up.visulog.gitrawdata.Commit;
 
@@ -30,7 +25,7 @@ public class User_Activity implements AnalyzerPlugin{
         int[] result = {0,0};
         for (Commit commit : commits){
             String authorName = commit.author.substring(0, commit.author.indexOf("<"));
-            if (!(authorName.equals(author))) continue;
+            if (!(authorName.replace(" ","").equals(authorStat.replace(" ", "")))) continue;
             String infoCommits = commit.commitInformations;
             if (infoCommits != null && infoCommits.length() > 0){
                 String[] splitedInformations = infoCommits.split(",");
@@ -63,12 +58,10 @@ public class User_Activity implements AnalyzerPlugin{
         return nbMerge;
     }
     private int getCommits(List<Commit> commits,String author){
-        Map<String, Integer> commitsPerAuthor = new HashMap<>();// pour chaque user un nombre de commits
-        final Map<String, Integer> commitsPerWeek = new HashMap<>();
         var nb =0;
         for (var commit : commits) {
             String authorName = commit.author.substring(0, commit.author.indexOf("<"));
-            if (authorName.equals(authorStat)){
+            if (authorName.replace(" ","").equals(authorStat.replace(" ", ""))){
                 nb++;
             }
         }
@@ -120,7 +113,6 @@ public class User_Activity implements AnalyzerPlugin{
             String dir = System.getProperty("user.dir");
             dir = dir.replace("cli","");
             StringBuilder html = new StringBuilder("");
-            String datapoints = "";
             try {
                 BufferedReader in = new BufferedReader(new FileReader(dir+"/webgen/User.html"));
                 String str;
@@ -137,7 +129,7 @@ public class User_Activity implements AnalyzerPlugin{
             r = r.replace("DELINE",Integer.toString(results_dict.get("Lines deleted")));
             r = r.replace("COUNTMERGE",Integer.toString(results_dict.get("Merge commits")));
             r = r.replace("ADDLINE",Integer.toString(results_dict.get("Lines added")));
-            return r;
+            return r.replace("_id","11");
         }
 
     }   

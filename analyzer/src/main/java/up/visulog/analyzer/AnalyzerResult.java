@@ -39,9 +39,9 @@ public class AnalyzerResult {
         
         result.append("<body>" + "\n");
         result.append(subResults.stream().map(AnalyzerPlugin.Result::getResultAsHtmlDiv).reduce("", (acc, cur) -> acc + "\n" + cur));
-        result.append("</div> "+ "\n");
-        result.append("</div> "+ "\n");
         result.append(readShowPanel() + "\n");
+        result.append("</div> "+ "\n");
+        result.append("</div> "+ "\n");
         result.append("</body> "+ "\n");
         result.append("</html>");
         

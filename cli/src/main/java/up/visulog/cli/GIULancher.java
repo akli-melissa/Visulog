@@ -18,13 +18,13 @@ public class GIULancher extends JFrame{
         menubar = new JMenuBar();
         path = new JTextField("Enter the path");
         showInformations = new JLabel("<html>chose command <br>to run</html>");
-        listechoix = new JComboBox<>(new String[]{"countLines","countMergeCommits","countCommits","countCommitsPerDayOfWeek","countCommitsPerDayOfMonth","countCommitsPerHourOfDay","countLinesPerAuthor","countCommitsPerDate","All"});
+        listechoix = new JComboBox<>(new String[]{"countLines","countMergeCommits","countCommits","countCommitsPerDayOfWeek","countCommitsPerDayOfMonth","countCommitsPerHourOfDay","countLinesPerAuthor","countCommitsPerDate","userStats","All"});
         mainContainer = new JPanel();
         buttonContainer = new JPanel();
         mainContainer.setLayout(null);
         path.setBounds(50,10,150,30);
         listechoix.setBounds(300,10,200,30);
-        showInformations.setBounds(170,50,220,150);
+        showInformations.setBounds(170,50,210,150);
         buttonContainer.setBounds(140,200,250,30);
         mainContainer.add(listechoix);
         mainContainer.add(showInformations);
@@ -83,8 +83,9 @@ public class GIULancher extends JFrame{
         ajout.addActionListener((e)->{
             boolean show = false;
             chosecommand = listechoix.getItemAt(listechoix.getSelectedIndex());
-            if (chosecommand.equals("countCommitsPerDate")){
-                showDate();
+            if (chosecommand.equals("countCommitsPerDate") || chosecommand.equals("userStats")){
+                if (chosecommand.equals("countCommitsPerDate")) showDate();
+                else showName();
                 show = true;
             }
             if (!chosecommand.equals("All") && commandToRun.equals("All")) commandToRun = "";
@@ -94,6 +95,31 @@ public class GIULancher extends JFrame{
         });
         buttonContainer.setLayout(new GridLayout(0,3));
         buttonContainer.add(ajout);
+    }
+
+    private void showName(){
+        class ShowName extends JFrame{
+            public ShowName(){
+                JTextField name = new JTextField("name");
+                JPanel mainContainer = new JPanel();
+                JButton enter = new JButton("enter");
+                setSize(200,100);
+                setResizable(false);
+                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                setLocationRelativeTo(null);
+                mainContainer.add(name);
+                mainContainer.add(enter);
+                enter.addActionListener((e)->{
+                    chosecommand = "userStats/"+name.getText().replace(" ","_");
+                    commandToRun += chosecommand +"<br>";
+                    showInformations.setText("<html>"+commandToRun+"</html>");
+                    setVisible(false);
+                    dispose();
+                });
+                setContentPane(mainContainer);
+            }
+        }
+        (new ShowName()).setVisible(true);
     }
 
     private void showDate(){
