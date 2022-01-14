@@ -73,3 +73,60 @@ For instance
 ```
 
 Will count the commits of each author in the current branch of the git repository present in the current folder (".").
+### To show the GIU
+```
+./gradlew run --args='showgui'
+```
+It will show the interface in wich the user will be able to chose a command to run
+To run a command you will first chose the command that you want, then click add and run the command
+You can chose the path if you want (by default it is '.')
+to save or load configurations click save or load in the menu of the GIU
+### All the commands
+```
+./gradlew run --args='showgui'
+```
+To show the interface
+```
+./gradlew run --args='. --addPlugin=countCommits'
+```
+Count the number of commits per person
+```
+./gradlew run --args='. --addPlugin=countCommits/10-12-2021/10-01-2022'
+```
+Count the number of commits per person between the 10-12-2021 and 10-01-2022
+```
+./gradlew run --args='. --addPlugin=countLines'
+```
+Count the lines added and deleted in each file of the project
+```
+./gradlew run --args='. --addPlugin=countMergeCommits'
+```
+Count the number of merge commits per person
+```
+./gradlew run --args='. --addPlugin=countCommitsPerDayOfWeek'
+```
+Count the number of commits per day 
+```
+./gradlew run --args='. --addPlugin=countCommitsPerDayOfMonth'
+```
+Count the number of commits per day of month
+```
+./gradlew run --args='. --addPlugin=countCommitsPerHourOfDay'
+```
+Count the number of commits per Hour of day
+```
+./gradlew run --args='. --addPlugin=countLinesPerAuthor'
+```
+Count the number of lines added and deleted per user in each file of the project
+```
+./gradlew run --args='. --addPlugin=userStats/Salhi_Younes'
+```
+Show the stats of the user "Salhi Younes" (number of commits,merge commits,lines added and lines deleted) instead of space you will have to put '_'
+```
+./gradlew run --args='. --loadConfigFile=fileName'
+```
+Load the configuration in the file 'fileName' and it will run them
+```
+./gradlew run --args='. --justSaveConfigFile=fileName:conf1,conf2,..'
+```
+Save the conf1,conf2,.. in the file fileName, you will have to separate between the file name and the configurations with ':' and between all the configurations with ','
