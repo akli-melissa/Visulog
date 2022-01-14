@@ -23,7 +23,7 @@ Voici les options que vous pouvez utiliser (VEUILLEZ BIEN RESPECTER LA SYNTAXE I
 	**-countCommitsPerDayOfMonth : pour le nombre de commits par jours de mois ( 20 janvier,10 avril ,...).
 	
 	**-countCommitsPerHourOfDay : pour le nombre de commits par heures ( 13h,08h,...).
-
+	**-userStats/user   : remplacer user avec le nom de l'auteur en remplacent les espaces ' ' avec '_'
 
 "nomDufichierDeConfiguration" : le nom du fichier dans le quel vous voulez sauvegarder 
 				 vos options argument1 argument2 separés par des virgules ','

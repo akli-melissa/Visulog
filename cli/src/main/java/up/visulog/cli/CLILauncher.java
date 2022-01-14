@@ -105,6 +105,7 @@ public class CLILauncher {
 
     private static boolean runAnalysis(HashMap<String, PluginConfig> plugins, String pValue) {
         String[] pValues = pValue.split("/");
+        
         switch (pValues[0]) {
         case "All": 
             runAllCommand(plugins);
@@ -120,6 +121,19 @@ public class CLILauncher {
                 }
             });
         break;
+        case "userStats":
+            plugins.put(pValue, new PluginConfig() {
+                // Ajout des conifigurations
+                @Override
+                public Map<String, String> config() {
+                    Map<String, String> configurationPlugin = new HashMap<String, String>();
+                    configurationPlugin.put("command", "log");// la commande git
+                    configurationPlugin.put("option1","--shortstat");//pour plus d'informations sur le commit
+                    return configurationPlugin;
+                }
+            });
+            break;
+
         case "countLines":
             plugins.put("countLines", new PluginConfig() {
                 // Ajout des conifigurations
