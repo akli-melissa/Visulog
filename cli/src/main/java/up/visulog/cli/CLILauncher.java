@@ -13,7 +13,7 @@ import java.awt.Desktop;
 
 public class CLILauncher {
 
-    private static String[] ALLCommands = {"countLines","countMergeCommits","countCommits/12-11-2021/15-12-2021","countCommitsPerDayOfWeek","countCommitsPerDayOfMonth","countCommitsPerHourOfDay","countLinesPerAuthor"};
+    private static String[] ALLCommands = {"countCommits","countCommits/10-12-2021/10-01-2022","countLines","countMergeCommits","countCommitsPerDayOfWeek","countCommitsPerDayOfMonth","countCommitsPerHourOfDay","countLinesPerAuthor"};
 
     public static void run(String[] args) {
         var config = makeConfigFromCommandLineArgs(args);
@@ -109,17 +109,7 @@ public class CLILauncher {
         case "All": 
             runAllCommand(plugins);
         break;
-        case "countLinesPerAuthor": 
-            plugins.put("countLinesPerAuthor", new PluginConfig() {
-                @Override
-                public Map<String, String> config() {
-                    Map<String, String> configurationPlugin = new HashMap<String, String>();
-                    configurationPlugin.put("command", "log");// la commande git
-                    configurationPlugin.put("option1","--shortstat");//pour plus d'informations sur le commit
-                    return configurationPlugin;
-                }
-            });
-        break;
+
         case "countLines":
             plugins.put("countLines", new PluginConfig() {
                 // Ajout des conifigurations
@@ -132,7 +122,19 @@ public class CLILauncher {
                     return configurationPlugin;
                 }
             });
-            break;
+        break;
+
+        case "countLinesPerAuthor":
+            plugins.put("countLinesPerAuthor", new PluginConfig() {
+                @Override
+                public Map<String, String> config() {
+                    Map<String, String> configurationPlugin = new HashMap<String, String>();
+                    configurationPlugin.put("command", "log");// la commande git
+                    configurationPlugin.put("option1","--shortstat");//pour plus d'informations sur le commit
+                    return configurationPlugin;
+                }
+            });
+        break;
 
         case "countMergeCommits":
             plugins.put("countMerge", new PluginConfig() {
@@ -143,18 +145,18 @@ public class CLILauncher {
                     return configurationPlugin;
                 }
             });
-            break;
+        break;
 
-            case "countCommits": 
-                plugins.put(pValue, new PluginConfig() {
-                @Override
+        case "countCommits": 
+            plugins.put(pValue, new PluginConfig() {
+            @Override
                 public Map<String, String> config() {
                     Map<String, String> configurationPlugin = new HashMap<String, String>();
                     configurationPlugin.put("command", "log");// la commande git
                     return configurationPlugin;
                 }
             });
-            break;
+        break;
 
             case "countCommitsPerDayOfWeek": 
                 plugins.put("countCommitsPerDayOfWeek", new PluginConfig() {
@@ -177,16 +179,17 @@ public class CLILauncher {
                 }
             });
             break;
-            case "countCommitsPerHourOfDay": 
-                plugins.put("countCommitsPerHourOfDay", new PluginConfig() {
-                @Override
+        
+        case "countCommitsPerHourOfDay": 
+            plugins.put("countCommitsPerHourOfDay", new PluginConfig() {
+            @Override
                 public Map<String,String> config(){
                     Map<String,String> configurationPlugin = new HashMap<String,String>();
                     configurationPlugin.put("command","log");//la commande git
                     return configurationPlugin;
                 }
             });
-            break;
+        break;
 
         default:
             return false ;

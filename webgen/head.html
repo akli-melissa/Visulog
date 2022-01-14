@@ -1,9 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="Style.css">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Visulog Statistics</title>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js " integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
+<body>
+    <nav>
+        <div class="logo">
+          Visulog
+        </div>
+        <input type="checkbox" id="click">
+        <label for="click" class="menu-btn">
+        <i class="fas fa-bars"></i>
+        </label>
+        <ul>
+           <li><a class="active" href="#">main</a></li>
+           <li><a href="team.html">contact</a></li>
+        </ul>
+     </nav>
+     <div class="content">
+        <h1 class="title">Chose a graph to display </h1>
+        <div class="tabContainer">
+            <div class="buttonContainer">
+                <button id="3" disabled="disabled" onclick="showPanel(3,'#FFF')">Commits Per Hour Of Day</button>
+                <button id="2" disabled="disabled" onclick="showPanel(2,'#FFF')" >Commits Per Day Of Week</button>
+                <button id="4" disabled="disabled" onclick="showPanel(4,'#FFF')" >Lines Added Per User</button>
+                <button id="5" disabled="disabled" onclick="showPanel(5,'#FFF')" >Lines Deleted Per User</button>
+                <button id="9" disabled="disabled" onclick="showPanel(9,'#FFF')" >Number Commits Per User</button>
+                <button id="1" disabled="disabled" onclick="showPanel(1,'#FFF')" >Commits Per Day Of Month</button>
+                <button id="6" disabled="disabled" onclick="showPanel(6,'#FFF')" >Number Of Added Lines</button>
+                <button id="7" disabled="disabled" onclick="showPanel(7,'#FFF')" >Number Of Deleted Lines</button>
+                <button id="8" disabled="disabled" onclick="showPanel(8,'#FFF')" >Merge Commit Per User</button>
+                <button id="10" disabled="disabled" onclick="showPanel(10,'#FFF')" >Commits per user per date</button>
+            </div>

@@ -1,0 +1,22 @@
+<script>
+
+	var tabButtons=document.querySelectorAll(".tabContainer .buttonContainer button");
+	var tabPanels=document.querySelectorAll(".tabPanel");
+
+	function showPanel(panelIndex,colorCode) {
+	    tabButtons.forEach(function(node){
+            if (node.style.backgroundColor == "rgb(255, 255, 255)"){
+                node.style.backgroundColor= "#0E4BEF";
+                node.style.color= "white";
+            }
+	    });
+        document.getElementById(panelIndex).style.backgroundColor=colorCode;
+	    document.getElementById(panelIndex).style.color="black";
+	    tabPanels.forEach(function(node){
+            if (node.innerHTML.indexOf("chartContainer"+panelIndex+"\"") != -1){
+                node.style.display="block";
+                node.style.backgroundColor=colorCode;
+            }else node.style.display="none";
+        });
+    }
+</script>

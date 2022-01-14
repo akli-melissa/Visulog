@@ -11,8 +11,8 @@ import java.io.IOException;
 
 public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
     private String extension = "";
-    static private Date debut=null;
-    static private Date fin=null;
+    private Date debut=null;
+    private Date fin=null;
     private final Configuration configuration;
     private Result result;// classe interne
 
@@ -25,7 +25,7 @@ public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
         debut = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss",Locale.ENGLISH).parse(dateDebut+" 00:00:00");
        fin = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss",Locale.ENGLISH).parse(dateFin+" 23:59:59");
     }
-    static Result processLog(List<Commit> gitLog) throws Exception {
+    Result processLog(List<Commit> gitLog) throws Exception {
         var result = new Result();
         for (var commit : gitLog) {
             if(debut == null && fin == null){
@@ -63,7 +63,7 @@ public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
     }
 
     // Implementation de la sous interface Result de AnalyzerPlugin
-    static class Result implements AnalyzerPlugin.Result {
+    class Result implements AnalyzerPlugin.Result {
         private final Map<String, Integer> commitsPerAuthor = new HashMap<>();// pour chaque user un nombre de commits
 
         Map<String, Integer> getCommitsPerAuthor() {
@@ -96,7 +96,15 @@ public class CountCommitsPerAuthorPlugin implements AnalyzerPlugin {
             for (Map.Entry<String,Integer> item:commitsPerAuthor.entrySet()){
                 datapoints+="{y:"+ item.getValue() + " ,label: \'"+item.getKey()+"\'},";
             }
-            return html.toString().replace("///data///",datapoints.toString()).replace("Commit","Commit Per User").replace("//type_graph//","pie").replace("_id","9");
+            String id = "9",title = "Commit Per User ";
+            if (debut!=null && fin!=null){
+                id = "10";
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                String debutDate= formatter.format(debut);
+                String findate= formatter.format(fin);
+                title +=  "between " + debutDate + " and " + findate; 
+            }
+            return html.toString().replace("///data///",datapoints.toString()).replace("Commits",title).replace("//type_graph//","pie").replace("_id",id);
         }
     }
 }

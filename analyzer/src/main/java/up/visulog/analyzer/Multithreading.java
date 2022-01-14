@@ -8,17 +8,10 @@ class Multithreading extends Thread {
     public void run()
     {
         try {
-            // Displaying the thread that is running
-            System.out.println(
-                "Thread " + Thread.currentThread().getId()
-                + " is running");
 
             this.plugin.run();
 
-            
-            System.out.println(
-                "Thread " + Thread.currentThread().getId()
-                + " Finished");
+        
 
             }
         catch (Exception e) {

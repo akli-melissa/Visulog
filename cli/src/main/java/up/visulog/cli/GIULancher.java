@@ -11,17 +11,20 @@ public class GIULancher extends JFrame{
     private String commandToRun = "";
     private JPanel buttonContainer;
     private JTextField path;
+    private JMenuBar menubar;
+    private String chosecommand;
 
     public GIULancher(){
+        menubar = new JMenuBar();
         path = new JTextField("Enter the path");
         showInformations = new JLabel("<html>chose command <br>to run</html>");
-        listechoix = new JComboBox<>(new String[]{"countLines","countMergeCommits","countCommits","countCommitsPerDayOfWeek","countCommitsPerDayOfMonth","countCommitsPerHourOfDay","countLinesPerAuthor","All"});
+        listechoix = new JComboBox<>(new String[]{"countLines","countMergeCommits","countCommits","countCommitsPerDayOfWeek","countCommitsPerDayOfMonth","countCommitsPerHourOfDay","countLinesPerAuthor","countCommitsPerDate","All"});
         mainContainer = new JPanel();
         buttonContainer = new JPanel();
         mainContainer.setLayout(null);
         path.setBounds(50,10,150,30);
         listechoix.setBounds(300,10,200,30);
-        showInformations.setBounds(170,50,200,150);
+        showInformations.setBounds(170,50,220,150);
         buttonContainer.setBounds(140,200,250,30);
         mainContainer.add(listechoix);
         mainContainer.add(showInformations);
@@ -31,23 +34,93 @@ public class GIULancher extends JFrame{
         initDeleteButton();
         initRunButton();
         setTitle("Visulog");
-        setSize(600,300);
+        setSize(600,350);
         setContentPane(mainContainer);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        initMenu();
+        setJMenuBar(menubar);
+        setLocationRelativeTo(null);
+    }
+
+    private void initMenu(){
+        JButton save = new JButton("save");
+        JButton load = new JButton("load");
+        JButton quit = new JButton("quit");
+        load.addActionListener((e)->{
+            class ResponseFrame extends JFrame{
+                public ResponseFrame(){
+                    JPanel mainContainer = new JPanel();
+                    setSize(200,100);
+                    setResizable(false);
+                    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    setLocationRelativeTo(null);
+                    JTextField fileName = new JTextField("file name");
+                    JButton validate = new JButton("enter");
+                    validate.addActionListener((e)->{
+                        //close the window
+                        setVisible(false);
+                        dispose();
+                    });
+                    mainContainer.add(fileName);
+                    mainContainer.add(validate);
+                    setContentPane(mainContainer); 
+                }
+            }
+            (new ResponseFrame()).setVisible(true);
+        });
+        quit.addActionListener((e)->{
+            setVisible(false);
+            dispose();
+        });
+        menubar.add(save);
+        menubar.add(load);
+        menubar.add(quit);
     }
 
     private void addButton(){
         JButton ajout = new JButton("add");
         ajout.addActionListener((e)->{
-            String chosecommand = listechoix.getItemAt(listechoix.getSelectedIndex());
+            boolean show = false;
+            chosecommand = listechoix.getItemAt(listechoix.getSelectedIndex());
+            if (chosecommand.equals("countCommitsPerDate")){
+                showDate();
+                show = true;
+            }
             if (!chosecommand.equals("All") && commandToRun.equals("All")) commandToRun = "";
             if (chosecommand.equals("All")) commandToRun = "All";
-            else if (!containsString(chosecommand)) commandToRun += chosecommand +"<br>";
-            showInformations.setText("<html>"+commandToRun+"</html>");
+            else if (!containsString(chosecommand) && !show) commandToRun += chosecommand +"<br>";
+            if (!show) showInformations.setText("<html>"+commandToRun+"</html>");
         });
         buttonContainer.setLayout(new GridLayout(0,3));
         buttonContainer.add(ajout);
+    }
+
+    private void showDate(){
+        class ShowDate extends JFrame{
+            public ShowDate(){
+                JTextField date1 = new JTextField("dd-mm-yyyy");
+                JTextField date2 = new JTextField("dd-mm-yyyy");
+                JPanel mainContainer = new JPanel();
+                JButton enter = new JButton("enter");
+                setSize(200,100);
+                setResizable(false);
+                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                setLocationRelativeTo(null);
+                mainContainer.add(date1);
+                mainContainer.add(date2);
+                mainContainer.add(enter);
+                enter.addActionListener((e)->{
+                    chosecommand = "countCommits/"+date1.getText()+"/"+date2.getText();
+                    commandToRun += chosecommand +"<br>";
+                    showInformations.setText("<html>"+commandToRun+"</html>");
+                    setVisible(false);
+                    dispose();
+                });
+                setContentPane(mainContainer);
+            }
+        }
+        (new ShowDate()).setVisible(true);
     }
 
     private boolean containsString(String mot){
@@ -88,11 +161,12 @@ public class GIULancher extends JFrame{
     }
 
     public static void main(String args[]){
-        if (args.length>0 && !args[0].equals("ShowGUI")) CLILauncher.run(args);//CLILauncher.run(args);
-        else{
-            SwingUtilities.invokeLater(new Runnable(){
-                public void run(){
-                    //display the giu
+        if (args.length > 0 && !args[0].toLowerCase().equals("showgui"))
+            CLILauncher.run(args);
+        else {
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    // display the giu
                     (new GIULancher()).setVisible(true);
                 }
             });

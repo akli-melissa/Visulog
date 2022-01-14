@@ -71,7 +71,7 @@ public class CountCommitsPerDayOfWeek implements AnalyzerPlugin {
             commitsPerDayOfWeek.put("Wednesday",0);
             commitsPerDayOfWeek.put("Thursday",0);
             commitsPerDayOfWeek.put("Friday",0);
-            commitsPerDayOfWeek.put("Szaturday",0);
+            commitsPerDayOfWeek.put("Saturday",0);
 
         }
         Map<String, Integer> getcommitsPerDayOfWeek() {

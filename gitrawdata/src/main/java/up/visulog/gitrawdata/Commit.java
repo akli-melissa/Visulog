@@ -9,7 +9,6 @@ import up.visulog.config.PluginConfig;
 import java.text.*; 
 
 public class Commit {
-    // FIXME: (some of) these fields could have more specialized types than String
     public final String id;
     public final Date date;
     public String author;

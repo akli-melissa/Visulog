@@ -1,14 +1,17 @@
-<div>
-    <div id="chartContainer_id" style="height: 300px; width: 100%;"></div>
+<div id="cnt_id" class="tabPanel" style="height: 620px; width: 100%; overflow: scroll;">
+    <div id="chartContainer_id" style="height: 100%; width: 100%;"></div>
 </div>
 <script>
 function afficheGraph_id() {
+    var w = document.getElementById('chartContainer_id').offsetWidth;
+    var h = document.getElementById('chartContainer_id').offsetHeight;
     var chart = new CanvasJS.Chart("chartContainer_id", {
+    width:w,height:h,
     theme: "light2",        exportEnabled: true,
     animationEnabled: true,
     title: {
             text: "Commits"
-    },
+    }, 
     data: [{
             type: "//type_graph//",
             toolTipContent: "<b>{label}</b>: {y} commits",
@@ -20,5 +23,8 @@ function afficheGraph_id() {
     chart.render();
     }
     afficheGraph_id();
+    document.getElementById("_id").disabled = false;
+    document.getElementById("_id").style.background = "#0E4BEF";
+    document.getElementById("cnt_id").style.display = "none";
 </script>
             

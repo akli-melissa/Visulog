@@ -3,6 +3,7 @@ package up.visulog.analyzer;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 
 public class AnalyzerResult {
@@ -38,9 +39,27 @@ public class AnalyzerResult {
         
         result.append("<body>" + "\n");
         result.append(subResults.stream().map(AnalyzerPlugin.Result::getResultAsHtmlDiv).reduce("", (acc, cur) -> acc + "\n" + cur));
+        result.append("</div> "+ "\n");
+        result.append("</div> "+ "\n");
+        result.append(readShowPanel() + "\n");
         result.append("</body> "+ "\n");
         result.append("</html>");
         
+        return result.toString();
+    }
+
+    private String readShowPanel(){
+        StringBuilder result = new StringBuilder(""); 
+        String dir = System.getProperty("user.dir");
+        dir = dir.replace("cli","");
+        try (BufferedReader in = new BufferedReader(new FileReader(dir+"/webgen/showPanel.html"))) {
+            String str;
+            while ((str = in.readLine()) != null) {
+                result.append(str+"\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return result.toString();
     }
 }
